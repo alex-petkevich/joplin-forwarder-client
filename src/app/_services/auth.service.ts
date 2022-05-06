@@ -30,4 +30,10 @@ export class AuthService {
       lastname
     }, httpOptions);
   }
+
+  activate(key: string): Observable<any> {
+    return this.http.post(AUTH_API + 'activate', {
+      key
+    }, httpOptions);
+  }
 }
