@@ -36,4 +36,22 @@ export class AuthService {
       key
     }, httpOptions);
   }
+
+  forgotPassword(email: string): Observable<any> {
+    return this.http.get(AUTH_API + 'forgot-password/' + email, { responseType: 'json' });
+  }
+
+  passwordReset(username: string, password: string): Observable<any> {
+    return this.http.post(AUTH_API + 'password-reset/', {
+      username,
+      password
+    }, httpOptions);
+  }
+
+  checkKey(key: string): Observable<any> {
+    return this.http.post(AUTH_API + 'check-key', {
+      key
+    }, httpOptions);
+  }
+
 }

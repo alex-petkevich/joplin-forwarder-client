@@ -5,6 +5,10 @@
       src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
       class="profile-img-card"
     />
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{ roles }}.
+    </div>
+
     <form
       *ngIf="!isLoggedIn"
       name="form"
@@ -12,6 +16,22 @@
       #f="ngForm"
       novalidate
     >
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="isLoginFailed"
+        >
+          Problem: {{ errorMessage }}
+        </div>
+        <div
+          class="alert alert-success"
+          role="alert"
+          *ngIf="isActivationSuccessful"
+        >
+          Account activated successfully
+        </div>
+      </div>
       <div class="form-group">
         <label for="username">Username</label>
         <input
@@ -57,18 +77,7 @@
           Login
         </button>
       </div>
-      <div class="form-group">
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="f.submitted && isLoginFailed"
-        >
-          Login failed: {{ errorMessage }}
-        </div>
-      </div>
+      <a href="/account/forgot-password">Forgot Password?</a> / <a href="/register">Register New Account</a>
     </form>
-    <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ roles }}.
-    </div>
   </div>
 </div>
