@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import {ForgotPasswordComponent} from "./account/forgot-password/forgot-password.component";
 import {PasswordResetComponent} from "./account/password-reset/password-reset.component";
+import {FileUploadComponent} from "./shared-components/file-upload/file-upload.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {PasswordResetComponent} from "./account/password-reset/password-reset.co
     HomeComponent,
     ProfileComponent,
     BoardAdminComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

@@ -16,11 +16,13 @@ export class ForgotPasswordComponent implements OnInit {
   isSentSucessfully = false;
   isSentFailed = false;
   errorMessage = '';
+  isLoggedIn = false;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.tokenStorage.getUser().id !== undefined;
   }
 
   onSubmit() : void {

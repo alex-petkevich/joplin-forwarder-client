@@ -30,11 +30,10 @@ export class UserService {
     return this.http.get(API_URL, { responseType: 'json' });
   }
 
-  saveUser(username: string, email: string, password: string, lastname: string, firstname: string): Observable<any> {
+  saveUser(username: string, email: string,lastname: string, firstname: string): Observable<any> {
     return this.http.post(API_URL, {
       username,
       email,
-      password,
       firstname,
       lastname
     }, httpOptions);

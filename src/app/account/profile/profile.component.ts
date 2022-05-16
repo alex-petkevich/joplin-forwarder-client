@@ -29,17 +29,13 @@ export class ProfileComponent implements OnInit {
         this.form.email = data.email;
         this.form.firstname = data.firstname;
         this.form.lastname = data.lastname;
-        this.form.password = '......';
       }
     })
   }
 
   onSubmit(): void {
-    let { email, password, lastname, firstname } = this.form;
-    if (password == '') {
-      password = '.....';
-    }
-    this.userService.saveUser(this.currentUser.username, email, password, lastname, firstname).subscribe({
+    let { email, lastname, firstname } = this.form;
+    this.userService.saveUser(this.currentUser.username, email, lastname, firstname).subscribe({
       next: data => {
         console.log(data);
         this.isSuccessful = true;
@@ -51,5 +47,4 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-
 }
