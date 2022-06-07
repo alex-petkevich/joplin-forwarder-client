@@ -7,7 +7,7 @@ import {environment} from "../environments/environment";
   providedIn: 'root'
 })
 export class FileUploadService {
-  private baseUrl = environment.backendUrl ;
+  private baseUrl = environment.backendUrl + 'api/files/' ;
 
   constructor(private http: HttpClient) {
   }
@@ -15,7 +15,7 @@ export class FileUploadService {
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('file', file);
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
+    const req = new HttpRequest('POST', `${this.baseUrl}upload`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -23,6 +23,6 @@ export class FileUploadService {
   }
 
   getFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/files`);
+    return this.http.get(`${this.baseUrl}list`);
   }
 }
