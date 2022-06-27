@@ -4,11 +4,11 @@ import {Observable} from 'rxjs';
 import {FileUploadService} from '../../_services/file-upload.service';
 
 @Component({
-  selector: 'app-file-upload',
-  templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss']
+  selector: 'app-image-upload',
+  templateUrl: './image-upload.component.html',
+  styleUrls: ['./image-upload.component.scss']
 })
-export class FileUploadComponent implements OnInit {
+export class ImageUploadComponent implements OnInit {
   selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
