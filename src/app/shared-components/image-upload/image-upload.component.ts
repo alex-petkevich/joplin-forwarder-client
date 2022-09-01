@@ -14,6 +14,7 @@ export class ImageUploadComponent implements OnInit {
   progress = 0;
   message = '';
   fileInfos?: Observable<any>;
+  showProgress: boolean = false;
 
   constructor(private uploadService: FileUploadService) {
   }
@@ -32,27 +33,36 @@ export class ImageUploadComponent implements OnInit {
       const file: File | null = this.selectedFiles.item(0);
       if (file) {
         this.currentFile = file;
-        this.uploadService.upload(this.currentFile).subscribe(
-          (event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
+        this.showProgress = true;
+        this.uploadService.upload(this.currentFile).subscribe( {
+          next : event => {
+            if (event.type === HttpEventType.UploadProgress && event.total != undefined) {
               this.progress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
+              setTimeout(this.hideProgress, 3000);
               this.message = event.body.message;
               this.fileInfos = this.uploadService.getFiles();
             }
           },
-          (err: any) => {
+          error : err => {
             console.log(err);
-            this.progress = 0;
+            setTimeout(this.hideProgress, 3000);
             if (err.error && err.error.message) {
               this.message = err.error.message;
             } else {
               this.message = 'Could not upload the file!';
             }
             this.currentFile = undefined;
-          });
+          }
+        });
       }
       this.selectedFiles = undefined;
     }
   }
+
+  private hideProgress() {
+    this.showProgress = false;
+    this.progress = 0;
+  }
+
 }
