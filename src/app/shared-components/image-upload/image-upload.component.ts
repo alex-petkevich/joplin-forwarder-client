@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FileUploadService} from '../../_services/file-upload.service';
@@ -13,22 +13,31 @@ export class ImageUploadComponent implements OnInit {
   currentFile?: File;
   progress = 0;
   message = '';
-  fileInfos?: Observable<any>;
+  imgList?: Observable<any>;
   showProgress: boolean = false;
+
+  @Input() image: any;
+  showSpinner: boolean = false;
 
   constructor(private uploadService: FileUploadService) {
   }
 
   ngOnInit(): void {
-    this.fileInfos = this.uploadService.getFiles();
+    this.fetchImage(this.uploadService.getFiles());
   }
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
   }
 
+  resetProgress(obj: any): void {
+    obj.showProgress = false;
+    obj.progress = 0;
+  }
+
   upload(): void {
     this.progress = 0;
+
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
       if (file) {
@@ -39,14 +48,16 @@ export class ImageUploadComponent implements OnInit {
             if (event.type === HttpEventType.UploadProgress && event.total != undefined) {
               this.progress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
-              setTimeout(this.hideProgress, 3000);
+              let obj = this;
+              setTimeout(function() { obj.resetProgress(obj) }, 3000);
               this.message = event.body.message;
-              this.fileInfos = this.uploadService.getFiles();
+              this.fetchImage(this.uploadService.getFiles());
             }
           },
           error : err => {
             console.log(err);
-            setTimeout(this.hideProgress, 3000);
+            let obj = this;
+            setTimeout(function() { obj.resetProgress(obj) }, 3000);
             if (err.error && err.error.message) {
               this.message = err.error.message;
             } else {
@@ -60,9 +71,36 @@ export class ImageUploadComponent implements OnInit {
     }
   }
 
-  private hideProgress() {
-    this.showProgress = false;
-    this.progress = 0;
+  fetchImage(files: Observable<any>) {
+    if (files) {
+      files
+          .subscribe({
+            next: value => {
+              if (value.length > 0) {
+                this.uploadService.getUserImage(value[0].url)
+                    .subscribe({
+                      next: image => this.createImage(image),
+                    });
+              }
+            }
+          })
+    }
+  }
+
+  private createImage(image: Blob) {
+    if (image && image.size > 0) {
+      let reader = new FileReader();
+      this.showSpinner = true;
+
+      reader.addEventListener("load", () => {
+        this.showSpinner = false;
+        this.image = reader.result;
+      }, false);
+
+      reader.readAsDataURL(image);
+    } else {
+      this.showSpinner = false;
+    }
   }
 
 }

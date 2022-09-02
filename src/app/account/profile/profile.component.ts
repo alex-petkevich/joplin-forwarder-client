@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../_services/user.service";
+import {FileUploadService} from "../../_services/file-upload.service";
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
   isUpdatingFailed = false;
   errorMessage = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private fileService: FileUploadService) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe({
@@ -29,20 +30,8 @@ export class ProfileComponent implements OnInit {
         this.form.email = data.email;
         this.form.firstname = data.firstname;
         this.form.lastname = data.lastname;
-        this.userService.getAvatarImage(data.username)
-            .subscribe({
-              next: image =>  this.createImage(image) ,
-              error: err => this.handleImageRetrievalError(err)
-            });
       }
     })
-  }
-
-  private handleImageRetrievalError(err: Error) {
-    console.error(err);
-    // https://careydevelopment.us/blog/angular-how-to-fetch-and-display-images-with-a-spring-boot-rest-service
-//    this.showSpinner = false;
-//    this.alertService.error("Problem retrieving profile photo.");
   }
 
   onSubmit(): void {
@@ -58,20 +47,5 @@ export class ProfileComponent implements OnInit {
         this.isUpdatingFailed = true;
       }
     });
-  }
-
-  private createImage(image: Blob) {
-    if (image && image.size > 0) {
-      let reader = new FileReader();
-
-      reader.addEventListener("load", () => {
-//        this.imageToShow = reader.result;
-//        this.showSpinner = false;
-      }, false);
-
-      reader.readAsDataURL(image);
-    } else {
-//      this.showSpinner = false;
-    }
   }
 }

@@ -10,7 +10,8 @@
     </button>
   </div>
 </div>
-<div *ngIf="showProgress" class="progress my-3">
+<div *ngIf="showProgress">
+<div class="progress my-3">
   <div
     class="progress-bar progress-bar-info progress-bar-striped"
     role="progressbar"
@@ -24,13 +25,20 @@
   </div>
 </div>
 <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
-<div class="card mt-3">
+</div>
+
+<img [attr.src]="image" *ngIf="image" style="max-height: 200px">
+<div class="spinner-border text-primary" role="status" *ngIf="showSpinner">
+  <span class="sr-only">Loading...</span>
+</div>
+
+<!--<div class="card mt-3">
   <ul
-    class="list-group list-group-flush"
-    *ngFor="let file of fileInfos | async"
+          class="list-group list-group-flush"
+          *ngFor="let image of imgList | async"
   >
     <li class="list-group-item">
-      <a href="{{ file.url }}">{{ file.name }}</a>
+      <img [attr.src]="image" *ngIf="image" style="max-height: 200px">
     </li>
   </ul>
-</div>
+</div>-->

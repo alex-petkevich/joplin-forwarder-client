@@ -31,11 +31,6 @@ export class UserService {
     return this.http.get(API_URL, { responseType: 'json' });
   }
 
-  getAvatarImage(userId: string): Observable<Blob> {
-    let url =  environment.backendUrl + 'api/files/avatar/' + userId;
-    return this.http.get(url, { responseType: 'blob' });
-  }
-
   saveUser(username: string, email: string,lastname: string, firstname: string): Observable<any> {
     return this.http.post(API_URL, {
       username,

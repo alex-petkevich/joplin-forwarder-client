@@ -25,4 +25,10 @@ export class FileUploadService {
   getFiles(): Observable<any> {
     return this.http.get(`${this.baseUrl}list`);
   }
+
+  getUserImage(userId: string): Observable<Blob> {
+    let url =  environment.backendUrl + 'api/files/image/' + userId;
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
 }
