@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../_services/auth.service";
 import {TokenStorageService} from "../../_services/token-storage.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private route: ActivatedRoute) {
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private route: ActivatedRoute, private router: Router) {
     this.route.url.subscribe(params => {
       if (params.length > 1 && params[1].path == 'activate') {
         this.route.queryParams.subscribe(queryParams => {
@@ -61,10 +61,7 @@ export class LoginComponent implements OnInit {
       next: data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+        this.router.navigate(['/home']);
       } ,
       error: err => {
         this.errorMessage = err.error.message || 'Unexpected error, try later';
@@ -72,9 +69,4 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-
-  reloadPage() : void {
-    window.location.reload();
-  }
-
 }

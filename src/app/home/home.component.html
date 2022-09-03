@@ -1,5 +1,9 @@
 <div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
+  <header class="jumbotron" *ngIf="!isLoggedIn">
+    <p>Please <a href="/register">register</a> or <a href="/login">login</a> to get access to the JMG functionality</p>
+  </header>
+  <header class="jumbotron" *ngIf="isLoggedIn">
+    Short statistics: <br />
+    Total processed, Last Period, Matched rules
   </header>
 </div>
