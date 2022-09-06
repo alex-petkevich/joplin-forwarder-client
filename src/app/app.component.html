@@ -1,6 +1,6 @@
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Joplin Mail Gateway</a>
+    <a href="#" class="navbar-brand">{{ 'title' | translate }}</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
@@ -8,7 +8,7 @@
       <li class="nav-item" *ngIf="showAdminBoard">
         <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">My Rules</a>
       </li>
     </ul>
@@ -22,7 +22,12 @@
     </ul>
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        <div class="container-fluid">
+          <a href="/profile" class="nav-link" routerLink="profile">
+          <img src="{{ avatar }}" alt="" width="30" height="24" class="d-inline-block align-text-top profile-avatar-img-card" *ngIf="avatar">
+          <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="" width="30" height="24" class="d-inline-block align-text-top profile-avatar-img-card" *ngIf="!avatar">
+          {{ username }}</a>
+        </div>
       </li>
       <li class="nav-item">
         <a href class="nav-link" (click)="logout()">Logout</a>

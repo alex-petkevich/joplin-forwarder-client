@@ -6,7 +6,7 @@ import {environment} from "../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
-export class FileUploadService {
+export class FileService {
   private baseUrl = environment.backendUrl + 'api/files/' ;
 
   constructor(private http: HttpClient) {

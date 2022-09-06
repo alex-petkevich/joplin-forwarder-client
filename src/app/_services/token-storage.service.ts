@@ -18,7 +18,13 @@ export class TokenStorageService {
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
   public getToken(): string | null {
-    return window.sessionStorage.getItem(TOKEN_KEY);
+    let token = window.sessionStorage.getItem(TOKEN_KEY);
+
+    if (token && this.tokenExpired(token as string)) {
+      this.signOut();
+      return null;
+    }
+    return token;
   }
   public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
@@ -32,4 +38,8 @@ export class TokenStorageService {
     return {};
   }
 
+  private tokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
 }

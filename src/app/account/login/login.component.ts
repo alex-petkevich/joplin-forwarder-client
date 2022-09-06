@@ -61,7 +61,9 @@ export class LoginComponent implements OnInit {
       next: data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
       } ,
       error: err => {
         this.errorMessage = err.error.message || 'Unexpected error, try later';

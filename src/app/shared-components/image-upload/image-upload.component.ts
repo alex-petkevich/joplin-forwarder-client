@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {FileUploadService} from '../../_services/file-upload.service';
+import {FileService} from '../../_services/file.service';
+import {IFileInfo} from '../model/fileInfo.model';
 
 @Component({
   selector: 'app-image-upload',
@@ -19,7 +20,7 @@ export class ImageUploadComponent implements OnInit {
   @Input() image: any;
   showSpinner: boolean = false;
 
-  constructor(private uploadService: FileUploadService) {
+  constructor(private uploadService: FileService) {
   }
 
   ngOnInit(): void {
@@ -77,7 +78,7 @@ export class ImageUploadComponent implements OnInit {
           .subscribe({
             next: value => {
               if (value.length > 0) {
-                this.uploadService.getUserImage(value[0].url)
+                this.uploadService.getUserImage((value[0] as IFileInfo).url)
                     .subscribe({
                       next: image => this.createImage(image),
                     });

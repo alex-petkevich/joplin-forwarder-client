@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../_services/user.service";
-import {FileUploadService} from "../../_services/file-upload.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   isUpdatingFailed = false;
   errorMessage = '';
 
-  constructor(private userService: UserService, private fileService: FileUploadService) { }
+  constructor(private userService: UserService, translate: TranslateService) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe({
