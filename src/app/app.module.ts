@@ -10,13 +10,12 @@ import { ProfileComponent } from './account/profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { FormsModule } from '@angular/forms';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import {ForgotPasswordComponent} from "./account/forgot-password/forgot-password.component";
 import {PasswordResetComponent} from "./account/password-reset/password-reset.component";
 import {ImageUploadComponent} from "./shared-components/image-upload/image-upload.component";
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {NgxTranslateModule} from "./translate/translate.module";
 
 @NgModule({
   declarations: [
@@ -36,19 +35,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    NgxTranslateModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}

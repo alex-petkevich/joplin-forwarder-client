@@ -11,17 +11,33 @@
       <li class="nav-item" *ngIf="isLoggedIn">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">My Rules</a>
       </li>
+
     </ul>
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Lang
+        </a>
+        <ul class="dropdown-menu">
+          <ng-container *ngFor="let language of languageList">
+            <li>
+              <a
+                      class="dropdown-item"
+                      (click)="changeSiteLanguage(language.code)">
+                {{ language.label }}
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </li>
+
+      <li class="nav-item" *ngIf="!isLoggedIn">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!isLoggedIn">
         <a href="/login" class="nav-link" routerLink="login">Login</a>
       </li>
-    </ul>
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <div class="container-fluid">
           <a href="/profile" class="nav-link" routerLink="profile">
           <img src="{{ avatar }}" alt="" width="30" height="24" class="d-inline-block align-text-top profile-avatar-img-card" *ngIf="avatar">
@@ -29,7 +45,7 @@
           {{ username }}</a>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a href class="nav-link" (click)="logout()">Logout</a>
       </li>
     </ul>

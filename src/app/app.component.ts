@@ -16,9 +16,13 @@ export class AppComponent {
   username?: string;
   avatar?:any;
 
-  constructor(private tokenStorageService: TokenStorageService, private fileService: FileService, translate: TranslateService) {
-    translate.addLangs(['en', 'ru']);
-    translate.setDefaultLang('en');
+  languageList = [
+    { code: 'en', label: 'English' },
+    { code: 'ru', label: 'Русский' },
+  ];
+
+  constructor(private tokenStorageService: TokenStorageService, private fileService: FileService, private translate: TranslateService) {
+
   }
 
   ngOnInit(): void {
@@ -49,5 +53,16 @@ export class AppComponent {
       }, false);
       reader.readAsDataURL(image);
     }
+  }
+
+  changeSiteLanguage(localeCode: string): void {
+    const selectedLanguage = this.languageList
+        .find((language) => language.code === localeCode)
+        ?.label.toString();
+    if (selectedLanguage) {
+      this.translate.use(localeCode);
+    }
+    const currentLanguage = this.translate.currentLang;
+    console.log('currentLanguage', currentLanguage);
   }
 }
