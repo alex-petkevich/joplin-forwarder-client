@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {TokenStorageService} from "./_services/token-storage.service";
 import {FileService} from "./_services/file.service";
 import {TranslateService} from "@ngx-translate/core";
+import {environment} from "./environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -20,12 +21,18 @@ export class AppComponent {
     { code: 'en', label: 'English' },
     { code: 'ru', label: 'Русский' },
   ];
+  currentLanguage?: string = this.getLanguageLabel(environment.defaultLanguage);
+
+  private getLanguageLabel(lang: string) {
+    return this.languageList.find( it => it.code == lang)?.label.toString();
+  }
 
   constructor(private tokenStorageService: TokenStorageService, private fileService: FileService, private translate: TranslateService) {
 
   }
 
   ngOnInit(): void {
+    this.changeSiteLanguage(this.tokenStorageService.getLang());
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
@@ -56,13 +63,12 @@ export class AppComponent {
   }
 
   changeSiteLanguage(localeCode: string): void {
-    const selectedLanguage = this.languageList
-        .find((language) => language.code === localeCode)
-        ?.label.toString();
+    const selectedLanguage = this.getLanguageLabel(localeCode);
     if (selectedLanguage) {
       this.translate.use(localeCode);
+      this.currentLanguage = selectedLanguage;
+      this.tokenStorageService.saveLang(localeCode);
     }
-    const currentLanguage = this.translate.currentLang;
-    console.log('currentLanguage', currentLanguage);
   }
+
 }
