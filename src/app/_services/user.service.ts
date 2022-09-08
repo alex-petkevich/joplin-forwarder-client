@@ -20,9 +20,6 @@ export class UserService {
   getUserBoard(): Observable<any> {
     return this.http.get(API_URL + 'user', { responseType: 'text' });
   }
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
-  }
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
@@ -37,6 +34,12 @@ export class UserService {
       email,
       firstname,
       lastname
+    }, httpOptions);
+  }
+
+  saveUserLanguage(lang: string): Observable<any> {
+    return this.http.post(API_URL + 'lang', {
+      lang: lang
     }, httpOptions);
   }
 }

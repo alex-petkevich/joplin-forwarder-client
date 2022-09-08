@@ -13,7 +13,9 @@ export class TokenStorageService {
   constructor() { }
 
   signOut(): void {
+    const lang = this.getLang();
     window.sessionStorage.clear();
+    this.saveLang(lang);
   }
 
   public saveToken(token: string): void {

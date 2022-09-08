@@ -3,6 +3,7 @@ import {TokenStorageService} from "./_services/token-storage.service";
 import {FileService} from "./_services/file.service";
 import {TranslateService} from "@ngx-translate/core";
 import {environment} from "./environments/environment";
+import {UserService} from "./_services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,10 @@ export class AppComponent {
     return this.languageList.find( it => it.code == lang)?.label.toString();
   }
 
-  constructor(private tokenStorageService: TokenStorageService, private fileService: FileService, private translate: TranslateService) {
+  constructor(private tokenStorageService: TokenStorageService,
+              private fileService: FileService,
+              private translate: TranslateService,
+              private userService: UserService) {
 
   }
 
@@ -67,7 +71,11 @@ export class AppComponent {
     if (selectedLanguage) {
       this.translate.use(localeCode);
       this.currentLanguage = selectedLanguage;
-      this.tokenStorageService.saveLang(localeCode);
+      this.userService.saveUserLanguage(localeCode).subscribe({
+        next: data => {
+          this.tokenStorageService.saveLang(localeCode);
+        }
+      });
     }
   }
 

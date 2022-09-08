@@ -61,6 +61,10 @@ export class LoginComponent implements OnInit {
       next: data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
+        if (data.lang) {
+          this.tokenStorage.saveLang(data.lang);
+        }
+
         this.router.navigate(['/home']).then(() => {
           window.location.reload();
         });
