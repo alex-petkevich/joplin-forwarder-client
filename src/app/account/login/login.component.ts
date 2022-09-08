@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../_services/auth.service";
 import {TokenStorageService} from "../../_services/token-storage.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,11 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private route: ActivatedRoute, private router: Router) {
+  constructor(private authService: AuthService,
+              private tokenStorage: TokenStorageService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private translate: TranslateService) {
     this.route.url.subscribe(params => {
       if (params.length > 1 && params[1].path == 'activate') {
         this.route.queryParams.subscribe(queryParams => {
@@ -34,7 +39,9 @@ export class LoginComponent implements OnInit {
     this.authService.activate(key).subscribe({
       next: data => {
         if (!data.id) {
-          this.errorMessage = 'Activation key not exists';
+          this.translate.get('account.login.activation-key-not-exists').subscribe({
+            next:data => { this.errorMessage = data; }
+          });
           this.isLoginFailed = true;
         } else {
           this.isActivationSuccessful = true;

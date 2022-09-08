@@ -20,13 +20,13 @@ export class TokenStorageService {
 
   public saveToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    token && window.sessionStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string | null {
     let token = window.sessionStorage.getItem(TOKEN_KEY);
 
-    if (token && this.tokenExpired(token as string)) {
+    if (token !== undefined && token && this.tokenExpired(token as string)) {
       this.signOut();
       return null;
     }

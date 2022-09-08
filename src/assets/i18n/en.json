@@ -2,5 +2,30 @@
   "home": {
 
   },
+  "account": {
+    "forgot-password": {
+      "sent-successfully": "In case username / email exists you should receive reset password link shortly",
+      "problem": "Problem, try again later",
+      "username": "Username / Email",
+      "send-password": "Send password reset link",
+      "login": "Login",
+      "register-account": "Register New Account",
+      "username-requred": "Username / Email is required!"
+    },
+    "login": {
+      "logged-in": "Logged in as",
+      "username": "Username",
+      "username-required": "Username is required!",
+      "password": "Password",
+      "login": "Login",
+      "password-required": "Password is required",
+      "password-6-chars": "Password must be at least 6 characters",
+      "forgot-password": "Forgot Password",
+      "register-account": "Register New Account",
+      "activated-successfully": "Account activated successfully",
+      "account.login.activation-key-not-exists": "Activation key not exists",
+      "problem": "Problem"
+    }
+  },
   "title": "Joplin Mail Gateway"
 }

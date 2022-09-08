@@ -71,11 +71,13 @@ export class AppComponent {
     if (selectedLanguage) {
       this.translate.use(localeCode);
       this.currentLanguage = selectedLanguage;
-      this.userService.saveUserLanguage(localeCode).subscribe({
-        next: data => {
-          this.tokenStorageService.saveLang(localeCode);
-        }
-      });
+      if (this.tokenStorageService.getToken()) {
+        this.userService.saveUserLanguage(localeCode).subscribe({
+          next: data => {
+            this.tokenStorageService.saveLang(localeCode);
+          }
+        });
+      }
     }
   }
 
