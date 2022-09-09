@@ -6,7 +6,7 @@
   </div>
   <div class="col-4">
     <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload()">
-      Upload
+      {{ 'shared-components.image-upload.upload' | translate  }}
     </button>
   </div>
 </div>
@@ -29,7 +29,7 @@
 
 <img [attr.src]="image" *ngIf="image" style="max-height: 200px">
 <div class="spinner-border text-primary" role="status" *ngIf="showSpinner">
-  <span class="sr-only">Loading...</span>
+  <span class="sr-only">{{ 'shared-components.image-upload.loading' | translate  }}...</span>
 </div>
 
 <!--<div class="card mt-3">

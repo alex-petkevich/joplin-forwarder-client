@@ -3,6 +3,7 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FileService} from '../../_services/file.service';
 import {IFileInfo} from '../model/fileInfo.model';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-image-upload',
@@ -20,7 +21,7 @@ export class ImageUploadComponent implements OnInit {
   @Input() image: any;
   showSpinner: boolean = false;
 
-  constructor(private uploadService: FileService) {
+  constructor(private uploadService: FileService, private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -44,6 +45,7 @@ export class ImageUploadComponent implements OnInit {
       if (file) {
         this.currentFile = file;
         this.showProgress = true;
+        let obj = this;
         this.uploadService.upload(this.currentFile).subscribe( {
           next : event => {
             if (event.type === HttpEventType.UploadProgress && event.total != undefined) {
@@ -62,7 +64,9 @@ export class ImageUploadComponent implements OnInit {
             if (err.error && err.error.message) {
               this.message = err.error.message;
             } else {
-              this.message = 'Could not upload the file!';
+              obj.translate.get('shared-components.image-upload.upload-error').subscribe({
+                next: data => {this.message = data;}
+              });
             }
             this.currentFile = undefined;
           }

@@ -3,13 +3,13 @@
     <a href="#" class="navbar-brand">{{ 'title' | translate }}</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
+        <a href="/home" class="nav-link" routerLink="home">{{ 'home-nav' | translate }} </a>
       </li>
       <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        <a href="/admin" class="nav-link" routerLink="admin">{{ 'admin' | translate }} </a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">My Rules</a>
+        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">{{ 'my-rules' | translate }}</a>
       </li>
 
     </ul>
@@ -30,10 +30,10 @@
       </li>
 
       <li class="nav-item" *ngIf="!isLoggedIn">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        <a href="/register" class="nav-link" routerLink="register">{{ 'sign-up' | translate }}</a>
       </li>
       <li class="nav-item" *ngIf="!isLoggedIn">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a href="/login" class="nav-link" routerLink="login">{{ 'login' | translate }}</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <div class="container-fluid">
@@ -44,7 +44,7 @@
         </div>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
-        <a href class="nav-link" (click)="logout()">Logout</a>
+        <a href class="nav-link" (click)="logout()">{{ 'logout' | translate }}</a>
       </li>
     </ul>
   </nav>

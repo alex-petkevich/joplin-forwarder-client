@@ -1,6 +1,19 @@
 {
-  "home": {
+  "title": "Joplin Mail Gateway",
+  "home-nav": "Home",
+  "admin": "Admin Board",
+  "my-rules": "My Rules",
+  "sign-up": "Sign Up",
+  "login": "Login",
+  "logout": "Logout",
 
+  "home": {
+    "please": "Please",
+    "register": "register",
+    "or": "or",
+    "login": "login",
+    "to-get-funct": "to get access to the JMG functionality",
+    "short-stat": "Short statistics"
   },
   "account": {
     "forgot-password": {
@@ -25,7 +38,54 @@
       "activated-successfully": "Account activated successfully",
       "account.login.activation-key-not-exists": "Activation key not exists",
       "problem": "Problem"
+    },
+    "reset": {
+      "success": "Password changed successfully",
+      "incorrect-link": "Incorrect link",
+      "problem-try-later": "Problem, try again later",
+      "new-password": "New Password",
+      "invalid-password": "Invalid password",
+      "change-password": "Change Password",
+      "login": "Login",
+      "register": "Register New Account"
+    },
+    "profile": {
+      "edit": "Edit profile",
+      "email": "Email",
+      "email-required": "Email is required",
+      "email-valid": "Email must be a valid email address",
+      "firstname": "First name",
+      "lastname": "Last name",
+      "change-password": "Change Password",
+      "upload-avatar": "Upload Avatar",
+      "save-data": "Save data",
+      "update-failed": "Update data failed",
+      "profile-saved": "Profile data saved successfully",
+      "please-login": "Please login"
+    },
+    "register": {
+      "username": "Username",
+      "minlength": "Username must be at least 3 characters",
+      "user-required": "Username is required",
+      "maxlength": "Username must be at most 20 characters",
+      "email": "Email",
+      "email-required": "Email is required",
+      "email-valid": "Email must be a valid email address",
+      "firstname": "First name",
+      "lastname": "Last name",
+      "password": "Password",
+      "password-required": "Password is required",
+      "password-minlength": "Password must be at least 6 characters",
+      "signup": "Sign Up",
+      "signup-failed": "Signup failed",
+      "success": "Your registration is successful! Please check your email and press the activation link to activate account."
     }
   },
-  "title": "Joplin Mail Gateway"
+  "shared-components": {
+    "image-upload": {
+      "upload": "Upload",
+      "loading": "Loading",
+      "upload-error": "Could not upload the file!"
+    }
+  }
 }

@@ -1,6 +1,91 @@
 {
-  "home": {
+  "title": "Joplin диспетчер почты",
+  "home-nav": "Домой",
+  "admin": "Панель администратора",
+  "my-rules": "Мои правила",
+  "sign-up": "Регистрация",
+  "login": "Логин",
+  "logout": "Выход",
 
+  "home": {
+    "please": "Пожалуйста",
+    "register": "зарегистрируйтесь",
+    "or": "или",
+    "login": "войдите",
+    "to-get-funct": "чтобы получить доступ к функциональности",
+    "short-stat": "Краткая статистика"
   },
-  "title": "Joplin Пересылка почты"
+  "account": {
+    "forgot-password": {
+      "sent-successfully": "Если ваши данные есть в нашей базе, вы получите письмо на зарегистрированный Email",
+      "problem": "Проблема, попробуйте позже",
+      "username": "Имя пользователя / Email",
+      "send-password": "Отправить ссылку на сброс пароля",
+      "login": "Логин",
+      "register-account": "Зарегистрировать аккаунт",
+      "username-requred": "Имя пользователя / Email обязательно!"
+    },
+    "login": {
+      "logged-in": "Авторизованы как",
+      "username": "Имя пользователя",
+      "username-required": "Имя пользователя обязательно!",
+      "password": "Пароль",
+      "login": "Логин",
+      "password-required": "Пароль обязателен",
+      "password-6-chars": "Пароль должен быть не менее 6 символов",
+      "forgot-password": "Забыли пароль",
+      "register-account": "Зарегистрировать аккаунт",
+      "activated-successfully": "Аккаунт активирован успешно",
+      "account.login.activation-key-not-exists": "Ключ активации не найден",
+      "problem": "Проблема"
+    },
+    "reset": {
+      "success": "Пароль успешно изменен",
+      "incorrect-link": "Неверная ссылка",
+      "problem-try-later": "Проблема, попробуйте позже",
+      "new-password": "Новый пароль",
+      "invalid-password": "Неверный пароль",
+      "change-password": "Изменить пароль",
+      "login": "Логин",
+      "register": "Зарегистрировать новый аккаунт"
+    },
+    "profile": {
+      "edit": "Изменить профиль",
+      "email": "Email",
+      "email-required": "Email обязателен",
+      "email-valid": "Проверьте формат Email",
+      "firstname": "Имя",
+      "lastname": "Фамилия",
+      "change-password": "Сменить пароль",
+      "upload-avatar": "Загрузить аватар",
+      "save-data": "Сохранить данные",
+      "update-failed": "Ошибка изменения данных",
+      "profile-saved": "Данные успешно сохранены",
+      "please-login": "Пожалуйста войдите"
+    },
+    "register": {
+      "username": "Имя пользователя",
+      "minlength": "Имя пользователя как минимум 3 символа",
+      "user-required": "Имя пользователя обязательно",
+      "maxlength": "Имя пользователя не более 20 символов",
+      "email": "Email",
+      "email-required": "Email обязательный",
+      "email-valid": "Проверьте формат Email",
+      "firstname": "Имя",
+      "lastname": "Фамилия",
+      "password": "Пароль",
+      "password-required": "Пароль обязателен",
+      "password-minlength": "Пароль должен быть не менее 6 символов",
+      "signup": "Регистрация",
+      "signup-failed": "Регистрация не успешна",
+      "success": "Регистрация пройдена успешно. Пожалуйста, проверьте ваш почтовый ящик и пройдите по ссылке чтобы активировать аккаунт."
+    }
+  },
+  "shared-components": {
+    "image-upload": {
+      "upload": "Загрузить",
+      "loading": "Загрузка",
+      "upload-error": "Не могу загрузить файл!"
+    }
+  }
 }

@@ -13,7 +13,7 @@
       novalidate
     >
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">{{ 'account.register.username' | translate  }}</label>
         <input
           type="text"
           class="form-control"
@@ -25,17 +25,17 @@
           #username="ngModel"
         />
         <div class="alert-danger" *ngIf="username.errors && f.submitted">
-          <div *ngIf="username.errors['required']">Username is required</div>
+          <div *ngIf="username.errors['required']">{{ 'account.register.user-required' | translate  }}</div>
           <div *ngIf="username.errors['minlength']">
-            Username must be at least 3 characters
+            {{ 'account.register.minlength' | translate  }}
           </div>
           <div *ngIf="username.errors['maxlength']">
-            Username must be at most 20 characters
+            {{ 'account.register.maxlength' | translate  }}
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">{{ 'account.register.email' | translate  }}</label>
         <input
           type="email"
           class="form-control"
@@ -46,14 +46,14 @@
           #email="ngModel"
         />
         <div class="alert-danger" *ngIf="email.errors && f.submitted">
-          <div *ngIf="email.errors['required']">Email is required</div>
+          <div *ngIf="email.errors['required']">{{ 'account.register.email-required' | translate  }}</div>
           <div *ngIf="email.errors['email']">
-            Email must be a valid email address
+            {{ 'account.register.email-valid' | translate  }}
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="firstname">First name</label>
+        <label for="firstname">{{ 'account.register.firstname' | translate  }}</label>
         <input
           type="text"
           class="form-control"
@@ -64,7 +64,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="lastname">Last name</label>
+        <label for="lastname">{{ 'account.register.lastname' | translate  }}</label>
         <input
           type="text"
           class="form-control"
@@ -75,7 +75,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">{{ 'account.register.password' | translate  }}</label>
         <input
           type="password"
           class="form-control"
@@ -86,21 +86,21 @@
           #password="ngModel"
         />
         <div class="alert-danger" *ngIf="password.errors && f.submitted">
-          <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['required']">{{ 'account.register.password-required' | translate  }}</div>
           <div *ngIf="password.errors['minlength']">
-            Password must be at least 6 characters
+            {{ 'account.register.password-minlength' | translate  }}
           </div>
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class="btn btn-primary btn-block">{{ 'account.register.signup' | translate  }}</button>
       </div>
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
+        {{ 'account.register.signup-failed' | translate  }}!<br />{{ errorMessage }}
       </div>
     </form>
     <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful! Please check your email and press the activation link to activate account.
+      {{ 'account.register.success' | translate  }}
     </div>
   </div>
 </div>

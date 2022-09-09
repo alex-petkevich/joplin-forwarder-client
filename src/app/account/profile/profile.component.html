@@ -8,7 +8,7 @@
 
   <header class="jumbotron">
     <h3>
-      Edit profile
+      {{ 'account.profile.edit' | translate  }}
     </h3>
   </header>
   <form
@@ -18,7 +18,7 @@
     novalidate
   >
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">{{ 'account.profile.email' | translate  }}</label>
       <input
         type="email"
         class="form-control"
@@ -29,14 +29,14 @@
         #email="ngModel"
       />
       <div class="alert-danger" *ngIf="email.errors && f.submitted">
-        <div *ngIf="email.errors['required']">Email is required</div>
+        <div *ngIf="email.errors['required']">{{ 'account.profile.email-required' | translate  }}</div>
         <div *ngIf="email.errors['email']">
-          Email must be a valid email address
+          {{ 'account.login.email-valid' | translate  }}
         </div>
       </div>
     </div>
     <div class="form-group">
-      <label for="firstname">First name</label>
+      <label for="firstname">{{ 'account.profile.firstname' | translate  }}</label>
       <input
         type="text"
         class="form-control"
@@ -47,7 +47,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="lastname">Last name</label>
+      <label for="lastname">{{ 'account.profile.lastname' | translate  }}</label>
       <input
         type="text"
         class="form-control"
@@ -58,27 +58,27 @@
       />
     </div>
     <div class="form-group">
-      <a href="/account/forgot-password">Change Password</a>
+      <a href="/account/forgot-password">{{ 'account.profile.change-password' | translate  }}</a>
     </div>
 
     <div class="form-group">
-      <label for="avatar">Upload Avatar</label>
+      <label for="avatar">{{ 'account.profile.upload-avatar' | translate  }}</label>
       <app-image-upload id="avatar" ></app-image-upload>
     </div>
 
     <div class="form-group">
-      <button class="btn btn-primary btn-block">Save data</button>
+      <button class="btn btn-primary btn-block">{{ 'account.profile.save-data' | translate  }}</button>
     </div>
     <div class="alert alert-warning" *ngIf="f.submitted && isUpdatingFailed">
-      Update data failed!<br />{{ errorMessage }}
+      {{ 'account.profile.update-failed' | translate  }}!<br />{{ errorMessage }}
     </div>
   </form>
   <div class="alert alert-success" *ngIf="isSuccessful">
-    Profile data saved successfully
+    {{ 'account.profile.profile-saved' | translate  }}
   </div>
 
   </div>
 </div>
 <ng-template #loggedOut>
-  Please login.
+  {{ 'account.profile.please-login' | translate  }}.
 </ng-template>

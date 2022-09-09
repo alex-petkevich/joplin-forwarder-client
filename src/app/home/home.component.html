@@ -1,9 +1,9 @@
 <div class="container">
   <header class="jumbotron" *ngIf="!isLoggedIn">
-    <p>Please <a href="/register">register</a> or <a href="/login">login</a> to get access to the JMG functionality</p>
+    <p>{{ 'account.home.please' | translate  }} <a href="/register">{{ 'account.home.register' | translate  }}</a> {{ 'account.home.or' | translate  }} <a href="/login">{{ 'account.home.login' | translate  }}</a> {{ 'account.home.to-get-funct' | translate  }}</p>
   </header>
   <header class="jumbotron" *ngIf="isLoggedIn">
-    Short statistics: <br />
+    {{ 'home.short-stat' | translate  }}: <br />
     Total processed, Last Period, Matched rules
   </header>
 </div>
