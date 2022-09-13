@@ -1,6 +1,6 @@
 <div class="container">
   <header class="jumbotron" *ngIf="!isLoggedIn">
-    <p>{{ 'account.home.please' | translate  }} <a href="/register">{{ 'account.home.register' | translate  }}</a> {{ 'account.home.or' | translate  }} <a href="/login">{{ 'account.home.login' | translate  }}</a> {{ 'account.home.to-get-funct' | translate  }}</p>
+    <p>{{ 'home.please' | translate  }} <a href="/register">{{ 'home.register' | translate  }}</a> {{ 'home.or' | translate  }} <a href="/login">{{ 'home.login' | translate  }}</a> {{ 'home.to-get-funct' | translate  }}</p>
   </header>
   <header class="jumbotron" *ngIf="isLoggedIn">
     {{ 'home.short-stat' | translate  }}: <br />
