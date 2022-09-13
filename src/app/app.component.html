@@ -37,12 +37,21 @@
       <li class="nav-item" *ngIf="!isLoggedIn">
         <a href="/login" class="nav-link" routerLink="login">{{ 'login' | translate }}</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <div class="container-fluid">
-          <a href="/profile" class="nav-link" routerLink="profile">
+      <li class="nav-item dropdown" *ngIf="isLoggedIn">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
           <img src="{{ avatar }}" alt="" width="30" height="24" class="d-inline-block align-text-top profile-avatar-img-card" *ngIf="avatar">
           <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="" width="30" height="24" class="d-inline-block align-text-top profile-avatar-img-card" *ngIf="!avatar">
-          {{ username }}</a>
+          {{ username }}
+        </a>
+        <div  class="dropdown-menu">
+          <ng-container>
+            <a href="/profile" class="dropdown-item" >
+              {{ 'profile' | translate }}
+            </a>
+            <a href="/settings" class="dropdown-item" >
+              {{ 'settings' | translate }}
+            </a>
+          </ng-container>
         </div>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">

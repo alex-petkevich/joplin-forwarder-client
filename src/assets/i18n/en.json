@@ -6,6 +6,8 @@
   "sign-up": "Sign Up",
   "login": "Login",
   "logout": "Logout",
+  "profile": "User's Profile",
+  "settings": "Mailbox Settings",
 
   "home": {
     "please": "Please",
@@ -79,6 +81,18 @@
       "signup": "Sign Up",
       "signup-failed": "Signup failed",
       "success": "Your registration is successful! Please check your email and press the activation link to activate account."
+    },
+    "settings": {
+      "edit": "Edit mail server data",
+      "mailserver": "Host address",
+      "mailserver-required": "Host address is required",
+      "mailport": "Port",
+      "username": "Username",
+      "password": "Password",
+      "save-data": "Save data",
+      "update-failed": "Update data failed",
+      "settings-saved": "Settings saved successfully",
+      "please-login": "Please login"
     }
   },
   "shared-components": {

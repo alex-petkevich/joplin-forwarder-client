@@ -8,6 +8,7 @@ import {BoardUserComponent} from "./board-user/board-user.component";
 import {BoardAdminComponent} from "./board-admin/board-admin.component";
 import {ForgotPasswordComponent} from "./account/forgot-password/forgot-password.component";
 import {PasswordResetComponent} from "./account/password-reset/password-reset.component";
+import {SettingsComponent} from "./account/settings/settings.component";
 
 const routes: Routes = [
   { path: 'account/activate', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'user', component: BoardUserComponent },
+  { path: 'settings', component: SettingsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
