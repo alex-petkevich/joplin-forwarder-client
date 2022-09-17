@@ -1,4 +1,7 @@
 export interface ISettingsInfo {
-    name: string,
-    url: string
+    mailserver?: string,
+    mailport?: string,
+    username?: string,
+    password?: string,
+    period?: string
 }

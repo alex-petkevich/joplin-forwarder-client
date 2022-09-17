@@ -16,20 +16,6 @@
 
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown" *ngIf="languageList.length > 1">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-          {{ currentLanguage }}
-        </a>
-        <div  class="dropdown-menu">
-          <ng-container *ngFor="let language of languageList">
-              <a
-                      class="dropdown-item"
-                      (click)="changeSiteLanguage(language.code)">
-                {{ language.label }}
-              </a>
-          </ng-container>
-        </div>
-      </li>
 
       <li class="nav-item" *ngIf="!isLoggedIn">
         <a href="/register" class="nav-link" routerLink="register">{{ 'sign-up' | translate }}</a>
@@ -51,11 +37,25 @@
             <a href="/settings" class="dropdown-item" >
               {{ 'settings' | translate }}
             </a>
+            <a href class="nav-link" class="dropdown-item" (click)="logout()">
+              {{ 'logout' | translate }}
+            </a>
           </ng-container>
         </div>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a href class="nav-link" (click)="logout()">{{ 'logout' | translate }}</a>
+      <li class="nav-item dropdown" *ngIf="languageList.length > 1">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+          {{ currentLanguage }}
+        </a>
+        <div  class="dropdown-menu">
+          <ng-container *ngFor="let language of languageList">
+            <a
+                    class="dropdown-item"
+                    (click)="changeSiteLanguage(language.code)">
+              {{ language.label }}
+            </a>
+          </ng-container>
+        </div>
       </li>
     </ul>
   </nav>

@@ -89,6 +89,7 @@
       "mailport": "Port",
       "username": "Username",
       "password": "Password",
+      "period": "Period to check new mail, min",
       "save-data": "Save data",
       "update-failed": "Update data failed",
       "settings-saved": "Settings saved successfully",
