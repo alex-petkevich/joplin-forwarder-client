@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm mt-3 mb-3">
+            <h4>My Rules</h4>
+        </div>
+    </div>
+    <div class="row" *ngIf="rules!.length > 0">
+        <p class="col-sm">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last processed</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let rule of rules">
+                    <th scope="row">{{ rule.id }}</th>
+                    <td>{{ rule.name }}</td>
+                    <td>{{ rule.last_modified_at | date : 'medium' }}</td>
+                    <td>
+                        <button type="submit"
+                                [routerLink]="['/rules', rule.id, 'edit']"
+                                class="btn btn-success mr-1 btn-sm"><em class="bi-box-arrow-in-right"></em> Change</button>
+                        <button type="submit"
+                                [routerLink]="['/rules', { outlets: { popup: rule.id + '/delete'} }]"
+                                class="btn btn-danger btn-sm"><em class="bi-bookmark-x"></em> Delete</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+    </div>
+    <div class="row" *ngIf="rules!.length === 0">
+        <div class="col-sm">
+            <p class="text-center" >No Rules found</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <a class="btn btn-primary btn-sm" [routerLink]="['/rules/new']"><em class="bi-bookmark-plus"></em> Create Rule</a>
+        </div>
+    </div>
+</div>

@@ -17,6 +17,7 @@ import {PasswordResetComponent} from "./account/password-reset/password-reset.co
 import {ImageUploadComponent} from "./shared-components/image-upload/image-upload.component";
 import {NgxTranslateModule} from "./translate/translate.module";
 import {SettingsComponent} from "./account/settings/settings.component";
+import {RulesComponent} from "./rules/rules.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {SettingsComponent} from "./account/settings/settings.component";
     SettingsComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    RulesComponent
   ],
   imports: [
     BrowserModule,
