@@ -1,5 +1,5 @@
 <div class="col-md-12" xmlns="http://www.w3.org/1999/html">
-  <div class="card card-container-wide" *ngIf="currentUser; else loggedOut">
+  <div class="card card-container-wide">
 
   <header class="jumbotron">
     <h3>
@@ -83,6 +83,3 @@
 
   </div>
 </div>
-<ng-template #loggedOut>
-  {{ 'account.settings.please-login' | translate  }}.
-</ng-template>

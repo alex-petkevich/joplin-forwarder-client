@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../_services/user.service";
-import {TranslateService} from "@ngx-translate/core";
 import {ISettingsInfo} from "../../model/settings.model";
 import {SettingsService} from "../../_services/settings.service";
-import {TokenStorageService} from "../../_services/token-storage.service";
-import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
 import {ISettingsResponse} from "../../model/settings_response.model";
-import {Router} from "@angular/router";
+import {AuthService} from "../../_services/auth.service";
 
 @Component({
   selector: 'app-settings',
@@ -14,8 +10,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-
-  currentUser: any;
 
   form: any = {
     mailserver: null,
@@ -31,21 +25,16 @@ export class SettingsComponent implements OnInit {
   errorMessage = '';
   periods: string[] = ["1", "10", "30", "60", "180", "1440"];
 
-  constructor(private settingsService: SettingsService, private translate: TranslateService, private token: TokenStorageService, private route: Router) { }
+  constructor(private settingsService: SettingsService, private auth: AuthService) { }
 
-  ngOnInit(): void {
-    this.currentUser = this.token.getUser();
-    if (!this.token.getToken()) {
-      this.route.navigate(['/login']).then(() => {
-        window.location.reload();
-      });
-    }
+  async ngOnInit(): Promise<void> {
+    await this.auth.isLoggedIn();
+
     this.settingsService.getUserSettings().subscribe({
       next: data => {
         (data as Array<ISettingsResponse>).forEach(it => {
-           this.form[it.name] = it.value;
+          this.form[it.name] = it.value;
         });
-        console.log(this.form);
       }
     });
   }

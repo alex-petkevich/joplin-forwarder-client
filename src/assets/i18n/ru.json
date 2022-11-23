@@ -85,7 +85,7 @@
     "settings": {
       "edit": "Данные почтового сервера",
       "mailserver": "Адрес сервера",
-      "mailserver-required": "Адрес сервера обязательный",
+      "mailserver-required": "Адрес сервера обязателен",
       "mailport": "Порт",
       "username": "Имя пользователя",
       "password": "Пароль",
@@ -101,6 +101,52 @@
       "upload": "Загрузить",
       "loading": "Загрузка",
       "upload-error": "Не могу загрузить файл!"
+    }
+  },
+  "rules": {
+    "header": "Мои правила",
+    "name": "Название",
+    "last_processed": "Дата последнего запуска",
+    "actions": "Действия",
+    "change": "Изменить",
+    "delete": "Удалить",
+    "error_mail_not_configured": "Настройка почтового сервера не завершена. Пожалуйста <a href=\"/settings\">завершите конфигурацию</a>",
+    "error_no_rules_found": "Правила не созданы",
+    "create_rule": "Создать правило",
+    "edit": {
+      "save-data": "Сохранить правило",
+      "cancel": "Отмена",
+      "header": "Свойства правила",
+      "id": "ID",
+      "processed": "Количество совпадений",
+      "last_processed_at": "Последнее время запуска",
+      "name": "Название",
+      "type": "Правило",
+      "save_in": "Новая запись для каждого письма",
+      "final_action": "Обработка письма",
+      "name-required": "Название обязательно",
+      "name-valid": "Неверное значение",
+      "comparison_text-required": "Обязательное поле",
+      "comparison_text-valid": "Неверное значение",
+      "rules-saved": "Правило сохранено успешно"
+    }
+  },
+  "lists" : {
+    "types" : {
+      "From": "От",
+      "To": "Кому",
+      "Subject": "Тема",
+      "Body": "Текст",
+      "Attach": "Прикрепленный файл"
+    },
+    "comparison" : {
+      "EQUALS": "Равно",
+      "CONTAINS": "Содержит"
+    },
+    "final_action" : {
+      "MARK_READ": "Отметить прочитанным",
+      "DELETE": "Удалить",
+      "MOVE_TO_FOLDER": "Переместить в другую папку:"
     }
   }
 }

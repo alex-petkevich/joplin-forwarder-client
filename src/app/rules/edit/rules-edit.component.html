@@ -1,13 +1,144 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm mt-3 mb-3">
-            <h4>Edit Rule</h4>
-        </div>
-    </div>
+<div class="col-md-12" xmlns="http://www.w3.org/1999/html">
+    <div class="card card-container-wide">
 
-    <div class="row">
-        <div class="col-sm">
-            <button type="button" class="btn btn-primary btn-sm"><em class="bi-bookmark-plus"></em> Save Rule</button>
+        <header class="jumbotron">
+            <h3>
+                {{ 'rules.edit.header' | translate  }}
+            </h3>
+        </header>
+        <form
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit(f.form.valid)"
+                #f="ngForm"
+                novalidate
+        >
+            <div class="form-group" *ngIf="currentRule != undefined">
+                <label for="id">{{ 'rules.edit.id' | translate  }}:</label>&nbsp;
+                <b>{{ currentRule.id }}</b>
+            </div>
+
+            <div class="form-group" *ngIf="currentRule != undefined">
+                <label for="id">{{ 'rules.edit.processed' | translate  }}:</label>&nbsp;
+                <b>{{ currentRule.processed }}</b>
+            </div>
+
+            <div class="form-group" *ngIf="currentRule != undefined">
+                <label for="id">{{ 'rules.edit.last_processed_at' | translate  }}:</label>&nbsp;
+                <b>{{ currentRule.last_processed_at | date : 'medium' }}</b>
+            </div>
+
+            <div class="form-group">
+                <label for="name">{{ 'rules.edit.name' | translate  }}</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        name="name"
+                        [(ngModel)]="form.name"
+                        required
+                        #name="ngModel"
+                />
+                <div class="alert-danger" *ngIf="name.errors && f.submitted">
+                    <div *ngIf="name.errors['required']">{{ 'rules.edit.name-required' | translate  }}</div>
+                    <div *ngIf="name.errors['name']">
+                        {{ 'rules.edit.name-valid' | translate  }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type">{{ 'rules.edit.type' | translate  }}</label>
+            </div>
+            <div class="form-group">
+                <select
+                        class="form-control inner-fld"
+                        name="type"
+                        [(ngModel)]="form.type"
+                        #type="ngModel"
+                        required
+                >
+                    <option *ngFor="let type of types_list" value="{{ type.enum }}">{{ 'lists.types.' + type.display | translate }}</option>
+                </select>
+                <select
+                        class="form-control inner-fld"
+                        name="comparison_method"
+                        [(ngModel)]="form.comparison_method"
+                        #comparison_method="ngModel"
+                        [disabled]="!type.value"
+                        required
+                >
+                    <option *ngFor="let list of comparison_list" value="{{ list.enum }}">{{ 'lists.comparison.' + list.enum | translate }}</option>
+                </select>
+                <input
+                        type="text"
+                        class="form-control inner-fld"
+                        name="comparison_text"
+                        [(ngModel)]="form.comparison_text"
+                        required
+                        #comparison_text="ngModel"
+                        [readOnly]="!type.value || !comparison_method.value"
+                />
+                <div class="alert-danger" *ngIf="type.errors && f.submitted">
+                    <div *ngIf="type.errors['required']">{{ 'rules.edit.type-required' | translate  }}</div>
+                    <div *ngIf="type.errors['type']">
+                        {{ 'rules.edit.type-valid' | translate  }}
+                    </div>
+                </div>
+                <div class="alert-danger" *ngIf="comparison_method.errors && f.submitted">
+                    <div *ngIf="comparison_method.errors['required']">{{ 'rules.edit.comparison_method-required' | translate  }}</div>
+                    <div *ngIf="comparison_method.errors['comparison_method']">
+                        {{ 'rules.edit.comparison_method-valid' | translate  }}
+                    </div>
+                </div>
+                <div class="alert-danger" *ngIf="comparison_text.errors && f.submitted">
+                    <div *ngIf="comparison_text.errors['required']">{{ 'rules.edit.comparison_text-required' | translate  }}</div>
+                    <div *ngIf="comparison_text.errors['comparison_text']">
+                        {{ 'rules.edit.comparison_text-valid' | translate  }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="save_in">{{ 'rules.edit.save_in' | translate  }}</label>
+                <input
+                        type="checkbox"
+                        class="form-control inner-check"
+                        name="save_in"
+                        [(ngModel)]="form.save_in"
+                        #name="ngModel"
+                />
+            </div>
+            <div class="form-group">
+                <label for="final_action">{{ 'rules.edit.final_action' | translate  }}</label>
+            </div>
+            <div class="form-group">
+                <select
+                        class="form-control inner-fld"
+                        name="final_action"
+                        [(ngModel)]="form.final_action"
+                        #final_action="ngModel"
+                >
+                    <option *ngFor="let type of final_action_list" value="{{ type.enum }}">{{ 'lists.final_action.' + type.enum | translate }}</option>
+                </select>
+                <input
+                        type="text"
+                        class="form-control inner-fld"
+                        name="final_action_target"
+                        [(ngModel)]="form.final_action_target"
+                        #final_action_target="ngModel"
+                        [readOnly]="final_action.value != 'MOVE_TO_FOLDER'"
+                />
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary">{{ 'rules.edit.save-data' | translate  }}</button>&nbsp;
+                <a class="btn btn-danger" [routerLink]="['/rules']">{{ 'rules.edit.cancel' | translate }}</a>
+            </div>
+        </form>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            {{ 'rules.edit.rules-saved' | translate  }}
         </div>
+        <div class="alert alert-danger" *ngIf="errorMessage != ''">
+            {{ errorMessage  }}
+        </div>
+
     </div>
 </div>

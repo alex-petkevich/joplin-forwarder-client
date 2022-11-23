@@ -18,6 +18,7 @@ import {ImageUploadComponent} from "./shared-components/image-upload/image-uploa
 import {NgxTranslateModule} from "./translate/translate.module";
 import {SettingsComponent} from "./account/settings/settings.component";
 import {RulesComponent} from "./rules/rules.component";
+import {RulesEditComponent} from "./rules/edit/rules-edit.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {RulesComponent} from "./rules/rules.component";
     BoardAdminComponent,
     BoardUserComponent,
     ImageUploadComponent,
-    RulesComponent
+    RulesComponent,
+    RulesEditComponent
   ],
   imports: [
     BrowserModule,

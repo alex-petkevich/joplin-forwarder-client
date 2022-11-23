@@ -13,7 +13,9 @@ const httpOptions = {
 })
 export class SettingsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+  }
 
   getUserSettings() : Observable<any> {
     return this.http.get(API_URL, { responseType: 'json' });
@@ -22,5 +24,4 @@ export class SettingsService {
   save(settings: ISettingsInfo): Observable<any> {
     return this.http.post(API_URL, settings, httpOptions);
   }
-
 }

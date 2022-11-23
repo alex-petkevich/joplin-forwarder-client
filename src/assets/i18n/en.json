@@ -102,5 +102,51 @@
       "loading": "Loading",
       "upload-error": "Could not upload the file!"
     }
+  },
+  "rules": {
+    "header": "My Rules",
+    "name": "Name",
+    "last_processed": "Last processed",
+    "actions": "Actions",
+    "change": "Change",
+    "delete": "Delete",
+    "error_mail_not_configured": "Mail server was not set up. Please <a href=\"/settings\">complete the configuration</a>",
+    "error_no_rules_found": "No Rules found",
+    "create_rule": "Create Rule",
+    "edit": {
+      "save-data": "Save Rule",
+      "cancel": "Cancel",
+      "header": "Rule Properties",
+      "id": "ID",
+      "processed": "Pocessed amount",
+      "last_processed_at": "Last execution time",
+      "name": "Name",
+      "type": "Rule",
+      "save_in": "Create a new record for each email",
+      "final_action": "Final action",
+      "name-required": "Name required",
+      "name-valid": "Incorrect value",
+      "comparison_text-required": "Rule required",
+      "comparison_text-valid": "Incorrect value",
+      "rules-saved": "Rule saved successfully"
+    }
+  },
+  "lists" : {
+    "types" : {
+      "From": "From",
+      "To": "To",
+      "Subject": "Subject",
+      "Body": "Body",
+      "Attach": "Attach"
+    },
+    "comparison" : {
+      "Equals": "Equals",
+      "Contains": "Contains"
+    },
+    "final_action" : {
+      "MARK_READ": "Mark as read",
+      "DELETE": "Delete",
+      "MOVE_TO_FOLDER": "Move to another folder:"
+    }
   }
 }

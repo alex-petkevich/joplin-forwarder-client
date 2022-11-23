@@ -1,6 +1,6 @@
 export interface IRules {
-    id: number,
-    user_id: number,
+    id?: number,
+    user_id?: number,
     name: string,
     type: number,
     comparison_method?: number,

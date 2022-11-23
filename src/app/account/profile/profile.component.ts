@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../_services/user.service";
 import {TranslateService} from "@ngx-translate/core";
+import {AuthService} from "../../_services/auth.service";
 
 @Component({
   selector: 'app-profile',
@@ -21,9 +22,11 @@ export class ProfileComponent implements OnInit {
   isUpdatingFailed = false;
   errorMessage = '';
 
-  constructor(private userService: UserService, translate: TranslateService) { }
+  constructor(private userService: UserService, private translate: TranslateService, private auth: AuthService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.auth.isLoggedIn();
+
     this.userService.getCurrentUser().subscribe({
       next: data => {
         this.currentUser = data;

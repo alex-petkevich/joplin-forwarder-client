@@ -19,6 +19,14 @@ export class RulesService {
     return this.http.get(API_URL, { responseType: 'json' });
   }
 
+  getRule(id: Number) : Observable<any> {
+    return this.http.get(API_URL + id, { responseType: 'json' });
+  }
+
+  deleteRule(id: Number) : Observable<any> {
+    return this.http.delete(API_URL + id, { responseType: 'json' });
+  }
+
   save(rules: IRules): Observable<any> {
     return this.http.post(API_URL, rules, httpOptions);
   }

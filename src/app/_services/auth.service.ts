@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../environments/environment";
+import {TokenStorageService} from "./token-storage.service";
+import {Router} from "@angular/router";
 
 const AUTH_API = 'api/account/';
 const httpOptions = {
@@ -13,7 +15,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private token: TokenStorageService, private route: Router) { }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(environment.backendUrl + AUTH_API + 'signin', {
@@ -55,4 +57,11 @@ export class AuthService {
     }, httpOptions);
   }
 
+  isLoggedIn() {
+    if (!this.token.getToken()) {
+      this.route.navigate(['/login']).then(() => {
+        window.location.reload();
+      });
+    }
+  }
 }

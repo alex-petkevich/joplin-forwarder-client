@@ -10,6 +10,7 @@ import {ForgotPasswordComponent} from "./account/forgot-password/forgot-password
 import {PasswordResetComponent} from "./account/password-reset/password-reset.component";
 import {SettingsComponent} from "./account/settings/settings.component";
 import {RulesComponent} from "./rules/rules.component";
+import {RulesEditComponent} from "./rules/edit/rules-edit.component";
 
 const routes: Routes = [
   { path: 'account/activate', component: LoginComponent },
@@ -21,6 +22,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'rules', component: RulesComponent },
+  { path: 'rules/new', component: RulesEditComponent },
+  { path: 'rules/:id/edit', component: RulesEditComponent },
+  { path: 'rules/:id/delete', component: RulesComponent },
   { path: 'user', component: BoardUserComponent },
   { path: 'settings', component: SettingsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
