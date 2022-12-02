@@ -101,6 +101,11 @@
       "upload": "Upload",
       "loading": "Loading",
       "upload-error": "Could not upload the file!"
+    },
+    "alert": {
+      "confirmation": "Confirmation",
+      "ok": "Ok",
+      "cancel": "Cancel"
     }
   },
   "rules": {
@@ -113,6 +118,7 @@
     "error_mail_not_configured": "Mail server was not set up. Please <a href=\"/settings\">complete the configuration</a>",
     "error_no_rules_found": "No Rules found",
     "create_rule": "Create Rule",
+    "delete-confirm": "Are you really want to delelete this rule?",
     "edit": {
       "save-data": "Save Rule",
       "cancel": "Cancel",

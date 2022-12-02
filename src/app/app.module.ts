@@ -15,10 +15,12 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import {ForgotPasswordComponent} from "./account/forgot-password/forgot-password.component";
 import {PasswordResetComponent} from "./account/password-reset/password-reset.component";
 import {ImageUploadComponent} from "./shared-components/image-upload/image-upload.component";
+import {AlertComponent} from "./shared-components/alert/alert.component";
 import {NgxTranslateModule} from "./translate/translate.module";
 import {SettingsComponent} from "./account/settings/settings.component";
 import {RulesComponent} from "./rules/rules.component";
 import {RulesEditComponent} from "./rules/edit/rules-edit.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {RulesEditComponent} from "./rules/edit/rules-edit.component";
     BoardAdminComponent,
     BoardUserComponent,
     ImageUploadComponent,
+    AlertComponent,
     RulesComponent,
     RulesEditComponent
   ],
@@ -41,7 +44,8 @@ import {RulesEditComponent} from "./rules/edit/rules-edit.component";
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxTranslateModule
+    NgxTranslateModule,
+    NgbModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

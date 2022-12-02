@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {RulesService} from "../_services/rules.service";
 import {TranslateService} from "@ngx-translate/core";
-import {TokenStorageService} from "../_services/token-storage.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {IRules} from "../model/rules.model";
 import {AuthService} from "../_services/auth.service";
 import {SettingsService} from "../_services/settings.service";
 import {ISettingsResponse} from "../model/settings_response.model";
 import {ISettingsInfo} from "../model/settings.model";
+import {AlertComponent} from "../shared-components/alert/alert.component";
+import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-rules',
@@ -17,7 +18,7 @@ import {ISettingsInfo} from "../model/settings.model";
 export class RulesComponent implements OnInit {
   rules?: IRules[] | undefined = [];
   userSettings: ISettingsInfo | any = {};
-
+  @ViewChild("alert") alertComponent: AlertComponent | undefined;
 
   constructor(private rulesService: RulesService,
               private translate: TranslateService,
@@ -38,22 +39,27 @@ export class RulesComponent implements OnInit {
         }
       }
     });
-
-    this.router.params.subscribe(res=>{
-      if (res['id']) {
-        this.rulesService.deleteRule(res['id']).subscribe({
-          next: data => {
-            this.loadRules();
-          }
-        });
-      }
-    })
   }
 
   private loadRules() {
     this.rulesService.getUserRules().subscribe({
       next: data => {
         this.rules = data;
+      }
+    });
+  }
+
+  confirmDelete(id: any) {
+    this.translate.get('rules.delete-confirm').subscribe({
+      next:data => {
+        var modal = this.alertComponent?.open(data);
+        (modal as NgbModalRef).result.then((result) => {
+          this.rulesService.deleteRule(id).subscribe({
+            next: data => {
+              this.loadRules();
+            }
+          });
+        });
       }
     });
   }
