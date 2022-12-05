@@ -7,7 +7,7 @@ import {AuthService} from "../_services/auth.service";
 import {SettingsService} from "../_services/settings.service";
 import {ISettingsResponse} from "../model/settings_response.model";
 import {ISettingsInfo} from "../model/settings.model";
-import {AlertComponent} from "../shared-components/alert/alert.component";
+import {DialogComponent} from "../shared-components/dialog/dialog.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -18,7 +18,7 @@ import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 export class RulesComponent implements OnInit {
   rules?: IRules[] | undefined = [];
   userSettings: ISettingsInfo | any = {};
-  @ViewChild("alert") alertComponent: AlertComponent | undefined;
+  @ViewChild("dialog") dialogComponent: DialogComponent | undefined;
 
   constructor(private rulesService: RulesService,
               private translate: TranslateService,
@@ -52,7 +52,7 @@ export class RulesComponent implements OnInit {
   confirmDelete(id: any) {
     this.translate.get('rules.delete-confirm').subscribe({
       next:data => {
-        var modal = this.alertComponent?.open(data);
+        var modal = this.dialogComponent?.open(data);
         (modal as NgbModalRef).result.then((result) => {
           this.rulesService.deleteRule(id).subscribe({
             next: data => {

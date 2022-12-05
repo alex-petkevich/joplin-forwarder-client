@@ -11,6 +11,7 @@ import {PasswordResetComponent} from "./account/password-reset/password-reset.co
 import {SettingsComponent} from "./account/settings/settings.component";
 import {RulesComponent} from "./rules/rules.component";
 import {RulesEditComponent} from "./rules/edit/rules-edit.component";
+import {SyncSettingsComponent} from "./account/sync_settings/sync_settings.component";
 
 const routes: Routes = [
   { path: 'account/activate', component: LoginComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'rules/:id/delete', component: RulesComponent },
   { path: 'user', component: BoardUserComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'sync', component: SyncSettingsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

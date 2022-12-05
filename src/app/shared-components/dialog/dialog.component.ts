@@ -3,9 +3,9 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 /*
 Example of use:
-<app-alert #alert></app-alert>
-@ViewChild("alert") alertComponent: AlertComponent | undefined;
-var modal = this.alertComponent?.open("testtesttest");
+<app-dialog #dialog></app-dialog>
+@ViewChild("dialog") dialogComponent: DialogComponent | undefined;
+var modal = this.dialogComponent?.open("testtesttest");
     (modal as NgbModalRef).result.then((result) => {
       alert('OK PRESSED');
     }, (reason) => {
@@ -14,11 +14,11 @@ var modal = this.alertComponent?.open("testtesttest");
  */
 
 @Component({
-  selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+  selector: 'app-dialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss']
 })
-export class AlertComponent {
+export class DialogComponent {
 
   textRequest: String = '';
   closeResult: String = '';
