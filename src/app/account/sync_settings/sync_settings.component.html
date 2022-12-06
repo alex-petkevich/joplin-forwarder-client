@@ -3,7 +3,7 @@
 
   <header class="jumbotron">
     <h3>
-      {{ 'account.settings.edit' | translate  }}
+      {{ 'account.sync.edit' | translate  }}
     </h3>
   </header>
   <form
@@ -13,72 +13,92 @@
     novalidate
   >
     <div class="form-group">
-      <label for="mailserver">{{ 'account.settings.mailserver' | translate  }}</label>
-      <input
-        type="text"
+      <label for="joplinserver">{{ 'account.sync.joplinserver' | translate  }}</label>
+      <select
         class="form-control"
-        name="mail-server"
-        [(ngModel)]="form.mailserver"
+        name="joplinserver"
+        [(ngModel)]="form.joplinserver"
         required
-        #mailserver="ngModel"
-      />
-      <div class="alert-danger" *ngIf="mailserver.errors && f.submitted">
-        <div *ngIf="mailserver.errors['required']">{{ 'account.settings.mailserver-required' | translate  }}</div>
-        <div *ngIf="mailserver.errors['mailserver']">
-          {{ 'account.settings.mailserver-valid' | translate  }}
+        #joplinserver="ngModel"
+      >
+        <option *ngFor="let type of joplin_server_types_list" value="{{ type.enum }}">{{ 'lists.joplinserver.' + type.enum | translate }}</option>
+      </select>
+      <div class="alert-danger" *ngIf="joplinserver.errors && f.submitted">
+        <div *ngIf="joplinserver.errors['required']">{{ 'account.sync.joplinserver-required' | translate  }}</div>
+        <div *ngIf="joplinserver.errors['mailserver']">
+          {{ 'account.sync.joplinserver-valid' | translate  }}
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="mailport">{{ 'account.settings.mailport' | translate  }}</label>
+    <div class="form-group" *ngIf="joplinserver?.value == 'WEBDAV'">
+      <label for="joplinserverdavurl">{{ 'account.sync.joplinserver-dav-url' | translate  }}</label>
       <input
         type="text"
         class="form-control"
-        name="mailport"
-        [(ngModel)]="form.mailport"
-        #mailport="ngModel"
+        name="joplinserverdavurl"
+        [(ngModel)]="form.joplinserverdavurl"
+        #joplinserverdavurl="ngModel"
       />
     </div>
-    <div class="form-group">
-      <label for="username">{{ 'account.settings.username' | translate  }}</label>
+    <div class="form-group" *ngIf="joplinserver?.value == 'WEBDAV'">
+      <label for="joplinserverdavusername">{{ 'account.sync.joplinserver-dav-username' | translate  }}</label>
       <input
         type="text"
         class="form-control"
-        name="username"
-        [(ngModel)]="form.username"
-        #username="ngModel"
+        name="joplinserverdavusername"
+        [(ngModel)]="form.joplinserverdavusername"
+        #joplinserverdavusername="ngModel"
       />
     </div>
-    <div class="form-group">
-      <label for="password">{{ 'account.settings.password' | translate  }}</label>
+    <div class="form-group" *ngIf="joplinserver?.value == 'WEBDAV'">
+      <label for="joplinserverdavpassword">{{ 'account.sync.joplinserver-dav-password' | translate  }}</label>
       <input
               type="password"
               class="form-control"
-              name="password"
-              [(ngModel)]="form.password"
-              #password="ngModel"
+              name="joplinserverdavpassword"
+              [(ngModel)]="form.joplinserverdavpassword"
+              #joplinserverdavpassword="ngModel"
+      />
+    </div>
+    <div class="form-group" *ngIf="joplinserver?.value == 'SERVER'">
+      <label for="joplinserverserverurl">{{ 'account.sync.joplinserver-server-url' | translate  }}</label>
+      <input
+              type="text"
+              class="form-control"
+              name="joplinserverserverurl"
+              [(ngModel)]="form.joplinserverserverurl"
+              #joplinserverserverurl="ngModel"
+      />
+    </div>
+    <div class="form-group" *ngIf="joplinserver?.value == 'SERVER'">
+      <label for="joplinserverserverusername">{{ 'account.sync.joplinserver-server-username' | translate  }}</label>
+      <input
+              type="text"
+              class="form-control"
+              name="joplinserverserverusername"
+              [(ngModel)]="form.joplinserverserverusername"
+              #joplinserverserverusername="ngModel"
+      />
+    </div>
+    <div class="form-group" *ngIf="joplinserver?.value == 'SERVER'">
+      <label for="joplinserverserverpassword">{{ 'account.sync.joplinserver-server-password' | translate  }}</label>
+      <input
+              type="password"
+              class="form-control"
+              name="joplinserverserverpassword"
+              [(ngModel)]="form.joplinserverserverpassword"
+              #joplinserverserverpassword="ngModel"
       />
     </div>
     <div class="form-group">
-      <label for="period">{{ 'account.settings.period' | translate  }}</label>
-      <select
-              class="form-control"
-              name="period"
-              [(ngModel)]="form.period"
-              #period="ngModel"
-      >
-      <option *ngFor="let c of periods" [ngValue]="c">{{c}}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-primary btn-block">{{ 'account.settings.save-data' | translate  }}</button>
+      <button class="btn btn-primary btn-block">{{ 'account.sync.save-data' | translate  }}</button>
     </div>
     <div class="alert alert-warning" *ngIf="f.submitted && isUpdatingFailed">
-      {{ 'account.settings.update-failed' | translate  }}!<br />{{ errorMessage }}
+      {{ 'account.sync.update-failed' | translate  }}!<br />{{ errorMessage }}
     </div>
   </form>
   <div class="alert alert-success" *ngIf="isSuccessful">
-    {{ 'account.settings.settings-saved' | translate  }}
+    {{ 'account.sync.settings-saved' | translate  }}
   </div>
 
   </div>

@@ -3,5 +3,12 @@ export interface ISettingsInfo {
     mailport?: string,
     username?: string,
     password?: string,
-    period?: string
+    period?: string,
+    joplinserver?: string,
+    joplinserverdavurl?: string,
+    joplinserverdavusername?: string,
+    joplinserverdavpassword?: string,
+    joplinserverserverurl?: string,
+    joplinserverserverusername?: string,
+    joplinserverserverpassword?: string
 }

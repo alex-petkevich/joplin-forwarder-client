@@ -95,6 +95,21 @@
       "update-failed": "Update data failed",
       "settings-saved": "Settings saved successfully",
       "please-login": "Please login"
+    },
+    "sync": {
+      "edit": "Edit Joplin syncroinzation settings",
+      "joplinserver": "Target",
+      "joplinserver-required": "Target is required",
+      "joplinserver-dav-url": "WebDAV URL",
+      "joplinserver-dav-username": "WebDAV username",
+      "joplinserver-dav-password": "WebDAV password",
+      "joplinserver-server-url": "Joplin Server URL",
+      "joplinserver-server-username": "Joplin Server email",
+      "joplinserver-server-password": "Joplin Server password",
+      "save-data": "Save data",
+      "update-failed": "Update data failed",
+      "settings-saved": "Settings saved successfully",
+      "please-login": "Please login"
     }
   },
   "shared-components": {
@@ -154,6 +169,11 @@
       "MARK_READ": "Mark as read",
       "DELETE": "Delete",
       "MOVE_TO_FOLDER": "Move to another folder:"
+    },
+    "joplinserver" : {
+      "WEBDAV": "WebDAV",
+      "SERVER": "Joplin Server",
+      "LOCAL": "Store in account"
     }
   }
 }

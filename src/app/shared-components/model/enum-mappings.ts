@@ -43,3 +43,16 @@ export const FINAL_ACTION_LIST: IEnum[] = [{
     display: 'Move to another folder:'
 }];
 
+export const JOPLIN_SERVER_TYPES_LIST: IEnum[] = [{
+    enum: 'WEBDAV',
+    display: 'WebDAV'
+},
+{
+    enum: 'SERVER',
+    display: 'Joplin Server'
+},
+{
+    enum: 'LOCAL',
+    display: 'Save in account'
+}];
+

@@ -3,6 +3,8 @@ import {ISettingsInfo} from "../../model/settings.model";
 import {SettingsService} from "../../_services/settings.service";
 import {ISettingsResponse} from "../../model/settings_response.model";
 import {AuthService} from "../../_services/auth.service";
+import {IEnum} from "../../shared-components/model/enum";
+import {JOPLIN_SERVER_TYPES_LIST} from "../../shared-components/model/enum-mappings";
 
 @Component({
   selector: 'app-sync_settings',
@@ -11,19 +13,21 @@ import {AuthService} from "../../_services/auth.service";
 })
 export class SyncSettingsComponent implements OnInit {
 
+  joplin_server_types_list: IEnum[] = JOPLIN_SERVER_TYPES_LIST;
   form: any = {
-    mailserver: null,
-    mailport: null,
-    username: null,
-    password: null,
+    joplinserver: null,
+    joplinserverdavurl: null,
+    joplinserverdavusername: null,
+    joplinserverdavpassword: null,
+    joplinserverserverurl: null,
+    joplinserverserverusername: null,
+    joplinserverserverpassword: null,
     id: null,
-    user_id: null,
-    period: "10"
+    user_id: null
   };
   isSuccessful = false;
   isUpdatingFailed = false;
   errorMessage = '';
-  periods: string[] = ["1", "10", "30", "60", "180", "1440"];
 
   constructor(private settingsService: SettingsService, private auth: AuthService) { }
 
@@ -40,13 +44,15 @@ export class SyncSettingsComponent implements OnInit {
   }
 
   onSubmit(valid: any): void {
-    let { mailserver, mailport, username, password, period } = this.form;
+    let { joplinserver, joplinserverdavurl, joplinserverdavusername, joplinserverdavpassword, joplinserverserverurl, joplinserverserverusername, joplinserverserverpassword } = this.form;
     const settings: ISettingsInfo = {
-      'mailserver': mailserver,
-      'mailport': mailport,
-      'username': username,
-      'password': password,
-      'period': period
+      'joplinserver': joplinserver,
+      'joplinserverdavurl': joplinserverdavurl,
+      'joplinserverdavusername': joplinserverdavusername,
+      'joplinserverdavpassword': joplinserverdavpassword,
+      'joplinserverserverurl': joplinserverserverurl,
+      'joplinserverserverusername': joplinserverserverusername,
+      'joplinserverserverpassword': joplinserverserverpassword
     }
     this.settingsService.save(settings).subscribe({
       next: data => {

@@ -95,6 +95,21 @@
       "update-failed": "Ошибка сохранения",
       "settings-saved": "Настройки сохранены успешно",
       "please-login": "Пожалуйста, войдите"
+    },
+    "sync": {
+      "edit": "Данные синхронизации с Joplin базой",
+      "joplinserver": "Тип соединения",
+      "joplinserver-required": "Тип соединения обязателен",
+      "joplinserver-dav-url": "WebDAV URL",
+      "joplinserver-dav-username": "WebDAV имя пользователя",
+      "joplinserver-dav-password": "WebDAV пароль",
+      "joplinserver-server-url": "Joplin Server URL",
+      "joplinserver-server-username": "Joplin Server email",
+      "joplinserver-server-password": "Joplin Server пароль",
+      "save-data": "Сохранить данные",
+      "update-failed": "Ошибка сохранения",
+      "settings-saved": "Настройки сохранены успешно",
+      "please-login": "Пожалуйста, войдите"
     }
   },
   "shared-components": {
@@ -154,6 +169,11 @@
       "MARK_READ": "Отметить прочитанным",
       "DELETE": "Удалить",
       "MOVE_TO_FOLDER": "Переместить в другую папку:"
+    },
+    "joplinserver" : {
+      "WEBDAV": "WebDAV",
+      "SERVER": "Joplin Server",
+      "LOCAL": "Сохранять локально"
     }
   }
 }
