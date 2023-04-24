@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm mt-3 mb-3">
+            <h4>{{ 'mails.header' | translate }}</h4>
+        </div>
+    </div>
+    <div class="row" *ngIf="mails!.length > 0 && userSettings?.mailserver != ''">
+        <p class="col-sm">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">{{ 'mails.subject' | translate }}</th>
+                    <th scope="col">{{ 'mails.sender' | translate }}</th>
+                    <th scope="col">{{ 'mails.received' | translate }}</th>
+                    <th scope="col">{{ 'mails.attachments' | translate }}</th>
+                    <th scope="col">{{ 'mails.rule' | translate }}</th>
+                    <th scope="col">{{ 'mails.converted' | translate }}</th>
+                    <th scope="col">{{ 'mails.actions' | translate }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let mail of mails">
+                    <th scope="row">{{ mail.id }}</th>
+                    <td> <a [routerLink]="['/mails', mail.id, 'view']">{{ mail.subject || "<--->" }}</a></td>
+                    <td>{{ mail.sender }}</td>
+                    <td>{{ mail.received | date : 'medium' }}</td>
+                    <td class="t-att"> <i class="bi bi-file-earmark-arrow-down" *ngIf="mail.attachments"></i></td>
+                    <td><a [routerLink]="['/rules', mail.rule_id, 'edit']">{{ mail.rule_name }}</a></td>
+                    <td class="t-conv"> <i class="bi bi-patch-check-fill" *ngIf="mail.converted" ></i></td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-danger btn-sm" (click)="confirmDelete( mail.id )"><em class="bi-bookmark-x"></em> {{ 'mails.delete' | translate }}</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+    </div>
+    <div class="row" *ngIf="!userSettings?.mailserver">
+        <div class="col-sm">
+            <p class="text-center" [innerHTML]="'mails.error_mail_not_configured' | translate"></p>
+        </div>
+    </div>
+    <div class="row" *ngIf="mails!.length === 0 && userSettings.mailserver">
+        <div class="col-sm">
+            <p class="text-center" [innerHTML]=" 'mails.error_no_mails_found' | translate"></p>
+        </div>
+    </div>
+</div>
+
+<app-dialog #dialog></app-dialog>

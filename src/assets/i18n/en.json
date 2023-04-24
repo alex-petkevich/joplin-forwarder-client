@@ -3,6 +3,7 @@
   "home-nav": "Home",
   "admin": "Admin Board",
   "my-rules": "My Rules",
+  "my-mails": "My Mails",
   "sign-up": "Sign Up",
   "login": "Login",
   "logout": "Logout",
@@ -174,6 +175,29 @@
       "WEBDAV": "WebDAV",
       "SERVER": "Joplin Server",
       "LOCAL": "Store in account"
+    }
+  },
+  "mails": {
+    "header": "My Mails",
+    "subject": "Subject",
+    "received": "Received",
+    "sender": "Sender",
+    "attachments": "Attachments",
+    "rule": "Processed rule",
+    "converted": "Exported",
+    "actions": "Actions",
+    "delete": "Delete",
+    "error_mail_not_configured": "Mail server was not set up. Please <a href=\"/settings\">complete the configuration</a>",
+    "error_no_mails_found": "No Mails found",
+    "delete-confirm": "Are you really want to delete this mail?",
+    "view": {
+      "header": "View Mail",
+      "id": "ID",
+      "received": "Received",
+      "sender": "Sender",
+      "attachments": "Attachments",
+      "converted": "Exported",
+      "back": "Back"
     }
   }
 }

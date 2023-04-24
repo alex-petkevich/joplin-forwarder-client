@@ -29,6 +29,6 @@ export class DialogComponent {
 
   open(text: String, content?: String) {
     this.textRequest = text;
-    return this.modalService.open(content ? content : this.content, {ariaLabelledBy: 'modal-basic-title'});
+    return this.modalService.open(content ? content : this.content, {ariaLabelledBy: 'modal-basic-title', backdrop: false});
   }
 }

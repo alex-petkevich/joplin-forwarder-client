@@ -22,6 +22,8 @@ import {SyncSettingsComponent} from "./account/sync_settings/sync_settings.compo
 import {RulesComponent} from "./rules/rules.component";
 import {RulesEditComponent} from "./rules/edit/rules-edit.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MailsComponent } from "./mails/mails.component";
+import { MailsViewComponent } from "./mails/view/mails-view.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ImageUploadComponent,
     DialogComponent,
     RulesComponent,
-    RulesEditComponent
+    RulesEditComponent,
+    MailsComponent,
+    MailsViewComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@
   "home-nav": "Домой",
   "admin": "Панель администратора",
   "my-rules": "Мои правила",
+  "my-mails": "Почта",
   "sign-up": "Регистрация",
   "login": "Логин",
   "logout": "Выход",
@@ -174,6 +175,31 @@
       "WEBDAV": "WebDAV",
       "SERVER": "Joplin Server",
       "LOCAL": "Сохранять локально"
+    }
+  },
+  "mails": {
+    "header": "Почта",
+    "name": "Название",
+    "subject": "Тема",
+    "sender": "Отправитель",
+    "attachments": "Вложения",
+    "rule": "Обработано правилом",
+    "converted": "Экспортировано",
+    "received": "Дата получения",
+    "actions": "Действия",
+    "change": "Изменить",
+    "delete": "Удалить",
+    "error_mail_not_configured": "Настройка почтового сервера не завершена. Пожалуйста <a href=\"/settings\">завершите конфигурацию</a>",
+    "error_no_mails_found": "Нет полученных писем",
+    "delete-confirm": "Вы действительно хотите удалить этот email?",
+    "view": {
+      "header": "Просмотр email",
+      "id": "ID",
+      "received": "Получено",
+      "sender": "Отправитель",
+      "converted": "Экспортировано",
+      "attachments": "Вложения",
+      "back": "Назад"
     }
   }
 }
