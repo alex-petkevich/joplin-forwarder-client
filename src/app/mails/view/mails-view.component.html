@@ -18,14 +18,16 @@
             <div class="form-group" *ngIf="currentMail != undefined">
                 {{ currentMail.subject }} <b>{{ currentMail.received | date : 'medium' }}</b>
             </div>
-            <div>
-                {{ currentMail?.text }}
+            <div id="mail-text" [innerHTML]="currentMail?.text">
+
             </div>
             <div>
                 &nbsp;
             </div>
             <div class="form-group" *ngIf="currentMail != undefined">
-                {{ currentMail.attachList }}
+              <div class="bi bi-file-earmark-arrow-down" *ngFor="let item of currentMail.attachList">
+                <a [routerLink]="['/mails', currentMail.id, 'download']" [queryParams]="{f: item}">{{ item }}</a>
+              </div>
             </div>
             <div class="form-group" *ngIf="currentMail != undefined">
                 <label for="id">{{ 'mails.view.converted' | translate  }}:</label>&nbsp;

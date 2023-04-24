@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'rules/:id/delete', component: RulesComponent },
   { path: 'mails', component: MailsComponent },
   { path: 'mails/:id/view', component: MailsViewComponent },
+  { path: 'mails/:id/download', component: MailsViewComponent },
   { path: 'mails/:id/delete', component: MailsComponent },
   { path: 'user', component: BoardUserComponent },
   { path: 'settings', component: SettingsComponent },
