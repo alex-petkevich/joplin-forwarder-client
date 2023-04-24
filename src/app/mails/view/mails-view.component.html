@@ -26,7 +26,7 @@
             </div>
             <div class="form-group" *ngIf="currentMail != undefined">
               <div class="bi bi-file-earmark-arrow-down" *ngFor="let item of currentMail.attachList">
-                <a [routerLink]="['/mails', currentMail.id, 'download']" [queryParams]="{f: item}">{{ item }}</a>
+                <a (click)="download(currentMail.id, item)">{{ item }}</a>
               </div>
             </div>
             <div class="form-group" *ngIf="currentMail != undefined">

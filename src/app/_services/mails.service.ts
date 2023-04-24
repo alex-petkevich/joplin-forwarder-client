@@ -26,4 +26,9 @@ export class MailsService {
   deleteMail(id: Number) : Observable<any> {
     return this.http.delete(API_URL + id, { responseType: 'json' });
   }
+
+  downloadAttach(id: number, f: string) {
+    return this.http.get(API_URL + id + '/download/?f=' + f,
+      {responseType: 'blob'});
+  }
 }

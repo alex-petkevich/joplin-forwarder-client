@@ -3,6 +3,7 @@ import {AuthService} from "../../_services/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import { IMails } from "../../model/mails.model";
 import { MailsService } from "../../_services/mails.service";
+import {saveAs} from "file-saver";
 
 @Component({
   selector: 'app-rules-edit',
@@ -29,5 +30,9 @@ export class MailsViewComponent implements OnInit {
         });
       }
     })
+  }
+
+  download(id: number | undefined, f: string) {
+    this.mailsService.downloadAttach(id as number, f).subscribe(data => saveAs(data, f));
   }
 }
