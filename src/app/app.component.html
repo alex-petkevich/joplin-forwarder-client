@@ -4,17 +4,14 @@
     <img src="/assets/images/logo_transparent_no_sign.png" width="30" height="30" class="d-inline-block align-top" alt="">
     <a href="#" class="navbar-brand">{{ 'title' | translate }}</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">{{ 'home-nav' | translate }} </a>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a href="/mails" class="nav-link" *ngIf="isLoggedIn" routerLink="mails">{{ 'my-mails' | translate }}</a>
       </li>
       <li class="nav-item" *ngIf="showAdminBoard">
         <a href="/admin" class="nav-link" routerLink="admin">{{ 'admin' | translate }} </a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <a href="/rules" class="nav-link" *ngIf="isLoggedIn" routerLink="rules">{{ 'my-rules' | translate }}</a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a href="/mails" class="nav-link" *ngIf="isLoggedIn" routerLink="mails">{{ 'my-mails' | translate }}</a>
       </li>
 
     </ul>

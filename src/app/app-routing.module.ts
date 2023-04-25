@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'sync', component: SyncSettingsComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'mails', pathMatch: 'full' }
 ];
 
 @NgModule({
