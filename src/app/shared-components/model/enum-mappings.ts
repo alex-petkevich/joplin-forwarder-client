@@ -26,9 +26,18 @@ export const COMPARISON_LIST: IEnum[] = [{
     display: 'Equals'
 },
 {
+    enum: 'NOT_EQUALS',
+    display: 'Not Equals'
+},
+{
     enum: 'CONTAINS',
     display: 'Contains'
-}];
+},
+{
+    enum: 'NOT_CONTAINS',
+    display: 'Not Contains'
+}
+];
 
 export const FINAL_ACTION_LIST: IEnum[] = [{
     enum: 'MARK_READ',

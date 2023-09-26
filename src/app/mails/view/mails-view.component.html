@@ -29,7 +29,7 @@
                 <a [routerLink]="[]" (click)="download(currentMail.id, item)">{{ item }}</a>
               </div>
             </div>
-            <div class="form-group" *ngIf="currentMail != undefined">
+            <div class="form-group exp" *ngIf="currentMail != undefined">
                 <label for="id">{{ 'mails.view.converted' | translate  }}:</label>&nbsp;
                 <i class="bi bi-patch-check-fill" *ngIf="currentMail.converted" ></i>
             </div>

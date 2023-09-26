@@ -12,4 +12,7 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="bootstrap-icons" level="application" />
   </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="ae797293-56e6-47ff-bffd-dc806cbfbcfc" />
+  </component>
 </module>

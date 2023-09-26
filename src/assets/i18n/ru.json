@@ -164,7 +164,9 @@
     },
     "comparison" : {
       "EQUALS": "Равно",
-      "CONTAINS": "Содержит"
+      "NOT_EQUALS": "Не равно",
+      "CONTAINS": "Содержит",
+      "NOT_CONTAINS": "Не содержит"
     },
     "final_action" : {
       "MARK_READ": "Отметить прочитанным",
