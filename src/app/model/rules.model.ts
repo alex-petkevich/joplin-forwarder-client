@@ -5,6 +5,7 @@ export interface IRules {
     type: number,
     comparison_method?: number,
     save_in?: number,
+    save_in_parent_id?: string,
     final_action?: number,
     processed?: number,
     comparison_text?: string,

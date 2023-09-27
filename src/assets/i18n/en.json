@@ -107,6 +107,7 @@
       "joplinserver-server-url": "Joplin Server URL",
       "joplinserver-server-username": "Joplin Server email",
       "joplinserver-server-password": "Joplin Server password",
+      "joplinserver-parentnode": "Joplin Notebook Parent node",
       "save-data": "Save data",
       "update-failed": "Update data failed",
       "settings-saved": "Settings saved successfully",

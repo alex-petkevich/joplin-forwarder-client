@@ -23,6 +23,7 @@ export class RulesEditComponent implements OnInit {
     last_processed_at: undefined,
     processed: 0,
     save_in: 0,
+    save_in_parent_id: "",
     name: "",
     type: 1
   };

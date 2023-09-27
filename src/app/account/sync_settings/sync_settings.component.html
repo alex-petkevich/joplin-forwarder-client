@@ -91,6 +91,16 @@
       />
     </div>
     <div class="form-group">
+      <label for="joplinserverparentnode">{{ 'account.sync.joplinserver-parentnode' | translate  }}</label>
+      <input
+              type="text"
+              class="form-control"
+              name="joplinserverparentnode"
+              [(ngModel)]="form.joplinserverparentnode"
+              #joplinserverparentnode="ngModel"
+      />
+    </div>
+    <div class="form-group">
       <button class="btn btn-primary btn-block">{{ 'account.sync.save-data' | translate  }}</button>
     </div>
     <div class="alert alert-warning" *ngIf="f.submitted && isUpdatingFailed">

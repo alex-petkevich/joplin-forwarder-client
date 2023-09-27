@@ -107,6 +107,17 @@
                 />
             </div>
             <div class="form-group">
+                <label for="save_in_parent_id">{{ 'rules.edit.save_in_parent_id' | translate  }}</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        name="save_in_parent_id"
+                        [(ngModel)]="form.save_in_parent_id"
+                        required
+                        #save_in_parent_id="ngModel"
+                />
+            </div>
+            <div class="form-group">
                 <label for="final_action">{{ 'rules.edit.final_action' | translate  }}</label>
             </div>
             <div class="form-group">

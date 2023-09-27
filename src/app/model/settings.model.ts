@@ -10,5 +10,6 @@ export interface ISettingsInfo {
     joplinserverdavpassword?: string,
     joplinserverserverurl?: string,
     joplinserverserverusername?: string,
-    joplinserverserverpassword?: string
+    joplinserverserverpassword?: string,
+    joplinserverparentnode?: string
 }

@@ -22,6 +22,7 @@ export class SyncSettingsComponent implements OnInit {
     joplinserverserverurl: null,
     joplinserverserverusername: null,
     joplinserverserverpassword: null,
+    joplinserverparentnode: null,
     id: null,
     user_id: null
   };
@@ -44,7 +45,7 @@ export class SyncSettingsComponent implements OnInit {
   }
 
   onSubmit(valid: any): void {
-    let { joplinserver, joplinserverdavurl, joplinserverdavusername, joplinserverdavpassword, joplinserverserverurl, joplinserverserverusername, joplinserverserverpassword } = this.form;
+    let { joplinserver, joplinserverdavurl, joplinserverdavusername, joplinserverdavpassword, joplinserverserverurl, joplinserverserverusername, joplinserverserverpassword, joplinserverparentnode } = this.form;
     const settings: ISettingsInfo = {
       'joplinserver': joplinserver,
       'joplinserverdavurl': joplinserverdavurl,
@@ -52,7 +53,8 @@ export class SyncSettingsComponent implements OnInit {
       'joplinserverdavpassword': joplinserverdavpassword,
       'joplinserverserverurl': joplinserverserverurl,
       'joplinserverserverusername': joplinserverserverusername,
-      'joplinserverserverpassword': joplinserverserverpassword
+      'joplinserverserverpassword': joplinserverserverpassword,
+      'joplinserverparentnode': joplinserverparentnode
     }
     this.settingsService.save(settings).subscribe({
       next: data => {
