@@ -186,10 +186,12 @@
     "attachments": "Attachments",
     "rule": "Processed rule",
     "converted": "Exported",
+    "resync_joplin": "Sync selected",
     "actions": "Actions",
     "delete": "Delete",
     "error_mail_not_configured": "Mail server was not set up. Please <a href=\"/settings\">complete the configuration</a>",
     "error_no_mails_found": "No Mails found",
+    "resync-success": "Joplin notes syncronized successfully",
     "delete-confirm": "Are you really want to delete this mail?",
     "view": {
       "header": "View Mail",

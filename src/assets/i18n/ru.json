@@ -191,10 +191,12 @@
     "converted": "Экспортировано",
     "received": "Дата получения",
     "actions": "Действия",
+    "resync_joplin": "Синхронизировать выбранное",
     "change": "Изменить",
     "delete": "Удалить",
     "error_mail_not_configured": "Настройка почтового сервера не завершена. Пожалуйста <a href=\"/settings\">завершите конфигурацию</a>",
     "error_no_mails_found": "Нет полученных писем",
+    "resync-success": "Заметки загружены успешно",
     "delete-confirm": "Вы действительно хотите удалить этот email?",
     "view": {
       "header": "Просмотр email",

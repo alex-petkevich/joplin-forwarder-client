@@ -65,7 +65,7 @@ export class RulesEditComponent implements OnInit {
         this.currentRule = data;
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err?.error?.message || err?.message;
       }
     });
     return true;

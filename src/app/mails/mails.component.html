@@ -5,10 +5,22 @@
         </div>
     </div>
     <div class="row" *ngIf="mails!.length > 0 && userSettings?.mailserver != ''">
+        <form
+                name="form"
+                (ngSubmit)="onSubmit(f.form.valid)"
+                #f="ngForm"
+                novalidate
+        >
         <p class="col-sm">
+            <div class="row">
+                <div class="col-sm mb-3">
+                    <button class="btn btn-primary btn-sm" [disabled]="resyncProgress"><em class="bi-arrow-clockwise"></em> {{ 'mails.resync_joplin' | translate }}</button>
+                </div>
+            </div>
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th scope="col"></th>
                     <th scope="col">#</th>
                     <th scope="col">{{ 'mails.subject' | translate }}</th>
                     <th scope="col">{{ 'mails.sender' | translate }}</th>
@@ -20,7 +32,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let mail of mails">
+                <tr *ngFor="let mail of mails; let i = index">
+                    <td><input
+                            type="checkbox"
+                            class="form-control inner-check"
+                            name="exp_{{i}}"
+                            [ngModel]="isSelected(mail)" (ngModelChange)="onChange(mail, $event)"
+                            #name="ngModel"
+                    /></td>
                     <th scope="row">{{ mail.id }}</th>
                     <td> <a [routerLink]="['/mails', mail.id, 'view']">{{ mail.subject || "<--->" }}</a></td>
                     <td>{{ mail.sender }}</td>
@@ -36,6 +55,7 @@
 
                 </tbody>
             </table>
+        </form>
     </div>
     <div class="row" *ngIf="!userSettings?.mailserver">
         <div class="col-sm">
@@ -47,6 +67,10 @@
             <p class="text-center" [innerHTML]=" 'mails.error_no_mails_found' | translate"></p>
         </div>
     </div>
+
 </div>
 
 <app-dialog #dialog></app-dialog>
+
+<app-toast #toast></app-toast>
+

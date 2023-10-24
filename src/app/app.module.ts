@@ -24,6 +24,7 @@ import {RulesEditComponent} from "./rules/edit/rules-edit.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MailsComponent } from "./mails/mails.component";
 import { MailsViewComponent } from "./mails/view/mails-view.component";
+import { ToastComponent } from "./shared-components/toast/toast.component";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MailsViewComponent } from "./mails/view/mails-view.component";
     RulesComponent,
     RulesEditComponent,
     MailsComponent,
-    MailsViewComponent
+    MailsViewComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

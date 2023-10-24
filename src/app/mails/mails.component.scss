@@ -9,3 +9,8 @@
   text-align: center;
   font-size: 1.3em;
 }
+
+button:disabled{
+  cursor:not-allowed;
+  opacity:0.5
+}

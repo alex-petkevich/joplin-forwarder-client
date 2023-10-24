@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../environments/environment";
 import {IRules} from "../model/rules.model";
+import { IMails } from "../model/mails.model";
 const API_URL = environment.backendUrl + 'api/mails/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -31,4 +32,9 @@ export class MailsService {
     return this.http.get(API_URL + id + '/download/?f=' + f,
       {responseType: 'blob'});
   }
+
+  resyncMails(items: IMails[] | undefined) : Observable<any> {
+    return this.http.post(API_URL + 'resync/', items, { responseType: 'json' });
+  }
+
 }
