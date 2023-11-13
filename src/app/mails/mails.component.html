@@ -45,7 +45,8 @@
                     <td>{{ mail.sender }}</td>
                     <td>{{ mail.received | date : 'medium' }}</td>
                     <td class="t-att"> <i class="bi bi-file-earmark-arrow-down" *ngIf="mail.attachments"></i></td>
-                    <td><a [routerLink]="['/rules', mail.rule_id, 'edit']">{{ mail.rule_name }}</a></td>
+                    <td *ngIf="mail.rule_name"><a [routerLink]="['/rules', mail.rule_id, 'edit']">{{ mail.rule_name }}</a></td>
+                    <td *ngIf="!mail.rule_name">{{ 'mails.rule-deleted' | translate }}</td>
                     <td class="t-conv"> <i class="bi bi-patch-check-fill" *ngIf="mail.converted" ></i></td>
                     <td>
                         <button type="button"

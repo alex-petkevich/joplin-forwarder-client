@@ -198,6 +198,7 @@
     "error_no_mails_found": "Нет полученных писем",
     "resync-success": "Заметки загружены успешно",
     "delete-confirm": "Вы действительно хотите удалить этот email?",
+    "rule-deleted": "Правило удалено",
     "view": {
       "header": "Просмотр email",
       "id": "ID",
