@@ -22,10 +22,13 @@ export class RulesEditComponent implements OnInit {
     final_action_target: "",
     last_processed_at: undefined,
     processed: 0,
+    priority: 0,
     save_in: 0,
     save_in_parent_id: "",
     name: "",
-    type: 1
+    type: 1,
+    active: true,
+    stop_process_rules: false
   };
   types_list: IEnum[] = TYPES_LIST;
   comparison_list: IEnum[] = COMPARISON_LIST;
@@ -70,4 +73,6 @@ export class RulesEditComponent implements OnInit {
     });
     return true;
   }
+
+  protected readonly undefined = undefined;
 }

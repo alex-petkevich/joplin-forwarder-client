@@ -17,9 +17,9 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let rule of rules">
-                    <th scope="row">{{ rule.id }}</th>
-                    <td>{{ rule.name }}</td>
-                    <td>{{ rule.last_processed_at | date : 'medium' }}</td>
+                    <th scope="row" [ngClass]="{ 'disabled': !rule.active}">{{ rule.id }}</th>
+                    <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.name }}</td>
+                    <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.last_processed_at | date : 'medium' }}</td>
                     <td>
                         <button type="button"
                                 [routerLink]="['/rules', rule.id, 'edit']"
