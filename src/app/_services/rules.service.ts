@@ -30,5 +30,4 @@ export class RulesService {
   save(rules: IRules): Observable<any> {
     return this.http.post(API_URL, rules, httpOptions);
   }
-
 }

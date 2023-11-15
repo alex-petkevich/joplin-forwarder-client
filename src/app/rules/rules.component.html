@@ -12,14 +12,28 @@
                     <th scope="col">#</th>
                     <th scope="col">{{ 'rules.name' | translate }}</th>
                     <th scope="col">{{ 'rules.last_processed' | translate }}</th>
+                    <th scope="col"></th>
                     <th scope="col">{{ 'rules.actions' | translate }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let rule of rules">
+                <tr *ngFor="let rule of rules; let first = first ;let last = last;">
                     <th scope="row" [ngClass]="{ 'disabled': !rule.active}">{{ rule.id }}</th>
                     <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.name }}</td>
                     <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.last_processed_at | date : 'medium' }}</td>
+                    <td>
+                      <div *ngIf="first" class="btn-space"></div>
+                      <button type="button"
+                              (click)="moveUp( rule )"
+                              class="btn mr-1 btn-sm"
+                              *ngIf="!first"><em class="bi-arrow-up-circle"></em></button>
+                      <button type="button"
+                              (click)="moveDown( rule )"
+                              class="btn mr-1 btn-sm"
+                              *ngIf="!last"><em class="bi-arrow-down-circle"></em></button>
+                      <div *ngIf="last" class="btn-space"></div>
+
+                    </td>
                     <td>
                         <button type="button"
                                 [routerLink]="['/rules', rule.id, 'edit']"

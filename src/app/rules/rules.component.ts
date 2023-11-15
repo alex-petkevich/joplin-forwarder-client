@@ -63,4 +63,26 @@ export class RulesComponent implements OnInit {
       }
     });
   }
+
+  moveUp(rule: IRules) {
+    this.rulesService.save(rule).subscribe({
+      next: data => {
+        this.loadRules();
+      }
+    });
+  }
+
+  moveDown(rule: IRules) {
+    this.rules?.forEach(rl => {
+        if (rl.id == rule.id) {
+        //  rlnext =
+        }
+    });
+
+    this.rulesService.save(rule).subscribe({
+      next: data => {
+        this.loadRules();
+      }
+    });
+  }
 }
