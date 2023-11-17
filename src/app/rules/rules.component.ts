@@ -65,23 +65,53 @@ export class RulesComponent implements OnInit {
   }
 
   moveUp(rule: IRules) {
+    const index = this.rules?.indexOf(rule) as number;
+    const rlprev = index > 0 ? index - 1 : 0;
+    const prevRule = this.rules![rlprev];
+    if (!prevRule) {
+      return;
+    }
+    const prevPriority = prevRule.priority;
+    prevRule.priority = rule.priority;
+    rule.priority = prevPriority;
+    if (rule.priority == prevRule.priority) {
+      prevRule!.priority!++;
+    }
+
+
     this.rulesService.save(rule).subscribe({
       next: data => {
-        this.loadRules();
+        (prevRule.priority as number)++;
+        this.rulesService.save(prevRule).subscribe({
+          next: data => {
+            this.loadRules();
+          }
+        });
       }
     });
   }
 
   moveDown(rule: IRules) {
-    this.rules?.forEach(rl => {
-        if (rl.id == rule.id) {
-        //  rlnext =
-        }
-    });
+    const index = this.rules?.indexOf(rule) as number;
+    const rlnext = (index + 1) % this.rules!.length;
+    const nxtRule = this.rules![rlnext];
+    if (!nxtRule) {
+      return;
+    }
+    const currPriority = rule.priority;
+    rule.priority = nxtRule.priority;
+    nxtRule.priority = currPriority;
+    if (rule.priority == nxtRule.priority) {
+      rule!.priority!++;
+    }
 
     this.rulesService.save(rule).subscribe({
       next: data => {
-        this.loadRules();
+        this.rulesService.save(nxtRule).subscribe({
+          next: data => {
+            this.loadRules();
+          }
+        });
       }
     });
   }
