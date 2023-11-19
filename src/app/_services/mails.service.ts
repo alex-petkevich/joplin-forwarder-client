@@ -16,8 +16,8 @@ export class MailsService {
 
   constructor(private http: HttpClient) { }
 
-  getUserMails() : Observable<any> {
-    return this.http.get(API_URL, { responseType: 'json' });
+  getUserMails(pg: number = 0) : Observable<any> {
+    return this.http.get(API_URL + '?page=' + pg, { responseType: 'json' });
   }
 
   getMail(id: Number) : Observable<any> {

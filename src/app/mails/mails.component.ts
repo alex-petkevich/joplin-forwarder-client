@@ -6,9 +6,12 @@ import {ISettingsResponse} from "../model/settings_response.model";
 import {ISettingsInfo} from "../model/settings.model";
 import {DialogComponent} from "../shared-components/dialog/dialog.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
-import { IMails } from "../model/mails.model";
+import { IMails, IPaginatedMails } from "../model/mails.model";
 import { MailsService } from "../_services/mails.service";
 import { ToastComponent } from "../shared-components/toast/toast.component";
+import { PaginationComponent } from "../shared-components/pagination/pagination.component";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-mails',
@@ -16,11 +19,12 @@ import { ToastComponent } from "../shared-components/toast/toast.component";
   styleUrls: ['./mails.component.scss']
 })
 export class MailsComponent implements OnInit {
-  mails?: IMails[] | undefined = [];
+  mails?: IPaginatedMails;
   selMails?: IMails[] | undefined = [];
   userSettings: ISettingsInfo | any = {};
   @ViewChild("dialog") dialogComponent: DialogComponent | undefined;
   @ViewChild("toast") toastComponent: ToastComponent | undefined;
+  @ViewChild("pagination") paginationComponent: PaginationComponent | undefined;
 
   form = {
     exp: []
@@ -30,29 +34,43 @@ export class MailsComponent implements OnInit {
   constructor(private mailsService: MailsService,
               private translate: TranslateService,
               private auth: AuthService,
-              private settingsService: SettingsService) { }
+              private settingsService: SettingsService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private location: Location) { }
 
   async ngOnInit(): Promise<void> {
     await this.auth.isLoggedIn();
 
-    this.settingsService.getUserSettings().subscribe({
-      next: data => {
-        (data as Array<ISettingsResponse>).forEach(it => {
-          this.userSettings[it.name] = it.value;
-        });
-        if (this.userSettings.mailserver) {
-          this.loadMails();
+    this.activatedRoute.queryParams.subscribe(params => {
+      const page = params['page'];
+      this.settingsService.getUserSettings().subscribe({
+        next: data => {
+          (data as Array<ISettingsResponse>).forEach(it => {
+            this.userSettings[it.name] = it.value;
+          });
+          if (this.userSettings.mailserver) {
+            this.loadMails(page);
+          }
         }
-      }
+      });
     });
+
+
   }
 
-  private loadMails() {
-    this.mailsService.getUserMails().subscribe({
+  private loadMails(pg : number = 0) {
+    this.mailsService.getUserMails(pg).subscribe({
       next: data => {
         this.mails = data;
       }
     });
+  }
+
+  pageCallback = (args: any): void => {
+    const url = this.router.createUrlTree([], {relativeTo: this.activatedRoute, queryParams: {page: args}}).toString()
+    this.location.go(url);
+    this.loadMails(args);
   }
 
   confirmDelete(id: any) {

@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MailsComponent } from "./mails/mails.component";
 import { MailsViewComponent } from "./mails/view/mails-view.component";
 import { ToastComponent } from "./shared-components/toast/toast.component";
+import { PaginationComponent } from "./shared-components/pagination/pagination.component";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ToastComponent } from "./shared-components/toast/toast.component";
     RulesEditComponent,
     MailsComponent,
     MailsViewComponent,
-    ToastComponent
+    ToastComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

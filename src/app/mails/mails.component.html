@@ -4,7 +4,7 @@
             <h4>{{ 'mails.header' | translate }}</h4>
         </div>
     </div>
-    <div class="row" *ngIf="mails!.length > 0 && userSettings?.mailserver != ''">
+    <div class="row" *ngIf="mails?.totalElements! > 0 && userSettings?.mailserver != ''">
         <form
                 name="form"
                 (ngSubmit)="onSubmit(f.form.valid)"
@@ -32,7 +32,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let mail of mails; let i = index">
+                <tr *ngFor="let mail of mails?.content; let i = index">
                     <td><input
                             type="checkbox"
                             class="form-control inner-check"
@@ -56,6 +56,7 @@
 
                 </tbody>
             </table>
+            <app-pagination #pagination [pages]="mails" [callbackFunction]="pageCallback"></app-pagination>
         </form>
     </div>
     <div class="row" *ngIf="!userSettings?.mailserver">
@@ -63,7 +64,7 @@
             <p class="text-center" [innerHTML]="'mails.error_mail_not_configured' | translate"></p>
         </div>
     </div>
-    <div class="row" *ngIf="mails!.length === 0 && userSettings.mailserver">
+    <div class="row" *ngIf="mails?.totalElements! === 0 && userSettings.mailserver">
         <div class="col-sm">
             <p class="text-center" [innerHTML]=" 'mails.error_no_mails_found' | translate"></p>
         </div>

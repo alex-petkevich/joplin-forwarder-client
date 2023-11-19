@@ -1,3 +1,5 @@
+import { IPagination } from "../shared-components/model/pagination.model";
+
 export interface IMails {
     id?: number,
     user_id?: number,
@@ -14,4 +16,8 @@ export interface IMails {
     added_at?: Date,
     received?: Date
 
+}
+
+export interface IPaginatedMails extends IPagination {
+    content: IMails[]
 }
