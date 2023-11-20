@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: 'https://fw-api.homesite.by/',
+  backendUrl: 'https://fw.homesite.by/',
   defaultLanguage: 'en'
 };
