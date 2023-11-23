@@ -29,7 +29,8 @@
           role="alert"
           *ngIf="isActivationSuccessful"
         >
-          {{ 'account.login.activated-successfully' | translate  }}
+          {{ 'account.login.activated-successfully' | translate  }} <br>
+          <a href="/account/forgot-password">{{ 'account.login.create-a-new-password' | translate  }}</a>
         </div>
       </div>
       <div class="form-group">

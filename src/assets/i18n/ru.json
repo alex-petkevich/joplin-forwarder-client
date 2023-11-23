@@ -39,8 +39,9 @@
       "password-6-chars": "Пароль должен быть не менее 6 символов",
       "forgot-password": "Забыли пароль",
       "register-account": "Зарегистрировать аккаунт",
-      "activated-successfully": "Аккаунт активирован успешно",
-      "account.login.activation-key-not-exists": "Ключ активации не найден",
+      "activated-successfully": "Аккаунт активирован успешно. Теперь Создайте новый пароль по ссылке ниже",
+      "activation-key-not-exists": "Ключ активации не найден",
+      "create-a-new-password": "Создайте пароль",
       "problem": "Проблема"
     },
     "reset": {

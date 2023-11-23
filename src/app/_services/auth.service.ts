@@ -24,11 +24,10 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(username: string, email: string, password: string, lastname: string, firstname: string): Observable<any> {
+  register(username: string, email: string, lastname: string, firstname: string): Observable<any> {
     return this.http.post(environment.backendUrl + AUTH_API + 'signup', {
       username,
       email,
-      password,
       firstname,
       lastname
     }, httpOptions);
