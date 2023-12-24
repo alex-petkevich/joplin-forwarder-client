@@ -6,7 +6,7 @@ export interface IRules {
     comparison_method?: number,
     active?: Boolean,
     stop_process_rules?: Boolean,
-    save_in?: number,
+    save_in?: Boolean,
     priority?: number,
     save_in_parent_id?: string,
     final_action?: number,

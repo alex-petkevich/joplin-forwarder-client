@@ -7,9 +7,6 @@
       <li class="nav-item" *ngIf="isLoggedIn">
         <a href="/mails" class="nav-link" *ngIf="isLoggedIn" routerLink="mails">{{ 'my-mails' | translate }}</a>
       </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">{{ 'admin' | translate }} </a>
-      </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <a href="/rules" class="nav-link" *ngIf="isLoggedIn" routerLink="rules">{{ 'my-rules' | translate }}</a>
       </li>
@@ -22,6 +19,9 @@
       </li>
       <li class="nav-item" *ngIf="!isLoggedIn">
         <a href="/login" class="nav-link" routerLink="login">{{ 'login' | translate }}</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/admin" class="nav-link" routerLink="admin">{{ 'admin' | translate }} </a>
       </li>
       <li class="nav-item dropdown" *ngIf="isLoggedIn">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">

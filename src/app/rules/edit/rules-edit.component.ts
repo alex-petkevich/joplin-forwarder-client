@@ -4,7 +4,7 @@ import {IRules} from "../../model/rules.model";
 import {COMPARISON_LIST, FINAL_ACTION_LIST, TYPES_LIST} from "../../shared-components/model/enum-mappings";
 import {IEnum} from "../../shared-components/model/enum";
 import {RulesService} from "../../_services/rules.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-rules-edit',
@@ -23,7 +23,7 @@ export class RulesEditComponent implements OnInit {
     last_processed_at: undefined,
     processed: 0,
     priority: 0,
-    save_in: 0,
+    save_in: true,
     save_in_parent_id: "",
     name: "",
     type: 1,
@@ -35,12 +35,12 @@ export class RulesEditComponent implements OnInit {
   final_action_list: IEnum[] = FINAL_ACTION_LIST;
   errorMessage: String = "";
 
-  constructor(private auth: AuthService, private rulesService: RulesService, private router: ActivatedRoute) { }
+  constructor(private auth: AuthService, private rulesService: RulesService, private route: ActivatedRoute, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
    await this.auth.isLoggedIn();
 
-    this.router.params.subscribe(res=>{
+    this.route.params.subscribe(res=>{
       if (res['id']) {
         this.rulesService.getRule(res['id']).subscribe({
           next: data => {
@@ -59,13 +59,13 @@ export class RulesEditComponent implements OnInit {
     if (!valid) {
       return false;
     }
-    this.form.save_in = this.form.save_in ? 1 : 0;
     this.form.id = this.currentRule?.id;
     this.rulesService.save(this.form).subscribe({
       next: data => {
         console.log(data);
-        this.isSuccessful = true;
-        this.currentRule = data;
+        this.router.navigate(['/rules']).then(() => {
+          window.location.reload();
+        });
       },
       error: err => {
         this.errorMessage = err?.error?.message || err?.message;

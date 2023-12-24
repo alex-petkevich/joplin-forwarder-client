@@ -35,7 +35,7 @@
                 <tr *ngFor="let mail of mails?.content; let i = index">
                     <td><input
                             type="checkbox"
-                            class="form-control inner-check"
+                            class="inner-check chb-list"
                             name="exp_{{i}}"
                             [ngModel]="isSelected(mail)" (ngModelChange)="onChange(mail, $event)"
                             #name="ngModel"
@@ -50,7 +50,7 @@
                     <td class="t-conv"> <i class="bi bi-patch-check-fill" *ngIf="mail.converted" ></i></td>
                     <td>
                         <button type="button"
-                                class="btn btn-danger btn-sm" (click)="confirmDelete( mail.id )"><em class="bi-bookmark-x"></em> {{ 'mails.delete' | translate }}</button>
+                                class="btn btn-danger btn-sm btn-del" (click)="confirmDelete( mail.id )"><em class="bi-bookmark-x"></em> {{ 'mails.delete' | translate }}</button>
                     </td>
                 </tr>
 

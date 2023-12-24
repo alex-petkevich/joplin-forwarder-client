@@ -130,6 +130,7 @@
   "rules": {
     "header": "My Rules",
     "name": "Name",
+    "total_qty": "Met",
     "last_processed": "Last processed",
     "actions": "Actions",
     "change": "Change",

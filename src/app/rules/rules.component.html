@@ -12,6 +12,7 @@
                     <th scope="col">#</th>
                     <th scope="col">{{ 'rules.name' | translate }}</th>
                     <th scope="col">{{ 'rules.last_processed' | translate }}</th>
+                    <th scope="col">{{ 'rules.total_qty' | translate }}</th>
                     <th scope="col"></th>
                     <th scope="col">{{ 'rules.actions' | translate }}</th>
                 </tr>
@@ -21,6 +22,7 @@
                     <th scope="row" [ngClass]="{ 'disabled': !rule.active}">{{ rule.id }}</th>
                     <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.name }}</td>
                     <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.last_processed_at | date : 'medium' }}</td>
+                    <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.processed }}</td>
                     <td>
                       <div *ngIf="first" class="btn-space"></div>
                       <button type="button"
