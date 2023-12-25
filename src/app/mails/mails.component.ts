@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../_services/auth.service";
 import {SettingsService} from "../_services/settings.service";
@@ -12,6 +12,7 @@ import { ToastComponent } from "../shared-components/toast/toast.component";
 import { PaginationComponent } from "../shared-components/pagination/pagination.component";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from '@angular/common';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-mails',
@@ -30,6 +31,11 @@ export class MailsComponent implements OnInit {
     exp: []
   };
   resyncProgress: boolean = false;
+  fexported: FormControl = new FormControl(false);
+  fattachments: FormControl = new FormControl(false);
+  fsubject: FormControl = new FormControl('');
+  ftext: FormControl = new FormControl('');
+  filterActive: boolean = false;
 
   constructor(private mailsService: MailsService,
               private translate: TranslateService,
@@ -60,7 +66,8 @@ export class MailsComponent implements OnInit {
   }
 
   private loadMails(pg : number = 0) {
-    this.mailsService.getUserMails(pg).subscribe({
+
+    this.mailsService.getUserMails(this.fsubject.value,this.ftext.value, this.fattachments.value, this.fexported.value, pg, 'added_at', 'desc').subscribe({
       next: data => {
         this.mails = data;
       }
@@ -90,9 +97,6 @@ export class MailsComponent implements OnInit {
 
   onSubmit(valid: boolean) {
     this.resyncProgress = true;
-
-
-
     this.mailsService.resyncMails(this.selMails).subscribe({
       next: data => {
         this.translate.get('mails.resync-success').subscribe({
@@ -121,4 +125,23 @@ export class MailsComponent implements OnInit {
       this.selMails?.splice(index, 1);
     }
   }
+
+  displayFilter() {
+    return false;
+  }
+
+  applyFilters() {
+    this.loadMails();
+    return false;
+  }
+
+  resetFilters() {
+    this.fattachments.setValue(false);
+    this.ftext.setValue("");
+    this.fsubject.setValue("");
+    this.fexported.setValue(false);
+    this.loadMails();
+    return false;
+  }
+
 }

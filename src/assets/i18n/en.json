@@ -183,6 +183,7 @@
   "mails": {
     "header": "My Mails",
     "subject": "Subject",
+    "text": "Текст",
     "received": "Received",
     "sender": "Sender",
     "attachments": "Attachments",
@@ -190,6 +191,9 @@
     "converted": "Exported",
     "resync_joplin": "Sync selected",
     "actions": "Actions",
+    "show_filter": "Filter",
+    "apply_filter": "Ok",
+    "reset_filter": "Reset",
     "delete": "Delete",
     "error_mail_not_configured": "Mail server was not set up. Please <a href=\"/settings\">complete the configuration</a>",
     "error_no_mails_found": "No Mails found",

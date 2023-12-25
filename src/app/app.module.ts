@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardUserComponent } from './board-user/board-user.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import {ForgotPasswordComponent} from "./account/forgot-password/forgot-password.component";
@@ -49,14 +49,15 @@ import { PaginationComponent } from "./shared-components/pagination/pagination.c
     ToastComponent,
     PaginationComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    NgxTranslateModule,
-    NgbModule
-  ],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		HttpClientModule,
+		NgxTranslateModule,
+		NgbModule,
+		ReactiveFormsModule
+	],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

@@ -16,8 +16,12 @@ export class MailsService {
 
   constructor(private http: HttpClient) { }
 
-  getUserMails(pg: number = 0) : Observable<any> {
-    return this.http.get(API_URL + '?page=' + pg, { responseType: 'json' });
+  getUserMails(fsublect = "",ftext = "", fattachments = false, fexported = false, pg: number = 0, sort = "", order = "") : Observable<any> {
+    let sortOrder = '';
+    if (order == 'desc' && sort) {
+      sortOrder = '&'+ sort +'.dir=desc';
+    }
+    return this.http.get(API_URL + '?ftext='+ ftext +'&fsubject=' + fsublect + '&fattachments='+fattachments+'&fexported='+fexported+'&sort='+sort + sortOrder +'&page=' + pg, { responseType: 'json' });
   }
 
   getMail(id: Number) : Observable<any> {
