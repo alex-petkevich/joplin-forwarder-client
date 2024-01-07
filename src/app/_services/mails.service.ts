@@ -19,7 +19,7 @@ export class MailsService {
   getUserMails(fsublect = "",ftext = "", fattachments = false, fexported = false, pg: number = 0, sort = "", order = "") : Observable<any> {
     let sortOrder = '';
     if (order == 'desc' && sort) {
-      sortOrder = '&'+ sort +'.dir=desc';
+      sortOrder = '-desc';
     }
     return this.http.get(API_URL + '?ftext='+ ftext +'&fsubject=' + fsublect + '&fattachments='+fattachments+'&fexported='+fexported+'&sort='+sort + sortOrder +'&page=' + pg, { responseType: 'json' });
   }

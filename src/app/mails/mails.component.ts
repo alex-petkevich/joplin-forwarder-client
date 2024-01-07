@@ -36,6 +36,8 @@ export class MailsComponent implements OnInit {
   fsubject: FormControl = new FormControl('');
   ftext: FormControl = new FormControl('');
   filterActive: boolean = false;
+  sort: string = "received";
+  sortOrder: string = "desc";
 
   constructor(private mailsService: MailsService,
               private translate: TranslateService,
@@ -67,7 +69,7 @@ export class MailsComponent implements OnInit {
 
   private loadMails(pg : number = 0) {
 
-    this.mailsService.getUserMails(this.fsubject.value,this.ftext.value, this.fattachments.value, this.fexported.value, pg, 'added_at', 'desc').subscribe({
+    this.mailsService.getUserMails(this.fsubject.value,this.ftext.value, this.fattachments.value, this.fexported.value, pg, this.sort, this.sortOrder).subscribe({
       next: data => {
         this.mails = data;
       }
@@ -142,6 +144,13 @@ export class MailsComponent implements OnInit {
     this.fexported.setValue(false);
     this.loadMails();
     return false;
+  }
+
+  reorderCallback = (args: any): void => {
+    this.sort = args[0];
+    this.sortOrder = args[1] !== 'desc' ? 'desc' : '';
+
+    this.loadMails();
   }
 
 }
