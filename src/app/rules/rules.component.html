@@ -27,11 +27,11 @@
                       <div *ngIf="first" class="btn-space"></div>
                       <button type="button"
                               (click)="moveUp( rule )"
-                              class="btn mr-1 btn-sm"
+                              class="btn me-1 btn-sm"
                               *ngIf="!first"><em class="bi-arrow-up-circle"></em></button>
                       <button type="button"
                               (click)="moveDown( rule )"
-                              class="btn mr-1 btn-sm"
+                              class="btn me-1 btn-sm"
                               *ngIf="!last"><em class="bi-arrow-down-circle"></em></button>
                       <div *ngIf="last" class="btn-space"></div>
 
@@ -39,7 +39,7 @@
                     <td>
                         <button type="button"
                                 [routerLink]="['/rules', rule.id, 'edit']"
-                                class="btn btn-success mr-1 btn-sm"><em class="bi-box-arrow-in-right"></em> {{ 'rules.change' | translate }}</button>
+                                class="btn btn-success me-1 btn-sm"><em class="bi-box-arrow-in-right"></em> {{ 'rules.change' | translate }}</button>
                         <button type="button"
                                 class="btn btn-danger btn-sm" (click)="confirmDelete( rule.id )"><em class="bi-bookmark-x"></em> {{ 'rules.delete' | translate }}</button>
                     </td>

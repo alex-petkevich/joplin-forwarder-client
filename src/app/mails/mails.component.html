@@ -18,7 +18,7 @@
             class="bi-arrow-clockwise"></em> {{ 'mails.resync_joplin' | translate }}</button>
         </div>
         <div class="col-sm text-align-right">
-          <button class="btn btn-info btn-sm" data-toggle="collapse" data-target="#collapseFilterForm" aria-expanded="false"
+          <button class="btn btn-info btn-sm" data-bs-toggle="collapse" data-bs-target="#collapseFilterForm" aria-expanded="false"
                   aria-controls="collapseFilterForm" (click)="displayFilter()"><em
             class="bi-filter"></em> {{ 'mails.show_filter' | translate }}</button>
         </div>
@@ -26,22 +26,22 @@
       <div class="row collapse w-100" id="collapseFilterForm">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-m-3 mr-3">
+            <div class="col-m-3 me-3">
               {{ 'mails.subject' | translate }}:&nbsp;<input type="text" name="fsubject" [formControl]="fsubject">
             </div>
-            <div class="col-m-3 mr-3">
+            <div class="col-m-3 me-3">
               {{ 'mails.text' | translate }}:&nbsp;<input type="text" name="ftext" [formControl]="ftext">
             </div>
-            <div class="col-m-2 pt-1 mr-3">
+            <div class="col-m-2 pt-1 me-3">
               <input type="checkbox" name="fexported" id="fexported" [formControl]="fexported">&nbsp;<label
               for="fexported">{{ 'mails.converted' | translate }}</label>
             </div>
-            <div class="col-m-2 pt-1 mr-3">
+            <div class="col-m-2 pt-1 me-3">
               <input type="checkbox" name="fattachments" id="fattachments" [formControl]="fattachments">&nbsp;<label
               for="fattachments">{{ 'mails.attachments' | translate }}</label>
             </div>
             <div class="col-m-2">
-              <button class="btn btn-success btn-sm mb-2 mr-2" (click)="applyFilters()">{{ 'mails.apply_filter' | translate }}</button>
+              <button class="btn btn-success btn-sm mb-2 me-2" (click)="applyFilters()">{{ 'mails.apply_filter' | translate }}</button>
               <button class="btn btn-secondary btn-sm mb-2" (click)="resetFilters()">{{ 'mails.reset_filter' | translate }}</button>
             </div>
           </div>

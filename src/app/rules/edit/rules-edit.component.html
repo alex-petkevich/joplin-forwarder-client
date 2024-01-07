@@ -11,6 +11,7 @@
                 (ngSubmit)="f.form.valid && onSubmit(f.form.valid)"
                 #f="ngForm"
                 novalidate
+                class="row g-3 needs-validation"
         >
             <div class="form-group" *ngIf="currentRule != undefined">
                 <label for="id">{{ 'rules.edit.id' | translate  }}:</label>&nbsp;
@@ -38,16 +39,17 @@
             </div>
 
             <div class="form-group">
-                <label for="name">{{ 'rules.edit.name' | translate  }}</label>
+                <label for="name" class="form-label">{{ 'rules.edit.name' | translate  }}</label>
                 <input
                         type="text"
                         class="form-control"
                         name="name"
+                        id="name"
                         [(ngModel)]="form.name"
                         required
                         #name="ngModel"
                 />
-                <div class="alert-danger" *ngIf="name.errors && f.submitted">
+                <div class="invalid-feedback" *ngIf="name.errors && f.submitted">
                     <div *ngIf="name.errors['required']">{{ 'rules.edit.name-required' | translate  }}</div>
                     <div *ngIf="name.errors['name']">
                         {{ 'rules.edit.name-valid' | translate  }}
@@ -133,7 +135,7 @@
                 <label for="save_in_parent_id">{{ 'rules.edit.save_in_parent_id' | translate  }}</label>
                 <input
                         type="text"
-                        class="form-control inner-fld ml-2 mr-3"
+                        class="form-control inner-fld ms-2 me-3"
                         name="save_in_parent_id"
                         [(ngModel)]="form.save_in_parent_id"
                         #save_in_parent_id="ngModel"
@@ -163,7 +165,7 @@
 
             <div class="form-group">
                 <button class="btn btn-primary">{{ 'rules.edit.save-data' | translate  }}</button>&nbsp;
-                <a class="btn btn-danger" [routerLink]="['/rules']">{{ 'rules.edit.cancel' | translate }}</a>
+                <a class="btn btn-secondary" [routerLink]="['/rules']">{{ 'rules.edit.cancel' | translate }}</a>
             </div>
         </form>
         <div class="alert alert-success" *ngIf="isSuccessful">

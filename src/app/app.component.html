@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <img src="/assets/images/logo_transparent_no_sign.png" width="30" height="30" class="d-inline-block align-top" alt="">
     <a href="#" class="navbar-brand">{{ 'title' | translate }}</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+    <ul class="navbar-nav me-auto" routerLinkActive="active">
       <li class="nav-item" *ngIf="isLoggedIn">
         <a href="/mails" class="nav-link" *ngIf="isLoggedIn" routerLink="mails">{{ 'my-mails' | translate }}</a>
       </li>
@@ -12,7 +12,7 @@
       </li>
 
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ms-auto">
 
       <li class="nav-item" *ngIf="!isLoggedIn">
         <a href="/register" class="nav-link" routerLink="register">{{ 'sign-up' | translate }}</a>
@@ -24,7 +24,7 @@
         <a href="/admin" class="nav-link" routerLink="admin">{{ 'admin' | translate }} </a>
       </li>
       <li class="nav-item dropdown" *ngIf="isLoggedIn">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
           <img src="{{ avatar }}" alt="" width="30" height="24" class="d-inline-block align-text-top profile-avatar-img-card" *ngIf="avatar">
           <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="" width="30" height="24" class="d-inline-block align-text-top profile-avatar-img-card" *ngIf="!avatar">
           {{ username }}
@@ -47,7 +47,7 @@
         </div>
       </li>
       <li class="nav-item dropdown" *ngIf="languageList.length > 1">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
           {{ currentLanguage }}
         </a>
         <div  class="dropdown-menu">
