@@ -13,11 +13,11 @@
       novalidate
       class="row g-3 needs-validation"
     >
-      <div class="mb-3">
+      <div class="mb-1">
         <label for="username">{{ 'account.register.username' | translate  }}</label>
         <input
           type="text"
-          class="form-control is-invalid"
+          class="form-control"  [ngClass]="{ 'is-invalid': username.errors && f.submitted}"
           name="username"
           [(ngModel)]="form.username"
           required
@@ -35,11 +35,11 @@
           </div>
         </div>
       </div>
-      <div class="mb-3">
+      <div class="mb-1">
         <label for="email">{{ 'account.register.email' | translate  }}</label>
         <input
           type="email"
-          class="form-control  is-invalid"
+          class="form-control" [ngClass]="{ 'is-invalid': email.errors && f.submitted}"
           name="email"
           [(ngModel)]="form.email"
           required
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <div class="mb-3">
+      <div class="mb-1">
         <label for="firstname">{{ 'account.register.firstname' | translate  }}</label>
         <input
           type="text"
@@ -63,7 +63,7 @@
           #firstname="ngModel"
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-1">
         <label for="lastname">{{ 'account.register.lastname' | translate  }}</label>
         <input
           type="text"
@@ -73,7 +73,7 @@
           #lastname="ngModel"
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-1">
         <button class="btn btn-primary btn-block">{{ 'account.register.signup' | translate  }}</button>
       </div>
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
