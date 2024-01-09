@@ -12,24 +12,24 @@
     #f="ngForm"
     novalidate
   >
-    <div class="form-group">
+    <div class="mb-3">
       <label for="mailserver">{{ 'account.settings.mailserver' | translate  }}</label>
       <input
         type="text"
-        class="form-control"
+        class="form-control" [ngClass]="{ 'is-invalid': mailserver.errors && f.submitted}"
         name="mail-server"
         [(ngModel)]="form.mailserver"
         required
         #mailserver="ngModel"
       />
-      <div class="alert-danger" *ngIf="mailserver.errors && f.submitted">
+      <div class="invalid-feedback" *ngIf="mailserver.errors && f.submitted">
         <div *ngIf="mailserver.errors['required']">{{ 'account.settings.mailserver-required' | translate  }}</div>
         <div *ngIf="mailserver.errors['mailserver']">
           {{ 'account.settings.mailserver-valid' | translate  }}
         </div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="mb-3">
       <label for="mailport">{{ 'account.settings.mailport' | translate  }}</label>
       <input
         type="text"
@@ -39,7 +39,7 @@
         #mailport="ngModel"
       />
     </div>
-    <div class="form-group">
+    <div class="mb-3">
       <label for="username">{{ 'account.settings.username' | translate  }}</label>
       <input
         type="text"
@@ -49,7 +49,7 @@
         #username="ngModel"
       />
     </div>
-    <div class="form-group">
+    <div class="mb-3">
       <label for="password">{{ 'account.settings.password' | translate  }}</label>
       <input
               type="password"
@@ -59,7 +59,7 @@
               #password="ngModel"
       />
     </div>
-    <div class="form-group">
+    <div class="mb-3">
       <label for="period">{{ 'account.settings.period' | translate  }}</label>
       <select
               class="form-control"
@@ -70,7 +70,7 @@
       <option *ngFor="let c of periods" [ngValue]="c">{{c}}</option>
       </select>
     </div>
-    <div class="form-group">
+    <div class="mb-3">
       <button class="btn btn-primary btn-block">{{ 'account.settings.save-data' | translate  }}</button>
     </div>
     <div class="alert alert-warning" *ngIf="f.submitted && isUpdatingFailed">

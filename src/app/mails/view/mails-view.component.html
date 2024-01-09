@@ -7,15 +7,15 @@
                 #f="ngForm"
                 novalidate
         >
-            <div class="form-group" *ngIf="currentMail != undefined">
+            <div class="mb-2" *ngIf="currentMail != undefined">
                 <label for="id">{{ 'mails.view.id' | translate  }}:</label>&nbsp;
                 <b>{{ currentMail.id }}</b>
             </div>
-            <div class="form-group" *ngIf="currentMail != undefined">
+            <div class="mb-2" *ngIf="currentMail != undefined">
                 <label for="id">{{ 'mails.view.sender' | translate  }}:</label>&nbsp;
                 <b>{{ currentMail.sender }}</b>
             </div>
-            <div class="form-group" *ngIf="currentMail != undefined">
+            <div class="mb-2" *ngIf="currentMail != undefined">
                 {{ currentMail.subject }} <b>{{ currentMail.received | date : 'medium' }}</b>
             </div>
             <div id="mail-text" [innerHTML]="currentMail?.text">
@@ -24,12 +24,12 @@
             <div>
                 &nbsp;
             </div>
-            <div class="form-group" *ngIf="currentMail != undefined">
+            <div class="mb-2" *ngIf="currentMail != undefined">
               <div class="bi bi-file-earmark-arrow-down" *ngFor="let item of currentMail.attachList">
                 <a [routerLink]="[]" (click)="download(currentMail.id, item)">{{ item }}</a>
               </div>
             </div>
-            <div class="form-group exp" *ngIf="currentMail != undefined">
+            <div class="mb-2 exp" *ngIf="currentMail != undefined">
                 <label for="id">{{ 'mails.view.converted' | translate  }}:</label>&nbsp;
                 <i class="bi bi-patch-check-fill" *ngIf="currentMail.converted" ></i>
             </div>

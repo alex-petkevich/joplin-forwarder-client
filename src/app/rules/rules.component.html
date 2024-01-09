@@ -39,7 +39,7 @@
                     <td>
                         <button type="button"
                                 [routerLink]="['/rules', rule.id, 'edit']"
-                                class="btn btn-success me-1 btn-sm"><em class="bi-box-arrow-in-right"></em> {{ 'rules.change' | translate }}</button>
+                                class="btn btn-secondary me-1 btn-sm"><em class="bi-box-arrow-in-right"></em> {{ 'rules.change' | translate }}</button>
                         <button type="button"
                                 class="btn btn-danger btn-sm" (click)="confirmDelete( rule.id )"><em class="bi-bookmark-x"></em> {{ 'rules.delete' | translate }}</button>
                     </td>
@@ -60,7 +60,7 @@
     </div>
     <div class="row" *ngIf="userSettings?.mailserver">
         <div class="col-sm">
-            <a class="btn btn-primary btn-sm" [routerLink]="['/rules/new']"><em class="bi-bookmark-plus"></em> {{ 'rules.create_rule' | translate }}</a>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/rules/new']"><em class="bi-bookmark-plus"></em> {{ 'rules.create_rule' | translate }}</button>
         </div>
     </div>
 </div>

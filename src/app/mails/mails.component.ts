@@ -148,7 +148,7 @@ export class MailsComponent implements OnInit {
 
   reorderCallback = (args: any): void => {
     this.sort = args[0];
-    this.sortOrder = args[1] !== 'desc' ? 'desc' : '';
+    this.sortOrder = args[1];
 
     this.loadMails();
   }

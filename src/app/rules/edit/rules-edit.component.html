@@ -13,39 +13,39 @@
                 novalidate
                 class="row g-3 needs-validation"
         >
-            <div class="form-group" *ngIf="currentRule != undefined">
+            <div class="mb-1" *ngIf="currentRule != undefined">
                 <label for="id">{{ 'rules.edit.id' | translate  }}:</label>&nbsp;
                 <b>{{ currentRule.id }}</b>
             </div>
-            <div class="form-group" *ngIf="currentRule != undefined">
+            <div class="mb-1" *ngIf="currentRule != undefined">
                 <label for="active">{{ 'rules.edit.active' | translate  }}</label>
                 <input
                         type="checkbox"
-                        class="form-control inner-check"
+                        class="form-check-input ms-2"
                         name="active"
                         id="active"
                         [(ngModel)]="form.active"
                         #name="ngModel"
                 />
             </div>
-            <div class="form-group" *ngIf="currentRule != undefined">
+            <div class="mb-1" *ngIf="currentRule != undefined">
                 <label for="id">{{ 'rules.edit.processed' | translate  }}:</label>&nbsp;
                 <b>{{ currentRule.processed }}</b>
             </div>
 
-            <div class="form-group" *ngIf="currentRule != undefined">
+            <div class="mb-1" *ngIf="currentRule != undefined">
                 <label for="id">{{ 'rules.edit.last_processed_at' | translate  }}:</label>&nbsp;
                 <b>{{ currentRule.last_processed_at | date : 'medium' }}</b>
             </div>
 
-            <div class="form-group">
+            <div class="mb-1">
                 <label for="name" class="form-label">{{ 'rules.edit.name' | translate  }}</label>
                 <input
                         type="text"
                         class="form-control"
                         name="name"
                         id="name"
-                        [(ngModel)]="form.name"
+                        [(ngModel)]="form.name" [ngClass]="{ 'is-invalid': name.errors && f.submitted}"
                         required
                         #name="ngModel"
                 />
@@ -57,12 +57,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="mb-1">
                 <label for="type">{{ 'rules.edit.type' | translate  }}</label>
             </div>
-            <div class="form-group">
+            <div class="mb-1">
                 <select
-                        class="form-control inner-fld"
+                        class="form-control inner-fld" [ngClass]="{ 'is-invalid': type.errors && f.submitted}"
                         name="type"
                         id="type"
                         [(ngModel)]="form.type"
@@ -72,7 +72,7 @@
                     <option *ngFor="let type of types_list" value="{{ type.enum }}">{{ 'lists.types.' + type.display | translate }}</option>
                 </select>
                 <select
-                        class="form-control inner-fld"
+                        class="form-control inner-fld" [ngClass]="{ 'is-invalid': comparison_method.errors && f.submitted}"
                         name="comparison_method"
                         [(ngModel)]="form.comparison_method"
                         #comparison_method="ngModel"
@@ -83,36 +83,36 @@
                 </select>
                 <input
                         type="text"
-                        class="form-control inner-fld"
+                        class="form-control inner-fld" [ngClass]="{ 'is-invalid': comparison_text.errors && f.submitted}"
                         name="comparison_text"
                         [(ngModel)]="form.comparison_text"
                         required
                         #comparison_text="ngModel"
                         [readOnly]="!type.value || !comparison_method.value"
                 />
-                <div class="alert-danger" *ngIf="type.errors && f.submitted">
+                <div class="invalid-feedback" *ngIf="type.errors && f.submitted">
                     <div *ngIf="type.errors['required']">{{ 'rules.edit.type-required' | translate  }}</div>
                     <div *ngIf="type.errors['type']">
                         {{ 'rules.edit.type-valid' | translate  }}
                     </div>
                 </div>
-                <div class="alert-danger" *ngIf="comparison_method.errors && f.submitted">
+                <div class="invalid-feedback" *ngIf="comparison_method.errors && f.submitted">
                     <div *ngIf="comparison_method.errors['required']">{{ 'rules.edit.comparison_method-required' | translate  }}</div>
                     <div *ngIf="comparison_method.errors['comparison_method']">
                         {{ 'rules.edit.comparison_method-valid' | translate  }}
                     </div>
                 </div>
-                <div class="alert-danger" *ngIf="comparison_text.errors && f.submitted">
+                <div class="invalid-feedback" *ngIf="comparison_text.errors && f.submitted">
                     <div *ngIf="comparison_text.errors['required']">{{ 'rules.edit.comparison_text-required' | translate  }}</div>
                     <div *ngIf="comparison_text.errors['comparison_text']">
                         {{ 'rules.edit.comparison_text-valid' | translate  }}
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="mb-1">
                 <label for="final_action">{{ 'rules.edit.final_action' | translate  }}</label>
             </div>
-            <div class="form-group">
+            <div class="mb-1">
                 <select
                         class="form-control inner-fld"
                         name="final_action"
@@ -131,9 +131,9 @@
                         [readOnly]="final_action.value != 'MOVE_TO_FOLDER'"
                 />
             </div>
-            <div class="form-group">
+            <div class="mb-1">
             </div>
-            <div class="form-group">
+            <div class="mb-1">
                 <label for="save_in_parent_id">{{ 'rules.edit.save_in_parent_id' | translate  }}</label>
                 <input
                         type="text"
@@ -146,7 +146,7 @@
 
                 <input
                         type="checkbox"
-                        class="form-control inner-check"
+                        class="form-check-input ms-2 me-2 mt-2"
                         name="save_in"
                         id="save_in"
                         [(ngModel)]="form.save_in"
@@ -154,11 +154,11 @@
                 />
                 <label for="save_in">{{ 'rules.edit.save_in' | translate  }}</label>
             </div>
-            <div class="form-group" *ngIf="currentRule != undefined">
+            <div class="mb-1" *ngIf="currentRule != undefined">
                 <label for="stop_process_rules">{{ 'rules.edit.stop_process_rules' | translate  }}</label>
                 <input
                         type="checkbox"
-                        class="form-control inner-check"
+                        class="form-check-input ms-2"
                         name="stop_process_rules"
                         id="stop_process_rules"
                         [(ngModel)]="form.stop_process_rules"
@@ -166,7 +166,7 @@
                 />
             </div>
 
-            <div class="form-group">
+            <div class="mb-1">
                 <button class="btn btn-primary">{{ 'rules.edit.save-data' | translate  }}</button>&nbsp;
                 <a class="btn btn-secondary" [routerLink]="['/rules']">{{ 'rules.edit.cancel' | translate }}</a>
             </div>

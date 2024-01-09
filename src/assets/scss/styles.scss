@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body, html {
   height: 100%;
-  background-color: #f4fafd;
 }
 
 .card-container-wide.card {
@@ -15,7 +14,6 @@ body, html {
 }
 
 .btn {
-  font-weight: 700;
   height: 36px;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -28,17 +26,24 @@ body, html {
  */
 .card {
   background-color: #F7F7F7;
+  min-width: 500px;
   /* just in case there no content*/
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
   /* shadows and rounded borders */
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.filter-box {
+  background-color: #FAFAFA;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .profile-img-card {

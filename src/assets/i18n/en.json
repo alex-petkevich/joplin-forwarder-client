@@ -27,7 +27,7 @@
       "send-password": "Send password reset link",
       "login": "Login",
       "register-account": "Register New Account",
-      "username-requred": "Username / Email is required!"
+      "username-required": "Username / Email is required!"
     },
     "login": {
       "logged-in": "Logged in as",

@@ -16,7 +16,7 @@
       #f="ngForm"
       novalidate
     >
-      <div class="form-group">
+      <div class="mb-2">
         <div
           class="alert alert-danger"
           role="alert"
@@ -33,29 +33,28 @@
           <a href="/account/forgot-password">{{ 'account.login.create-a-new-password' | translate  }}</a>
         </div>
       </div>
-      <div class="form-group">
+      <div class="mb-2">
         <label for="username">{{ 'account.login.username' | translate  }}</label>
         <input
           type="text"
-          class="form-control"
+          class="form-control" [ngClass]="{ 'is-invalid': username.errors && f.submitted}"
           name="username"
           [(ngModel)]="form.username"
           required
           #username="ngModel"
         />
         <div
-          class="alert alert-danger"
-          role="alert"
+          class="invalid-feedback"
           *ngIf="username.errors && f.submitted"
         >
           {{ 'account.login.username-required' | translate  }}
         </div>
       </div>
-      <div class="form-group">
+      <div class="mb-2">
         <label for="password"> {{ 'account.login.password' | translate  }}</label>
         <input
           type="password"
-          class="form-control"
+          class="form-control" [ngClass]="{ 'is-invalid': password.errors && f.submitted}"
           name="password"
           [(ngModel)]="form.password"
           required
@@ -63,8 +62,7 @@
           #password="ngModel"
         />
         <div
-          class="alert alert-danger"
-          role="alert"
+          class="invalid-feedback"
           *ngIf="password.errors && f.submitted"
         >
           <div *ngIf="password.errors['required']">{{ 'account.login.password-required' | translate  }}</div>
@@ -73,7 +71,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="mb-2">
         <button class="btn btn-primary btn-block">
           {{ 'account.login.login' | translate  }}
         </button>

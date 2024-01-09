@@ -13,10 +13,12 @@ export class SortComponent {
   @Input() sortOrder: string = 'desc';
   @Input() callbackFunction: ((args: any) => void) | undefined;
 
-  constructor() {
-  }
-
   reorder(sort: string, sortOrder: string) {
+
+    sortOrder = sortOrder !== 'desc' ? 'desc' : '';
+
     this.callbackFunction != undefined && this.callbackFunction([sort, sortOrder] );
+
+    return false;
   }
 }

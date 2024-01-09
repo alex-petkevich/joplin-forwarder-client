@@ -12,10 +12,10 @@
     #f="ngForm"
     novalidate
   >
-    <div class="form-group">
+    <div class="mb-3">
       <label for="joplinserver">{{ 'account.sync.joplinserver' | translate  }}</label>
       <select
-        class="form-control"
+        class="form-control" [ngClass]="{ 'is-invalid': joplinserver.errors && f.submitted}"
         name="joplinserver"
         [(ngModel)]="form.joplinserver"
         required
@@ -23,14 +23,14 @@
       >
         <option *ngFor="let type of joplin_server_types_list" value="{{ type.enum }}">{{ 'lists.joplinserver.' + type.enum | translate }}</option>
       </select>
-      <div class="alert-danger" *ngIf="joplinserver.errors && f.submitted">
+      <div class="invalid-feedback" *ngIf="joplinserver.errors && f.submitted">
         <div *ngIf="joplinserver.errors['required']">{{ 'account.sync.joplinserver-required' | translate  }}</div>
         <div *ngIf="joplinserver.errors['mailserver']">
           {{ 'account.sync.joplinserver-valid' | translate  }}
         </div>
       </div>
     </div>
-    <div class="form-group" *ngIf="joplinserver?.value == 'WEBDAV'">
+    <div class="mb-3" *ngIf="joplinserver?.value == 'WEBDAV'">
       <label for="joplinserverdavurl">{{ 'account.sync.joplinserver-dav-url' | translate  }}</label>
       <input
         type="text"
@@ -40,7 +40,7 @@
         #joplinserverdavurl="ngModel"
       />
     </div>
-    <div class="form-group" *ngIf="joplinserver?.value == 'WEBDAV'">
+    <div class="mb-3" *ngIf="joplinserver?.value == 'WEBDAV'">
       <label for="joplinserverdavusername">{{ 'account.sync.joplinserver-dav-username' | translate  }}</label>
       <input
         type="text"
@@ -50,7 +50,7 @@
         #joplinserverdavusername="ngModel"
       />
     </div>
-    <div class="form-group" *ngIf="joplinserver?.value == 'WEBDAV'">
+    <div class="mb-3" *ngIf="joplinserver?.value == 'WEBDAV'">
       <label for="joplinserverdavpassword">{{ 'account.sync.joplinserver-dav-password' | translate  }}</label>
       <input
               type="password"
@@ -60,7 +60,7 @@
               #joplinserverdavpassword="ngModel"
       />
     </div>
-    <div class="form-group" *ngIf="joplinserver?.value == 'SERVER'">
+    <div class="mb-3" *ngIf="joplinserver?.value == 'SERVER'">
       <label for="joplinserverserverurl">{{ 'account.sync.joplinserver-server-url' | translate  }}</label>
       <input
               type="text"
@@ -70,7 +70,7 @@
               #joplinserverserverurl="ngModel"
       />
     </div>
-    <div class="form-group" *ngIf="joplinserver?.value == 'SERVER'">
+    <div class="mb-3" *ngIf="joplinserver?.value == 'SERVER'">
       <label for="joplinserverserverusername">{{ 'account.sync.joplinserver-server-username' | translate  }}</label>
       <input
               type="text"
@@ -80,7 +80,7 @@
               #joplinserverserverusername="ngModel"
       />
     </div>
-    <div class="form-group" *ngIf="joplinserver?.value == 'SERVER'">
+    <div class="mb-3" *ngIf="joplinserver?.value == 'SERVER'">
       <label for="joplinserverserverpassword">{{ 'account.sync.joplinserver-server-password' | translate  }}</label>
       <input
               type="password"
@@ -90,7 +90,7 @@
               #joplinserverserverpassword="ngModel"
       />
     </div>
-    <div class="form-group">
+    <div class="mb-3">
       <label for="joplinserverparentnode">{{ 'account.sync.joplinserver-parentnode' | translate  }}</label>
       <input
               type="text"
@@ -100,7 +100,7 @@
               #joplinserverparentnode="ngModel"
       />
     </div>
-    <div class="form-group">
+    <div class="mb-3">
       <button class="btn btn-primary btn-block">{{ 'account.sync.save-data' | translate  }}</button>
     </div>
     <div class="alert alert-warning" *ngIf="f.submitted && isUpdatingFailed">

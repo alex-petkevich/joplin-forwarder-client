@@ -34,13 +34,13 @@ export class ForgotPasswordComponent implements OnInit {
         this.tokenStorage.saveUser(data);
         this.isSentSucessfully = true;
         this.isSentFailed = false;
-        if (data.lang) {
+/*        if (data.lang) {
           this.tokenStorage.saveLang(data.lang);
         }
 
         this.router.navigate(['/home']).then(() => {
           window.location.reload();
-        });
+        });*/
       } ,
       error: err => {
         this.errorMessage = err.error.message;
