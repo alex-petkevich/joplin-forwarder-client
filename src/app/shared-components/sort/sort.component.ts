@@ -15,7 +15,11 @@ export class SortComponent {
 
   reorder(sort: string, sortOrder: string) {
 
-    sortOrder = sortOrder !== 'desc' ? 'desc' : '';
+    if (sort == this.curentSort && sortOrder == '') {
+      sort = '';
+    } else {
+      sortOrder = sort != this.curentSort ? 'desc' : sortOrder !== 'desc' ? 'desc' : '';
+    }
 
     this.callbackFunction != undefined && this.callbackFunction([sort, sortOrder] );
 
