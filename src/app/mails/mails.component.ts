@@ -13,6 +13,7 @@ import { PaginationComponent } from "../shared-components/pagination/pagination.
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from '@angular/common';
 import {FormControl} from "@angular/forms";
+import { finalize } from "rxjs";
 
 @Component({
   selector: 'app-mails',
@@ -31,6 +32,7 @@ export class MailsComponent implements OnInit {
     exp: []
   };
   resyncProgress: boolean = false;
+  loadProgress: boolean = false;
   fexported: FormControl = new FormControl(false);
   fattachments: FormControl = new FormControl(false);
   fsubject: FormControl = new FormControl('');
@@ -50,6 +52,7 @@ export class MailsComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.auth.isLoggedIn();
 
+    this.loadProgress = true;
     this.activatedRoute.queryParams.subscribe(params => {
       const page = params['page'];
       this.settingsService.getUserSettings().subscribe({
@@ -60,20 +63,35 @@ export class MailsComponent implements OnInit {
           if (this.userSettings.mailserver) {
             this.loadMails(page);
           }
+        },
+        error: err => {
+          this.loadProgress = false;
+          this.showInternalError(err)
         }
       });
     });
-
-
   }
 
   private loadMails(pg : number = 0) {
+    this.loadProgress = true;
+    this.mailsService.getUserMails(this.fsubject.value,this.ftext.value, this.fattachments.value, this.fexported.value, pg, this.sort, this.sortOrder)
+        .pipe(
+            finalize(() => {
+              this.loadProgress = false;
+            })
+        )
+        .subscribe({
+          next: data => {
+            this.mails = data;
+          },
+          error: err => {
+            this.showInternalError(err);
+          }
+        });
+  }
 
-    this.mailsService.getUserMails(this.fsubject.value,this.ftext.value, this.fattachments.value, this.fexported.value, pg, this.sort, this.sortOrder).subscribe({
-      next: data => {
-        this.mails = data;
-      }
-    });
+  private showInternalError(err: any) {
+
   }
 
   pageCallback = (args: any): void => {

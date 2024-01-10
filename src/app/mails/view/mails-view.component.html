@@ -1,6 +1,7 @@
 <div class="col-md-12" xmlns="http://www.w3.org/1999/html">
     <div class="card card-container-wide">
-        <a href="/mails">Back</a>
+        <button type="button" class="btn btn-secondary btn-sm w-sm mb-3"  [routerLink]="['/mails']"><em
+                class="bi-arrow-left"></em> Back</button>
         <form
                 name="form"
                 (ngSubmit)="f.form.valid"
