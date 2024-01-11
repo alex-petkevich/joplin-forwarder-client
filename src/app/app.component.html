@@ -20,8 +20,18 @@
       <li class="nav-item" *ngIf="!isLoggedIn">
         <a href="/login" class="nav-link" routerLink="login">{{ 'login' | translate }}</a>
       </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">{{ 'admin' | translate }} </a>
+      <li class="nav-item dropdown" *ngIf="showAdminBoard">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" >{{ 'admin' | translate }} </a>
+        <div  class="dropdown-menu">
+          <ng-container>
+            <a href="/admin-users" class="dropdown-item" >
+              {{ 'users' | translate }}
+            </a>
+            <a href="/admin-metrics" class="dropdown-item" >
+              {{ 'metrics' | translate }}
+            </a>
+          </ng-container>
+        </div>
       </li>
       <li class="nav-item dropdown" *ngIf="isLoggedIn">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">

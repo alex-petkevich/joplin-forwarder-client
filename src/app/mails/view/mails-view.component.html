@@ -1,14 +1,9 @@
 <div class="col-md-12" xmlns="http://www.w3.org/1999/html">
     <div class="card card-container-wide">
-        <button type="button" class="btn btn-secondary btn-sm w-sm mb-3"  [routerLink]="['/mails']"><em
-                class="bi-arrow-left"></em> Back</button>
-        <form
-                name="form"
-                (ngSubmit)="f.form.valid"
-                #f="ngForm"
-                novalidate
-        >
+
             <div class="mb-2" *ngIf="currentMail != undefined">
+                <button type="button" class="btn btn-secondary btn-sm w-sm me-3"  [routerLink]="['/mails']"><em
+                        class="bi-arrow-left"></em> Back</button>
                 <label for="id">{{ 'mails.view.id' | translate  }}:</label>&nbsp;
                 <b>{{ currentMail.id }}</b>
             </div>
@@ -19,22 +14,18 @@
             <div class="mb-2" *ngIf="currentMail != undefined">
                 {{ currentMail.subject }} <b>{{ currentMail.received | date : 'medium' }}</b>
             </div>
-            <div id="mail-text" [innerHTML]="currentMail?.text">
-
-            </div>
-            <div>
-                &nbsp;
-            </div>
             <div class="mb-2" *ngIf="currentMail != undefined">
-              <div class="bi bi-file-earmark-arrow-down" *ngFor="let item of currentMail.attachList">
-                <a [routerLink]="[]" (click)="download(currentMail.id, item)">{{ item }}</a>
-              </div>
+                <div class="bi bi-file-earmark-arrow-down" *ngFor="let item of currentMail.attachList">
+                    <a [routerLink]="[]" (click)="download(currentMail.id, item)">{{ item }}</a>
+                </div>
             </div>
-            <div class="mb-2 exp" *ngIf="currentMail != undefined">
+            <div class="mb-5 exp" *ngIf="currentMail != undefined">
                 <label for="id">{{ 'mails.view.converted' | translate  }}:</label>&nbsp;
                 <i class="bi bi-patch-check-fill" *ngIf="currentMail.converted" ></i>
             </div>
-        </form>
+            <div id="mail-text" [innerHTML]="currentMail?.text">
+
+            </div>
 
     </div>
 </div>
