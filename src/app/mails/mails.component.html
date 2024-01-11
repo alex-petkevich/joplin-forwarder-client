@@ -56,7 +56,6 @@
           <th scope="col"></th>
           <th scope="col">#<app-sort [sort]="'id'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
           <th scope="col">{{ 'mails.subject' | translate }}<app-sort [sort]="'subject'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
-          <th scope="col">{{ 'mails.sender' | translate }}<app-sort [sort]="'sender'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
           <th scope="col">{{ 'mails.received' | translate }}<app-sort [sort]="'received'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
           <th scope="col">{{ 'mails.attachments' | translate }}<app-sort [sort]="'attachments'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
           <th scope="col">{{ 'mails.rule' | translate }}</th>
@@ -74,8 +73,7 @@
             #name="ngModel"
           /></td>
           <th scope="row">{{ mail.id }}</th>
-          <td><a [routerLink]="['/mails', mail.id, 'view']">{{ mail.subject || "<--->" }}</a></td>
-          <td>{{ mail.sender }}</td>
+          <td><a [routerLink]="['/mails', mail.id, 'view']">{{ (mail.subject!.length>80)? (mail.subject | slice:0:80)+'...':(mail.subject || "<--->") }}</a></td>
           <td>{{ mail.received | date : 'medium' }}</td>
           <td class="t-att"><i class="bi bi-file-earmark-arrow-down" *ngIf="mail.attachments"></i></td>
           <td *ngIf="mail.rule_name"><a [routerLink]="['/rules', mail.rule_id, 'edit']">{{ mail.rule_name }}</a></td>

@@ -13,17 +13,17 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ 'rules.name' | translate }}</th>
+                    <th scope="col" class="w-50">{{ 'rules.name' | translate }}</th>
                     <th scope="col">{{ 'rules.last_processed' | translate }}</th>
                     <th scope="col">{{ 'rules.total_qty' | translate }}</th>
                     <th scope="col"></th>
-                    <th scope="col">{{ 'rules.actions' | translate }}</th>
+                    <th scope="col" class="w-sm">{{ 'rules.actions' | translate }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let rule of rules; let first = first ;let last = last;">
                     <th scope="row" [ngClass]="{ 'disabled': !rule.active}">{{ rule.id }}</th>
-                    <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.name }}</td>
+                    <td [ngClass]="{ 'disabled': !rule.active}"><a  [routerLink]="['/rules', rule.id, 'edit']">{{ rule.name }}</a></td>
                     <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.last_processed_at | date : 'medium' }}</td>
                     <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.processed }}</td>
                     <td>
@@ -40,9 +40,6 @@
 
                     </td>
                     <td>
-                        <button type="button"
-                                [routerLink]="['/rules', rule.id, 'edit']"
-                                class="btn btn-secondary me-1 btn-sm"><em class="bi-box-arrow-in-right"></em> {{ 'rules.change' | translate }}</button>
                         <button type="button"
                                 class="btn btn-danger btn-sm" (click)="confirmDelete( rule.id )"><em class="bi-bookmark-x"></em> {{ 'rules.delete' | translate }}</button>
                     </td>
