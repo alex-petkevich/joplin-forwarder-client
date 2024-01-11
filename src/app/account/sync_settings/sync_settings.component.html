@@ -21,7 +21,7 @@
         required
         #joplinserver="ngModel"
       >
-        <option *ngFor="let type of joplin_server_types_list" value="{{ type.enum }}">{{ 'lists.joplinserver.' + type.enum | translate }}</option>
+        <option *ngFor="let type of joplinServerTypesList" value="{{ type.enum }}">{{ 'lists.joplinserver.' + type.enum | translate }}</option>
       </select>
       <div class="invalid-feedback" *ngIf="joplinserver.errors && f.submitted">
         <div *ngIf="joplinserver.errors['required']">{{ 'account.sync.joplinserver-required' | translate  }}</div>
@@ -98,7 +98,12 @@
               name="joplinserverparentnode"
               [(ngModel)]="form.joplinserverparentnode"
               #joplinserverparentnode="ngModel"
+              list="nodeslist"
+              id="joplinserverparentnode"
       />
+      <datalist id="nodeslist">
+        <option *ngFor="let node of joplinCachedNodesList" [innerHTML]="node.name">{{ node.name }}</option>
+      </datalist>
     </div>
     <div class="mb-3">
       <button class="btn btn-primary btn-block">{{ 'account.sync.save-data' | translate  }}</button>

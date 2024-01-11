@@ -6,6 +6,12 @@ import {AuthService} from "../../_services/auth.service";
 import {IEnum} from "../../shared-components/model/enum";
 import {JOPLIN_SERVER_TYPES_LIST} from "../../shared-components/model/enum-mappings";
 
+export interface ICachedNode {
+  id: string;
+  parentId: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-sync_settings',
   templateUrl: './sync_settings.component.html',
@@ -13,7 +19,7 @@ import {JOPLIN_SERVER_TYPES_LIST} from "../../shared-components/model/enum-mappi
 })
 export class SyncSettingsComponent implements OnInit {
 
-  joplin_server_types_list: IEnum[] = JOPLIN_SERVER_TYPES_LIST;
+  joplinServerTypesList: IEnum[] = JOPLIN_SERVER_TYPES_LIST;
   form: any = {
     joplinserver: null,
     joplinserverdavurl: null,
@@ -23,9 +29,11 @@ export class SyncSettingsComponent implements OnInit {
     joplinserverserverusername: null,
     joplinserverserverpassword: null,
     joplinserverparentnode: null,
+    joplinnodescachedlist: null,
     id: null,
     user_id: null
   };
+  joplinCachedNodesList:  ICachedNode[] = [];
   isSuccessful = false;
   isUpdatingFailed = false;
   errorMessage = '';
@@ -40,8 +48,34 @@ export class SyncSettingsComponent implements OnInit {
         (data as Array<ISettingsResponse>).forEach(it => {
           this.form[it.name] = it.value;
         });
+        if (this.form["joplinnodescachedlist"]) {
+          this.joplinCachedNodesList = this.buildTree(JSON.parse(this.form["joplinnodescachedlist"]));
+        }
       }
     });
+  }
+
+  private buildTree(parse: ICachedNode[]) {
+    let res :ICachedNode[] = [];
+    parse.forEach(it => {
+      if (!it.parentId) {
+        res.push(it);
+        res.push(...this.populateNode(it, parse, 1));
+      }
+    });
+    return res;
+  }
+
+  private populateNode(node: ICachedNode, parsedTree: ICachedNode[], deep: number) {
+    let res :ICachedNode[] = [];
+    parsedTree.forEach(it => {
+      if (node.id == it.parentId) {
+        it.name = "&nbsp;".repeat(3 * deep) + it.name;
+        res.push(it);
+        res.push(...this.populateNode(it, parsedTree, deep + 1));
+      }
+    });
+    return res;
   }
 
   onSubmit(valid: any): void {
@@ -54,7 +88,7 @@ export class SyncSettingsComponent implements OnInit {
       'joplinserverserverurl': joplinserverserverurl,
       'joplinserverserverusername': joplinserverserverusername,
       'joplinserverserverpassword': joplinserverserverpassword,
-      'joplinserverparentnode': joplinserverparentnode
+      'joplinserverparentnode': joplinserverparentnode.trim()
     }
     this.settingsService.save(settings).subscribe({
       next: data => {

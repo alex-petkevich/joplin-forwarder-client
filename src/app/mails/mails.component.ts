@@ -66,7 +66,7 @@ export class MailsComponent implements OnInit {
         },
         error: err => {
           this.loadProgress = false;
-          this.showInternalError(err)
+          this.showInternalError(err?.error?.message || err?.message);
         }
       });
     });
@@ -85,13 +85,13 @@ export class MailsComponent implements OnInit {
             this.mails = data;
           },
           error: err => {
-            this.showInternalError(err);
+            this.showInternalError(err?.error?.message || err?.message);
           }
         });
   }
 
   private showInternalError(err: any) {
-
+    this.toastComponent?.error( err );
   }
 
   pageCallback = (args: any): void => {
@@ -128,7 +128,7 @@ export class MailsComponent implements OnInit {
       },
       error: err => {
         this.resyncProgress = false;
-        this.toastComponent?.error( err?.error?.message || err?.message);
+        this.showInternalError(err?.error?.message || err?.message)
       }
     })
   }
