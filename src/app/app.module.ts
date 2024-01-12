@@ -27,6 +27,7 @@ import { MailsViewComponent } from "./mails/view/mails-view.component";
 import { ToastComponent } from "./shared-components/toast/toast.component";
 import { PaginationComponent } from "./shared-components/pagination/pagination.component";
 import {SortComponent} from "./shared-components/sort/sort.component";
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {SortComponent} from "./shared-components/sort/sort.component";
 		HttpClientModule,
 		NgxTranslateModule,
 		NgbModule,
+        NgSelectModule,
 		ReactiveFormsModule
 	],
   providers: [authInterceptorProviders],

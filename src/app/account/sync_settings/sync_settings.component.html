@@ -92,18 +92,17 @@
     </div>
     <div class="mb-3">
       <label for="joplinserverparentnode">{{ 'account.sync.joplinserver-parentnode' | translate  }}</label>
-      <input
-              type="text"
-              class="form-control"
-              name="joplinserverparentnode"
-              [(ngModel)]="form.joplinserverparentnode"
-              #joplinserverparentnode="ngModel"
-              list="nodeslist"
-              id="joplinserverparentnode"
-      />
-      <datalist id="nodeslist">
-        <option *ngFor="let node of joplinCachedNodesList" [innerHTML]="node.name">{{ node.name }}</option>
-      </datalist>
+
+      <ng-select [multiple]="false"
+                 [(ngModel)]="form.joplinserverparentnode"
+                 name="joplinserverparentnode"
+                 id="joplinserverparentnode"
+                 class="form-control"
+                 [searchable]="true"
+                 [clearable]="true"
+      >
+        <ng-option *ngFor="let node of joplinCachedNodesList" [innerHTML]="node.name">{{node.name}}</ng-option>
+      </ng-select>
     </div>
     <div class="mb-3">
       <button class="btn btn-primary btn-block">{{ 'account.sync.save-data' | translate  }}</button>

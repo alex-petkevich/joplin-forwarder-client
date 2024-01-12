@@ -5,11 +5,7 @@
     </div>
   </div>
 
-  <div class="progress" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" *ngIf="loadProgress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
-  </div>
-
-  <div class="row w-100" *ngIf="!loadProgress">
+  <div class="row w-100">
     <form
       name="form"
       (ngSubmit)="onSubmit(f.form.valid)"
@@ -22,12 +18,12 @@
             class="bi-arrow-clockwise"></em> {{ 'mails.resync_joplin' | translate }}</button>
         </div>
         <div class="col-sm text-align-right">
-          <button class="btn btn-light btn-sm" data-bs-toggle="collapse" data-bs-target="#collapseFilterForm" aria-expanded="false"
+          <button type="button" class="btn btn-light btn-sm" data-bs-toggle="collapse" data-bs-target="#collapseFilterForm" aria-expanded="false"
                   aria-controls="collapseFilterForm" (click)="displayFilter()"><em
             class="bi-filter"></em> {{ 'mails.show_filter' | translate }}</button>
         </div>
       </div>
-      <div class="row collapse" id="collapseFilterForm">
+      <div class="row collapse" id="collapseFilterForm" [ngClass]="{'in': isFilterOpen}">
         <div class="container filter-box">
           <div class="row">
             <div class="col-sm-3 me-3">
@@ -43,24 +39,27 @@
               for="fattachments">{{ 'mails.attachments' | translate }}</label>
             </div>
             <div class="col-sm text-align-right">
-              <button class="btn btn-primary btn-sm mb-2 me-2" (click)="applyFilters()">{{ 'mails.apply_filter' | translate }}</button>
-              <button class="btn btn-secondary btn-sm mb-2" (click)="resetFilters()">{{ 'mails.reset_filter' | translate }}</button>
+              <button type="button" class="btn btn-primary btn-sm mb-2 me-2" (click)="applyFilters()">{{ 'mails.apply_filter' | translate }}</button>
+              <button type="button" class="btn btn-secondary btn-sm mb-2" (click)="resetFilters()">{{ 'mails.reset_filter' | translate }}</button>
             </div>
           </div>
         </div>
       </div>
 
-      <table class="table table-striped">
+      <div class="progress m-5" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" *ngIf="loadProgress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+      </div>
+
+      <table class="table table-striped" *ngIf="!loadProgress">
         <thead>
         <tr>
           <th scope="col"></th>
           <th scope="col">#<app-sort [sort]="'id'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
           <th scope="col">{{ 'mails.subject' | translate }}<app-sort [sort]="'subject'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
           <th scope="col">{{ 'mails.received' | translate }}<app-sort [sort]="'received'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
-          <th scope="col">{{ 'mails.attachments' | translate }}<app-sort [sort]="'attachments'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
           <th scope="col">{{ 'mails.rule' | translate }}</th>
           <th scope="col">{{ 'mails.converted' | translate }}<app-sort [sort]="'converted'" [curentSort]="sort" [sortOrder]="sortOrder" [callbackFunction]="reorderCallback"></app-sort></th>
-          <th scope="col">{{ 'mails.actions' | translate }}</th>
+          <th scope="col" class="text-align-right">{{ 'mails.actions' | translate }}</th>
         </tr>
         </thead>
         <tbody>
@@ -73,9 +72,8 @@
             #name="ngModel"
           /></td>
           <th scope="row">{{ mail.id }}</th>
-          <td><a [routerLink]="['/mails', mail.id, 'view']">{{ (mail.subject!.length>80)? (mail.subject | slice:0:80)+'...':(mail.subject || "<--->") }}</a></td>
+          <td><a [routerLink]="['/mails', mail.id, 'view']">{{ (mail.subject!.length>80)? (mail.subject | slice:0:80)+'...':(mail.subject || "<--->") }}</a> <i class="bi bi-paperclip ms-2" *ngIf="mail.attachments"></i></td>
           <td>{{ mail.received | date : 'd/M/yy hh:mm' }}</td>
-          <td class="t-att"><i class="bi bi-paperclip" *ngIf="mail.attachments"></i></td>
           <td *ngIf="mail.rule_name"><a [routerLink]="['/rules', mail.rule_id, 'edit']">{{ mail.rule_name }}</a></td>
           <td *ngIf="!mail.rule_name">{{ 'mails.rule-deleted' | translate }}</td>
           <td class="t-conv"><i class="bi bi-patch-check-fill" *ngIf="mail.converted"></i></td>

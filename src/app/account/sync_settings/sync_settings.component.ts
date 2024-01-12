@@ -37,6 +37,7 @@ export class SyncSettingsComponent implements OnInit {
   isSuccessful = false;
   isUpdatingFailed = false;
   errorMessage = '';
+  parentnode: string = '';
 
   constructor(private settingsService: SettingsService, private auth: AuthService) { }
 
@@ -88,7 +89,7 @@ export class SyncSettingsComponent implements OnInit {
       'joplinserverserverurl': joplinserverserverurl,
       'joplinserverserverusername': joplinserverserverusername,
       'joplinserverserverpassword': joplinserverserverpassword,
-      'joplinserverparentnode': joplinserverparentnode.trim()
+      'joplinserverparentnode': joplinserverparentnode!.$ngOptionLabel!.replace('&nbsp;', '')
     }
     this.settingsService.save(settings).subscribe({
       next: data => {

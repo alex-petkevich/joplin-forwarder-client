@@ -40,6 +40,7 @@ export class MailsComponent implements OnInit {
   filterActive: boolean = false;
   sort: string = "received";
   sortOrder: string = "desc";
+  isFilterOpen: boolean = false;
 
   constructor(private mailsService: MailsService,
               private translate: TranslateService,
@@ -151,11 +152,13 @@ export class MailsComponent implements OnInit {
   }
 
   applyFilters() {
+    this.isFilterOpen = true;
     this.loadMails();
     return false;
   }
 
   resetFilters() {
+    this.isFilterOpen = true;
     this.fattachments.setValue(false);
     this.ftext.setValue("");
     this.fsubject.setValue("");

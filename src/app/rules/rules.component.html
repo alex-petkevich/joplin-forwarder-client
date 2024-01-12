@@ -17,7 +17,7 @@
                     <th scope="col">{{ 'rules.last_processed' | translate }}</th>
                     <th scope="col">{{ 'rules.total_qty' | translate }}</th>
                     <th scope="col"></th>
-                    <th scope="col" class="w-sm">{{ 'rules.actions' | translate }}</th>
+                    <th scope="col" class="w-sm text-align-right">{{ 'rules.actions' | translate }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,7 +26,7 @@
                     <td [ngClass]="{ 'disabled': !rule.active}"><a  [routerLink]="['/rules', rule.id, 'edit']">{{ rule.name }}</a></td>
                     <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.last_processed_at | date : 'medium' }}</td>
                     <td [ngClass]="{ 'disabled': !rule.active}">{{ rule.processed }}</td>
-                    <td>
+                    <td [ngClass]="{ 'disabled': !rule.active}">
                       <div *ngIf="first" class="btn-space"></div>
                       <button type="button"
                               (click)="moveUp( rule )"
@@ -39,9 +39,9 @@
                       <div *ngIf="last" class="btn-space"></div>
 
                     </td>
-                    <td>
+                    <td class="text-align-right" [ngClass]="{ 'disabled': !rule.active}">
                         <button type="button"
-                                class="btn btn-danger btn-sm" (click)="confirmDelete( rule.id )"><em class="bi-bookmark-x"></em> {{ 'rules.delete' | translate }}</button>
+                                class="btn btn-danger btn-sm" (click)="confirmDelete( rule.id )"><em class="bi-trash"></em></button>
                     </td>
                 </tr>
 
