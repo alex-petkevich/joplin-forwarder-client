@@ -36,5 +36,4 @@ export class MailsViewComponent implements OnInit {
     this.mailsService.downloadAttach(id as number, f).subscribe(data => saveAs(data, f));
   }
 
-    protected readonly undefined = undefined;
 }

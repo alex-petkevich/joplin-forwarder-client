@@ -74,15 +74,15 @@
           /></td>
           <th scope="row">{{ mail.id }}</th>
           <td><a [routerLink]="['/mails', mail.id, 'view']">{{ (mail.subject!.length>80)? (mail.subject | slice:0:80)+'...':(mail.subject || "<--->") }}</a></td>
-          <td>{{ mail.received | date : 'medium' }}</td>
-          <td class="t-att"><i class="bi bi-file-earmark-arrow-down" *ngIf="mail.attachments"></i></td>
+          <td>{{ mail.received | date : 'd/M/yy hh:mm' }}</td>
+          <td class="t-att"><i class="bi bi-paperclip" *ngIf="mail.attachments"></i></td>
           <td *ngIf="mail.rule_name"><a [routerLink]="['/rules', mail.rule_id, 'edit']">{{ mail.rule_name }}</a></td>
           <td *ngIf="!mail.rule_name">{{ 'mails.rule-deleted' | translate }}</td>
           <td class="t-conv"><i class="bi bi-patch-check-fill" *ngIf="mail.converted"></i></td>
-          <td>
+          <td class="text-align-right">
             <button type="button"
-                    class="btn btn-danger btn-sm btn-del" (click)="confirmDelete( mail.id )"><em
-              class="bi-bookmark-x"></em> {{ 'mails.delete' | translate }}</button>
+                    class="btn btn-danger btn-sm" (click)="confirmDelete( mail.id )"><em
+              class="bi-trash"></em></button>
           </td>
         </tr>
 

@@ -2,17 +2,22 @@
     <div class="card card-container-wide">
 
             <div class="mb-2" *ngIf="currentMail != undefined">
-                <button type="button" class="btn btn-secondary btn-sm w-sm me-3"  [routerLink]="['/mails']"><em
-                        class="bi-arrow-left"></em> Back</button>
-                <label for="id">{{ 'mails.view.id' | translate  }}:</label>&nbsp;
-                <b>{{ currentMail.id }}</b>
+                <div class="float-left d-inline me-lg-5 pr-lg-5">
+                    <button type="button" class="btn btn-secondary btn-sm w-sm me-3"  [routerLink]="['/mails']"><em
+                            class="bi-arrow-left"></em> Back</button>
+                    <label for="id">{{ 'mails.view.id' | translate  }}:</label>&nbsp;
+                    <b>{{ currentMail.id }}</b>
+                </div>
+                <div class="float-right d-inline">
+                    <em>{{ currentMail.received | date : 'd/M/yy hh:mm' }}</em>
+                </div>
             </div>
             <div class="mb-2" *ngIf="currentMail != undefined">
+                {{ currentMail.subject }}
+            </div>
+            <div class=" mb-2" *ngIf="currentMail != undefined">
                 <label for="id">{{ 'mails.view.sender' | translate  }}:</label>&nbsp;
                 <b>{{ currentMail.sender }}</b>
-            </div>
-            <div class="mb-2" *ngIf="currentMail != undefined">
-                {{ currentMail.subject }} <b>{{ currentMail.received | date : 'medium' }}</b>
             </div>
             <div class="mb-2" *ngIf="currentMail != undefined">
                 <div class="bi bi-file-earmark-arrow-down" *ngFor="let item of currentMail.attachList">
