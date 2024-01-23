@@ -10,7 +10,8 @@
   "profile": "User's Profile",
   "settings": "Mailbox Settings",
   "sync": "Sync Settings",
-
+  "users-menu": "Users",
+  "metrics-menu": "Metrics",
   "home": {
     "please": "Please",
     "register": "register",
@@ -207,6 +208,36 @@
       "attachments": "Attachments",
       "converted": "Exported",
       "back": "Back"
+    }
+  },
+  "users": {
+    "header": "Users",
+    "name": "Name",
+    "total_qty": "Met",
+    "last_processed": "Last processed",
+    "actions": "Actions",
+    "change": "Change",
+    "delete": "Delete",
+    "error_mail_not_configured": "Mail server was not set up. Please <a href=\"/settings\">complete the configuration</a>",
+    "error_no_rules_found": "No Rules found",
+    "create_rule": "Create Rule",
+    "delete-confirm": "Are you really want to delelete this rule?",
+    "edit": {
+      "save-data": "Save Rule",
+      "cancel": "Cancel",
+      "header": "Rule Properties",
+      "id": "ID",
+      "processed": "Pocessed amount",
+      "last_processed_at": "Last execution time",
+      "name": "Name",
+      "type": "Rule",
+      "save_in": "Create a new record for each email",
+      "final_action": "Final action",
+      "name-required": "Name required",
+      "name-valid": "Incorrect value",
+      "comparison_text-required": "Rule required",
+      "comparison_text-valid": "Incorrect value",
+      "rules-saved": "Rule saved successfully"
     }
   }
 }

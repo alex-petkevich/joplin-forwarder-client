@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../environments/environment";
-import {IRules} from "../model/rules.model";
-import { IMails } from "../model/mails.model";
+import { IMail } from "../model/mail.model";
 const API_URL = environment.backendUrl + 'api/mails/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -37,7 +36,7 @@ export class MailsService {
       {responseType: 'blob'});
   }
 
-  resyncMails(items: IMails[] | undefined) : Observable<any> {
+  resyncMails(items: IMail[] | undefined) : Observable<any> {
     return this.http.post(API_URL + 'resync/', items, { responseType: 'json' });
   }
 

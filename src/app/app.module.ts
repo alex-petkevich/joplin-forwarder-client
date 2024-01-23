@@ -28,6 +28,8 @@ import { ToastComponent } from "./shared-components/toast/toast.component";
 import { PaginationComponent } from "./shared-components/pagination/pagination.component";
 import {SortComponent} from "./shared-components/sort/sort.component";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { UsersComponent } from "./users/users.component";
+import { UsersEditComponent } from "./users/edit/users-edit.component";
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MailsViewComponent,
     ToastComponent,
     PaginationComponent,
-    SortComponent
+    SortComponent,
+    UsersComponent,
+    UsersEditComponent
   ],
 	imports: [
 		BrowserModule,

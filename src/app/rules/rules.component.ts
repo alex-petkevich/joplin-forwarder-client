@@ -2,14 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RulesService } from "../_services/rules.service";
 import { TranslateService } from "@ngx-translate/core";
 import { ActivatedRoute } from "@angular/router";
-import { IRules } from "../model/rules.model";
 import { AuthService } from "../_services/auth.service";
 import { SettingsService } from "../_services/settings.service";
-import { ISettingsResponse } from "../model/settings_response.model";
-import { ISettingsInfo } from "../model/settings.model";
 import { DialogComponent } from "../shared-components/dialog/dialog.component";
 import { NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { finalize } from "rxjs";
+import { ISettingsInfo } from "../model/setting.model";
+import { IRule } from "../model/rule.model";
+import { ISettingsResponse } from "../model/setting_response.model";
 
 @Component({
     selector: 'app-rules',
@@ -17,7 +17,7 @@ import { finalize } from "rxjs";
     styleUrls: ['./rules.component.scss']
 })
 export class RulesComponent implements OnInit {
-    rules?: IRules[] | undefined = [];
+    rules?: IRule[] | undefined = [];
     userSettings: ISettingsInfo | any = {};
     loadProgress: boolean = false;
 
@@ -79,7 +79,7 @@ export class RulesComponent implements OnInit {
         });
     }
 
-    moveUp(rule: IRules) {
+    moveUp(rule: IRule) {
         const index = this.rules?.indexOf(rule) as number;
         const rlprev = index > 0 ? index - 1 : 0;
         const prevRule = this.rules![rlprev];
@@ -106,7 +106,7 @@ export class RulesComponent implements OnInit {
         });
     }
 
-    moveDown(rule: IRules) {
+    moveDown(rule: IRule) {
         const index = this.rules?.indexOf(rule) as number;
         const rlnext = (index + 1) % this.rules!.length;
         const nxtRule = this.rules![rlnext];

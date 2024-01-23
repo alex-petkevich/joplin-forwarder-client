@@ -2,11 +2,8 @@ import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../_services/auth.service";
 import {SettingsService} from "../_services/settings.service";
-import {ISettingsResponse} from "../model/settings_response.model";
-import {ISettingsInfo} from "../model/settings.model";
 import {DialogComponent} from "../shared-components/dialog/dialog.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
-import { IMails, IPaginatedMails } from "../model/mails.model";
 import { MailsService } from "../_services/mails.service";
 import { ToastComponent } from "../shared-components/toast/toast.component";
 import { PaginationComponent } from "../shared-components/pagination/pagination.component";
@@ -14,6 +11,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from '@angular/common';
 import {FormControl} from "@angular/forms";
 import { finalize } from "rxjs";
+import { IMail, IPaginatedMails } from "../model/mail.model";
+import { ISettingsInfo } from "../model/setting.model";
+import { ISettingsResponse } from "../model/setting_response.model";
 
 @Component({
   selector: 'app-mails',
@@ -22,7 +22,7 @@ import { finalize } from "rxjs";
 })
 export class MailsComponent implements OnInit {
   mails?: IPaginatedMails;
-  selMails?: IMails[] | undefined = [];
+  selMails?: IMail[] | undefined = [];
   userSettings: ISettingsInfo | any = {};
   @ViewChild("dialog") dialogComponent: DialogComponent | undefined;
   @ViewChild("toast") toastComponent: ToastComponent | undefined;
@@ -37,7 +37,6 @@ export class MailsComponent implements OnInit {
   fattachments: FormControl = new FormControl(false);
   fsubject: FormControl = new FormControl('');
   ftext: FormControl = new FormControl('');
-  filterActive: boolean = false;
   sort: string = "received";
   sortOrder: string = "desc";
   isFilterOpen: boolean = false;
@@ -134,11 +133,11 @@ export class MailsComponent implements OnInit {
     })
   }
 
-  isSelected(mail: IMails) {
+  isSelected(mail: IMail) {
     return this.selMails != undefined ? this.selMails?.indexOf(mail) >= 0 : false;
   }
 
-  onChange(mail: IMails, checked: boolean) {
+  onChange(mail: IMail, checked: boolean) {
     if (checked) {
       this.selMails?.push(mail);
     } else {

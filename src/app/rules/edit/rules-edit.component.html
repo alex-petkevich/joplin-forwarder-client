@@ -17,12 +17,13 @@
                 <label for="id">{{ 'rules.edit.id' | translate  }}:</label>&nbsp;
                 <b>{{ currentRule.id }}</b>
             </div>
-            <div class="mb-1" *ngIf="currentRule != undefined">
-                <label for="active">{{ 'rules.edit.active' | translate  }}</label>
+            <div class="mb-1 form-check form-switch" *ngIf="currentRule != undefined">
+                <label class="form-check-label" for="active">{{ 'rules.edit.active' | translate  }}</label>
                 <input
                         type="checkbox"
-                        class="form-check-input ms-2"
+                        class="form-check-input"
                         name="active"
+                        role="switch"
                         id="active"
                         [(ngModel)]="form.active"
                         #name="ngModel"
@@ -135,30 +136,35 @@
             </div>
             <div class="mb-1">
                 <label for="save_in_parent_id">{{ 'rules.edit.save_in_parent_id' | translate  }}</label>
-                <input
-                        type="text"
-                        class="form-control inner-fld ms-2 me-3"
-                        name="save_in_parent_id"
-                        id="save_in_parent_id"
-                        [(ngModel)]="form.save_in_parent_id"
-                        #save_in_parent_id="ngModel"
-                />
-
+                <ng-select [multiple]="false"
+                           [(ngModel)]="form.save_in_parent_id"
+                           name="save_in_parent_id"
+                           id="save_in_parent_id"
+                           class="form-control"
+                           [searchable]="true"
+                           [clearable]="true"
+                >
+                    <ng-option *ngFor="let node of joplinCachedNodesList" [innerHTML]="node.name">{{node.name}}</ng-option>
+                </ng-select>
+            </div>
+            <div class="mb-1 form-check form-switch">
                 <input
                         type="checkbox"
-                        class="form-check-input ms-2 me-2 mt-2"
+                        role="switch"
+                        class="form-check-input"
                         name="save_in"
                         id="save_in"
                         [(ngModel)]="form.save_in"
                         #name="ngModel"
                 />
-                <label for="save_in">{{ 'rules.edit.save_in' | translate  }}</label>
+                <label for="save_in" class="form-check-label">{{ 'rules.edit.save_in' | translate  }}</label>
             </div>
-            <div class="mb-1" *ngIf="currentRule != undefined">
-                <label for="stop_process_rules">{{ 'rules.edit.stop_process_rules' | translate  }}</label>
+            <div class="mb-1 form-check form-switch" *ngIf="currentRule != undefined">
+                <label  class="form-check-label" for="stop_process_rules">{{ 'rules.edit.stop_process_rules' | translate  }}</label>
                 <input
                         type="checkbox"
-                        class="form-check-input ms-2"
+                        role="switch"
+                        class="form-check-input"
                         name="stop_process_rules"
                         id="stop_process_rules"
                         [(ngModel)]="form.stop_process_rules"

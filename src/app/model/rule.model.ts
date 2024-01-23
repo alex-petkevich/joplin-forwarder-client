@@ -1,4 +1,4 @@
-export interface IRules {
+export interface IRule {
     id?: number,
     user_id?: number,
     name: string,

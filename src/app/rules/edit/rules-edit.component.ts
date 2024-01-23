@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../_services/auth.service";
-import {IRules} from "../../model/rules.model";
 import {COMPARISON_LIST, FINAL_ACTION_LIST, TYPES_LIST} from "../../shared-components/model/enum-mappings";
 import {IEnum} from "../../shared-components/model/enum";
 import {RulesService} from "../../_services/rules.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { IRule } from "../../model/rule.model";
+import { ICachedNode } from "../../account/sync_settings/sync_settings.component";
+import { ISettingsResponse } from "../../model/setting_response.model";
+import { SettingsService } from "../../_services/settings.service";
+import { buildTree } from "../../shared-components/utils";
 
 @Component({
   selector: 'app-rules-edit',
@@ -13,9 +17,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class RulesEditComponent implements OnInit {
   rules: boolean = true;
-  currentRule: IRules | undefined = undefined;
+  currentRule: IRule | undefined = undefined;
   isSuccessful: boolean = false;
-  form: IRules = {
+  form: IRule = {
     comparison_method: 0,
     comparison_text: "",
     final_action: 0,
@@ -34,11 +38,26 @@ export class RulesEditComponent implements OnInit {
   comparison_list: IEnum[] = COMPARISON_LIST;
   final_action_list: IEnum[] = FINAL_ACTION_LIST;
   errorMessage: String = "";
+  joplinCachedNodesList:  ICachedNode[] = [];
 
-  constructor(private auth: AuthService, private rulesService: RulesService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private auth: AuthService,
+              private rulesService: RulesService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private settingsService: SettingsService) { }
 
   async ngOnInit(): Promise<void> {
    await this.auth.isLoggedIn();
+
+    this.settingsService.getUserSettings().subscribe({
+      next: data => {
+          (data as Array<ISettingsResponse>).forEach(it => {
+            if (it.name == "joplinnodescachedlist" && it.value) {
+              this.joplinCachedNodesList = buildTree(JSON.parse(it.value));
+            }
+        })
+      }
+    });
 
     this.route.params.subscribe(res=>{
       if (res['id']) {
@@ -46,7 +65,7 @@ export class RulesEditComponent implements OnInit {
           next: data => {
             if (data) {
               this.currentRule = data;
-              this.form = this.currentRule as IRules;
+              this.form = this.currentRule as IRule;
             }
           }
         });

@@ -14,6 +14,8 @@ import {RulesEditComponent} from "./rules/edit/rules-edit.component";
 import {SyncSettingsComponent} from "./account/sync_settings/sync_settings.component";
 import { MailsComponent } from "./mails/mails.component";
 import { MailsViewComponent } from "./mails/view/mails-view.component";
+import { UsersComponent } from "./users/users.component";
+import { UsersEditComponent } from "./users/edit/users-edit.component";
 
 const routes: Routes = [
   { path: 'account/activate', component: LoginComponent },
@@ -32,6 +34,10 @@ const routes: Routes = [
   { path: 'mails/:id/view', component: MailsViewComponent },
   { path: 'mails/:id/download', component: MailsViewComponent },
   { path: 'mails/:id/delete', component: MailsComponent },
+  { path: 'admin/users', component: UsersComponent },
+  { path: 'admin/users/new', component: UsersEditComponent },
+  { path: 'admin/users/:id/edit', component: UsersEditComponent },
+  { path: 'admin/users/:id/delete', component: UsersEditComponent },
   { path: 'user', component: BoardUserComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'sync', component: SyncSettingsComponent },

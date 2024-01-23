@@ -1,6 +1,6 @@
 import { IPagination } from "../shared-components/model/pagination.model";
 
-export interface IMails {
+export interface IMail {
     id?: number,
     user_id?: number,
     rule_id: number,
@@ -19,5 +19,5 @@ export interface IMails {
 }
 
 export interface IPaginatedMails extends IPagination {
-    content: IMails[]
+    content: IMail[]
 }

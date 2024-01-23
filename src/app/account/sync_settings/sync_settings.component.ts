@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ISettingsInfo} from "../../model/settings.model";
 import {SettingsService} from "../../_services/settings.service";
-import {ISettingsResponse} from "../../model/settings_response.model";
 import {AuthService} from "../../_services/auth.service";
 import {IEnum} from "../../shared-components/model/enum";
 import {JOPLIN_SERVER_TYPES_LIST} from "../../shared-components/model/enum-mappings";
+import { ISettingsResponse } from "../../model/setting_response.model";
+import { ISettingsInfo } from "../../model/setting.model";
+import { buildTree } from "../../shared-components/utils";
 
 export interface ICachedNode {
   id: string;
@@ -50,33 +51,10 @@ export class SyncSettingsComponent implements OnInit {
           this.form[it.name] = it.value;
         });
         if (this.form["joplinnodescachedlist"]) {
-          this.joplinCachedNodesList = this.buildTree(JSON.parse(this.form["joplinnodescachedlist"]));
+          this.joplinCachedNodesList = buildTree(JSON.parse(this.form["joplinnodescachedlist"]));
         }
       }
     });
-  }
-
-  private buildTree(parse: ICachedNode[]) {
-    let res :ICachedNode[] = [];
-    parse.forEach(it => {
-      if (!it.parentId) {
-        res.push(it);
-        res.push(...this.populateNode(it, parse, 1));
-      }
-    });
-    return res;
-  }
-
-  private populateNode(node: ICachedNode, parsedTree: ICachedNode[], deep: number) {
-    let res :ICachedNode[] = [];
-    parsedTree.forEach(it => {
-      if (node.id == it.parentId) {
-        it.name = "&nbsp;".repeat(3 * deep) + it.name;
-        res.push(it);
-        res.push(...this.populateNode(it, parsedTree, deep + 1));
-      }
-    });
-    return res;
   }
 
   onSubmit(valid: any): void {

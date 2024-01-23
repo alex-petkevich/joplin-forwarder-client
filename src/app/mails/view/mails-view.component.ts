@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../_services/auth.service";
 import {ActivatedRoute} from "@angular/router";
-import { IMails } from "../../model/mails.model";
 import { MailsService } from "../../_services/mails.service";
 import {saveAs} from "file-saver";
+import { IMail } from "../../model/mail.model";
 
 @Component({
   selector: 'app-rules-edit',
@@ -12,7 +12,7 @@ import {saveAs} from "file-saver";
 })
 export class MailsViewComponent implements OnInit {
   rules: boolean = true;
-  currentMail: IMails | undefined = undefined;
+  currentMail: IMail | undefined = undefined;
 
   constructor(private auth: AuthService, private mailsService: MailsService, private router: ActivatedRoute) { }
 
@@ -24,7 +24,7 @@ export class MailsViewComponent implements OnInit {
         this.mailsService.getMail(res['id']).subscribe({
           next: data => {
             if (data) {
-              this.currentMail = data as IMails;
+              this.currentMail = data as IMail;
             }
           }
         });

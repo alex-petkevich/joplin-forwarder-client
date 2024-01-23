@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ISettingsInfo} from "../../model/settings.model";
 import {SettingsService} from "../../_services/settings.service";
-import {ISettingsResponse} from "../../model/settings_response.model";
 import {AuthService} from "../../_services/auth.service";
+import { ISettingsResponse } from "../../model/setting_response.model";
+import { ISettingsInfo } from "../../model/setting.model";
 
 @Component({
   selector: 'app-settings',
