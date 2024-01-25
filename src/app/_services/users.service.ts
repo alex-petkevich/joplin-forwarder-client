@@ -27,12 +27,16 @@ export class UsersService {
     return this.http.get(API_URL + id, { responseType: 'json' });
   }
 
+  getRoles() : Observable<any> {
+    return this.http.get(API_URL + 'roles/', { responseType: 'json' });
+  }
+
   delete(id: Number) : Observable<any> {
     return this.http.delete(API_URL + id, { responseType: 'json' });
   }
 
-  save(users: IUser): Observable<any> {
-    return this.http.post(API_URL, users, httpOptions);
+  save(user: IUser): Observable<any> {
+    return this.http.post(API_URL + user.id, user, httpOptions);
   }
 
   activateUser(userId: number): Observable<any> {

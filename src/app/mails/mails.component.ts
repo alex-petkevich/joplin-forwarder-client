@@ -62,6 +62,8 @@ export class MailsComponent implements OnInit {
           });
           if (this.userSettings.mailserver) {
             this.loadMails(page);
+          } else {
+            this.loadProgress = false;
           }
         },
         error: err => {

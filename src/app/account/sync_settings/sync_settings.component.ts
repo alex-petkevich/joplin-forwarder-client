@@ -67,7 +67,7 @@ export class SyncSettingsComponent implements OnInit {
       'joplinserverserverurl': joplinserverserverurl,
       'joplinserverserverusername': joplinserverserverusername,
       'joplinserverserverpassword': joplinserverserverpassword,
-      'joplinserverparentnode': joplinserverparentnode!.$ngOptionLabel!.replace('&nbsp;', '')
+      'joplinserverparentnode': joplinserverparentnode?.$ngOptionLabel?.replace('&nbsp;', '')
     }
     this.settingsService.save(settings).subscribe({
       next: data => {

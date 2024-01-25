@@ -147,6 +147,7 @@
       "id": "ID",
       "processed": "Pocessed amount",
       "last_processed_at": "Last execution time",
+      "stop_process_rules": "Stop process rules",
       "name": "Name",
       "type": "Rule",
       "save_in": "Create a new record for each email",
