@@ -40,7 +40,7 @@
       "password-6-chars": "Password must be at least 6 characters",
       "forgot-password": "Forgot Password",
       "register-account": "Register New Account",
-      "activated-successfully": "Account activated successfully. Please click link Reset password to create a new password and login",
+      "activated-successfully": "Account activated successfully. Please check Email to create a new password and login",
       "activation-key-not-exists": "Activation key not exists",
       "create-a-new-password": "Create a new password",
       "problem": "Problem"
@@ -238,7 +238,8 @@
       "name-valid": "Incorrect value",
       "comparison_text-required": "Rule required",
       "comparison_text-valid": "Incorrect value",
-      "rules-saved": "Rule saved successfully"
+      "rules-saved": "Rule saved successfully",
+      "reset-link-sent": "Password reset link was sent user successfully"
     }
   }
 }

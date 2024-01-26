@@ -5,9 +5,8 @@ import { UsersService } from "../../_services/users.service";
 import { IUser } from "../../model/user.model";
 import { IRole } from "../../model/role.model";
 import { tap } from "rxjs";
-import { DialogComponent } from "../../shared-components/dialog/dialog.component";
-import { NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { ToastComponent } from "../../shared-components/toast/toast.component";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-users-edit',
@@ -32,7 +31,11 @@ export class UsersEditComponent implements OnInit {
   roles: IRole[] = [];
   @ViewChild("finalDialog") toastComponent: ToastComponent | undefined;
 
-  constructor(private auth: AuthService, private usersService: UsersService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private auth: AuthService,
+              private usersService: UsersService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private translate: TranslateService) { }
 
   async ngOnInit(): Promise<void> {
    await this.auth.isLoggedIn();
@@ -51,6 +54,8 @@ export class UsersEditComponent implements OnInit {
                 }
               }
         });
+      } else {
+        this.getRoles();
       }
     })
   }
@@ -76,7 +81,19 @@ export class UsersEditComponent implements OnInit {
   }
 
   initiateResetPassword() {
-    this.toastComponent?.success("Password reset link was sent user successfully");
+
+    if (this.currentUser && this.currentUser.username) {
+      this.auth.forgotPassword(this.currentUser.username).subscribe({
+        next: (data) => {
+          this.translate.get('users.edit.reset-link-sent').subscribe({
+            next: (data) => {
+              this.toastComponent?.success(data);
+            }
+          });
+        }
+      });
+    }
+
     return false;
   }
 

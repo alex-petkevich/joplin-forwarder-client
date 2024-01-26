@@ -36,7 +36,7 @@ export class UsersService {
   }
 
   save(user: IUser): Observable<any> {
-    return this.http.post(API_URL + user.id, user, httpOptions);
+    return this.http.post(API_URL, user, httpOptions);
   }
 
   activateUser(userId: number): Observable<any> {

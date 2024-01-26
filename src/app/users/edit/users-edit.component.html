@@ -42,9 +42,9 @@
                         #username="ngModel"
                 />
                 <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
-                    <div *ngIf="username.errors['required']">{{ 'users.edit.email-required' | translate  }}</div>
+                    <div *ngIf="username.errors['required']">{{ 'users.edit.username-required' | translate  }}</div>
                     <div *ngIf="username.errors['username']">
-                        {{ 'users.edit.email-valid' | translate  }}
+                        {{ 'users.edit.username-valid' | translate  }}
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="mb-2">
+            <div class="mb-2" *ngIf="currentUser?.id">
                 <button class="btn btn-danger" (click)="initiateResetPassword()">{{ 'users.edit.reset-password' | translate  }}</button>
             </div>
 
