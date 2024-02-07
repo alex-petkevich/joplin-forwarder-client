@@ -7,7 +7,7 @@ import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './account/profile/profile.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardAdminComponent } from './admin/board-admin/board-admin.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
@@ -28,12 +28,19 @@ import { ToastComponent } from "./shared-components/toast/toast.component";
 import { PaginationComponent } from "./shared-components/pagination/pagination.component";
 import {SortComponent} from "./shared-components/sort/sort.component";
 import { NgSelectModule } from '@ng-select/ng-select';
-import { UsersComponent } from "./users/users.component";
-import { UsersEditComponent } from "./users/edit/users-edit.component";
+import { UsersComponent } from "./admin/users/users.component";
+import { UsersEditComponent } from "./admin/users/edit/users-edit.component";
+import { MetricsComponent } from "./admin/metrics/metrics.component";
+import { StatusIconComponent } from "./shared-components/status-icon/status-icon.component";
+import { SharedModule } from "./shared-components/shared.module";
+import { LogsComponent } from "./admin/logs/logs.component";
+import { ConfigsComponent } from "./admin/configs/configs.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    ConfigsComponent,
+    LogsComponent,
     LoginComponent,
     ForgotPasswordComponent,
     PasswordResetComponent,
@@ -44,15 +51,11 @@ import { UsersEditComponent } from "./users/edit/users-edit.component";
     SyncSettingsComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    ImageUploadComponent,
-    DialogComponent,
     RulesComponent,
     RulesEditComponent,
     MailsComponent,
     MailsViewComponent,
-    ToastComponent,
-    PaginationComponent,
-    SortComponent,
+    MetricsComponent,
     UsersComponent,
     UsersEditComponent
   ],
@@ -64,7 +67,8 @@ import { UsersEditComponent } from "./users/edit/users-edit.component";
 		NgxTranslateModule,
 		NgbModule,
         NgSelectModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+        SharedModule
 	],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

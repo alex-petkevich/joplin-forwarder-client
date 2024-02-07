@@ -241,5 +241,51 @@
       "rules-saved": "Rule saved successfully",
       "reset-link-sent": "Password reset link was sent user successfully"
     }
+  },
+  "metrics": {
+    "header": "Metrics",
+    "app-status": "Application status",
+    "service-status": "Service status",
+    "service-name": "Service name",
+    "service-details": "Details",
+    "error_no_metrics_found": "Metrics not found",
+    "metrics-loading": "Loading",
+    "details": {
+      "name": "Name",
+      "description": "Description",
+      "baseUnit": "Base unit",
+      "measurements": "Measurements",
+      "availableTags": "Available tags",
+      "tag": "Tag",
+      "values": "Value"
+
+    }
+  },
+  "logs": {
+    "header": "Loggers",
+    "logLevels": "Log levels",
+    "log-name": "Name",
+    "log-config": "Config",
+    "log-effecitve": "Effective",
+    "error_no_logs_found": "Loggers not found"
+  },
+  "configs": {
+    "header": "Configuration",
+    "active-profiles": "Active profiles",
+    "env-name": "Name",
+    "env-properties": "Properties",
+    "env": "Environment",
+    "flyway": "Flyway migrations",
+    "flyway-type": "Type",
+    "flyway-checksum": "Checksum",
+    "flyway-version": "Version",
+    "flyway-description": "Description",
+    "flyway-script": "Script",
+    "flyway-state": "State",
+    "flyway-installedBy": "Installed by",
+    "flyway-installedOn": "Installed on",
+    "flyway-installedRank": "Installed rank",
+    "flyway-executionTime": "Execution time",
+    "error_configs_logs_found": "Configuration not found"
   }
 }

@@ -1,20 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
-import { AuthService } from "../_services/auth.service";
-import { DialogComponent } from "../shared-components/dialog/dialog.component";
+import { AuthService } from "../../_services/auth.service";
+import { DialogComponent } from "../../shared-components/dialog/dialog.component";
 import { NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { finalize } from "rxjs";
-import { UsersService } from "../_services/users.service";
-import { ISettingsInfo } from "../model/setting.model";
-import { IPaginatedUsers } from "../model/user.model";
+import { UsersService } from "../../_services/users.service";
+import { IPaginatedUsers } from "../../model/user.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
-import { ToastComponent } from "../shared-components/toast/toast.component";
-import { PaginationComponent } from "../shared-components/pagination/pagination.component";
+import { ToastComponent } from "../../shared-components/toast/toast.component";
+import { PaginationComponent } from "../../shared-components/pagination/pagination.component";
 import { FormControl } from "@angular/forms";
 
 @Component({
-    selector: 'app-rules',
+    selector: 'app-users',
     templateUrl: './users.component.html',
     styleUrls: ['./users.component.scss']
 })

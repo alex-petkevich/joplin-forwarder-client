@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {AuthService} from "../../_services/auth.service";
+import {AuthService} from "../../../_services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import { UsersService } from "../../_services/users.service";
-import { IUser } from "../../model/user.model";
-import { IRole } from "../../model/role.model";
+import { UsersService } from "../../../_services/users.service";
+import { IUser } from "../../../model/user.model";
+import { IRole } from "../../../model/role.model";
 import { tap } from "rxjs";
-import { ToastComponent } from "../../shared-components/toast/toast.component";
+import { ToastComponent } from "../../../shared-components/toast/toast.component";
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({

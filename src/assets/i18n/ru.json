@@ -12,6 +12,8 @@
   "sync": "Синхронизация",
   "users-menu": "Пользователи",
   "metrics-menu": "Метрики",
+  "logs-menu": "Логи",
+  "configs-menu": "Конфигурация",
 
   "home": {
     "please": "Пожалуйста",
@@ -253,5 +255,52 @@
       "users-saved": "Данные сохранены успешно",
       "reset-link-sent": "Ссылка на сброс пароля успешно отправлена пользователю"
     }
+  },
+  "metrics": {
+    "header": "Метрики",
+    "app-status": "Статус приложения",
+    "service-status": "Статус сервиса",
+    "service-name": "Имя сервиса",
+    "service-details": "Детали",
+    "error_no_metrics_found": "Метрики не найдены",
+    "metrics-loading": "Загрузка",
+    "details": {
+      "name": "Название",
+      "description": "Описание",
+      "baseUnit": "Базовый модуль",
+      "measurements": "Показатели",
+      "availableTags": "Доступные тэги",
+      "tag": "Тэг",
+      "values": "Значения"
+
+    }
+  },
+  "logs": {
+    "header": "Логгеры",
+    "logLevels": "Уровни логов",
+    "log-name": "Название",
+    "log-config": "Конфигурация",
+    "log-effecitve": "Эффективный",
+    "error_no_logs_found": "Логи не найдены"
+  },
+  "configs": {
+    "header": "Конфигурация",
+    "active-profiles": "Активные профайлы",
+    "env-name": "Название",
+    "env-properties": "Свойства",
+    "env": "Окружение",
+    "flyway": "Flyway миграции",
+    "flyway-type": "Type",
+    "flyway-checksum": "Checksum",
+    "flyway-version": "Version",
+    "flyway-description": "Description",
+    "flyway-script": "Script",
+    "flyway-state": "State",
+    "flyway-installedBy": "Installed by",
+    "flyway-installedOn": "Installed on",
+    "flyway-installedRank": "Installed rank",
+    "flyway-executionTime": "Execution time",
+    "error_configs_logs_found": "Конфигурация не найдена"
   }
 }
+
