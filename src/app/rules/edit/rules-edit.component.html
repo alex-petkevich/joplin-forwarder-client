@@ -143,8 +143,10 @@
                            class="form-control"
                            [searchable]="true"
                            [clearable]="true"
+                           addTagText="Create new node"
+                           [addTag]="true"
                 >
-                    <ng-option *ngFor="let node of joplinCachedNodesList" [innerHTML]="node.name">{{node.name}}</ng-option>
+                    <ng-option *ngFor="let node of joplinCachedNodesList" [innerHTML]="node.disaplayName" value="{{node.name}}"></ng-option>
                 </ng-select>
             </div>
             <div class="mb-1 form-check form-switch">

@@ -11,6 +11,7 @@ export interface ICachedNode {
   id: string;
   parentId: string;
   name: string;
+  disaplayName: string;
 }
 
 @Component({

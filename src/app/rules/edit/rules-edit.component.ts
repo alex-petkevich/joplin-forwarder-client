@@ -92,6 +92,5 @@ export class RulesEditComponent implements OnInit {
     });
     return true;
   }
-
-  protected readonly undefined = undefined;
+  
 }
