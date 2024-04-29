@@ -39,6 +39,16 @@ export const COMPARISON_LIST: IEnum[] = [{
 }
 ];
 
+export const COMPARISON_CONDITION: IEnum[] = [{
+    enum: 'AND',
+    display: 'And'
+  },
+  {
+    enum: 'OR',
+    display: 'Or'
+  }
+];
+
 export const FINAL_ACTION_LIST: IEnum[] = [{
     enum: 'MARK_READ',
     display: 'Mark as read'
@@ -65,3 +75,6 @@ export const JOPLIN_SERVER_TYPES_LIST: IEnum[] = [{
     display: 'Save in account'
 }];
 
+export function getEnumDisplayByName(array: IEnum[], name: string) {
+  return array.find(item => item.enum === name)?.display;
+}

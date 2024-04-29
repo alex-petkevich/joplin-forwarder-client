@@ -163,7 +163,10 @@
       "name-valid": "Неверное значение",
       "comparison_text-required": "Обязательное поле",
       "comparison_text-valid": "Неверное значение",
-      "rules-saved": "Правило сохранено успешно"
+      "rules-saved": "Правило сохранено успешно",
+      "add-comparison-rule": "Правило",
+      "add-action-rule": "Действие",
+      "confirm-delete-rule": "Вы действительно хотите удалить правило?"
     }
   },
   "lists" : {
@@ -184,6 +187,10 @@
       "MARK_READ": "Отметить прочитанным",
       "DELETE": "Удалить",
       "MOVE_TO_FOLDER": "Переместить в другую папку:"
+    },
+    "conditions" : {
+      "AND": "И",
+      "OR": "ИЛИ"
     },
     "joplinserver" : {
       "WEBDAV": "WebDAV",

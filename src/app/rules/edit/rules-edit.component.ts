@@ -1,14 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {AuthService} from "../../_services/auth.service";
-import {COMPARISON_LIST, FINAL_ACTION_LIST, TYPES_LIST} from "../../shared-components/model/enum-mappings";
+import {
+  COMPARISON_CONDITION,
+  COMPARISON_LIST,
+  FINAL_ACTION_LIST,
+  getEnumDisplayByName,
+  TYPES_LIST
+} from '../../shared-components/model/enum-mappings';
 import {IEnum} from "../../shared-components/model/enum";
 import {RulesService} from "../../_services/rules.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import { IRule } from "../../model/rule.model";
+import { IRule, IRuleAction, IRuleCondition } from '../../model/rule.model';
 import { ICachedNode } from "../../account/sync_settings/sync_settings.component";
 import { ISettingsResponse } from "../../model/setting_response.model";
 import { SettingsService } from "../../_services/settings.service";
 import { buildTree } from "../../shared-components/utils";
+import { DialogComponent } from '../../shared-components/dialog/dialog.component';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-rules-edit',
@@ -19,24 +28,33 @@ export class RulesEditComponent implements OnInit {
   rules: boolean = true;
   currentRule: IRule | undefined = undefined;
   isSuccessful: boolean = false;
+  @ViewChild("dialog") dialogComponent: DialogComponent | undefined;
+  @ViewChild('type') form_type: ElementRef | undefined;
+  @ViewChild('condition') form_condition: ElementRef | undefined;
+  @ViewChild('comparison_method') form_comparison_method: ElementRef | undefined;
+  @ViewChild('comparison_text') form_comparison_text: ElementRef | undefined;
+  @ViewChild('action') form_action: ElementRef | undefined;
+  @ViewChild('action_target') form_action_target: ElementRef | undefined;
+  
   form: IRule = {
-    comparison_method: 0,
-    comparison_text: "",
-    final_action: 0,
-    final_action_target: "",
     last_processed_at: undefined,
     processed: 0,
     priority: 0,
     save_in: true,
     save_in_parent_id: "",
     name: "",
-    type: 1,
     active: true,
-    stop_process_rules: false
+    stop_process_rules: false,
+    rule_conditions: [],
+    rule_actions: []
+  };
+  ruleAction: IRuleAction = {
+    action: 0
   };
   types_list: IEnum[] = TYPES_LIST;
   comparison_list: IEnum[] = COMPARISON_LIST;
   final_action_list: IEnum[] = FINAL_ACTION_LIST;
+  comparison_condition: IEnum[] = COMPARISON_CONDITION;
   errorMessage: String = "";
   joplinCachedNodesList:  ICachedNode[] = [];
 
@@ -44,10 +62,11 @@ export class RulesEditComponent implements OnInit {
               private rulesService: RulesService,
               private route: ActivatedRoute,
               private router: Router,
-              private settingsService: SettingsService) { }
+              private settingsService: SettingsService,
+              private translate: TranslateService) { }
 
   async ngOnInit(): Promise<void> {
-   await this.auth.isLoggedIn();
+    this.auth.isLoggedIn();
 
     this.settingsService.getUserSettings().subscribe({
       next: data => {
@@ -78,8 +97,11 @@ export class RulesEditComponent implements OnInit {
     if (!valid) {
       return false;
     }
-    this.form.id = this.currentRule?.id;
-    this.rulesService.save(this.form).subscribe({
+    const letForm = this.form;
+    letForm.id = this.currentRule?.id;
+    letForm.rule_actions = undefined;
+    letForm.rule_conditions = undefined;
+    this.rulesService.save(letForm).subscribe({
       next: data => {
         console.log(data);
         this.router.navigate(['/rules']).then(() => {
@@ -92,5 +114,95 @@ export class RulesEditComponent implements OnInit {
     });
     return true;
   }
-  
+
+  addComparisonRule() {
+    if (this.form_condition?.nativeElement?.value) {
+      let ruleCondition: IRuleCondition = {
+        type: this.form_type?.nativeElement?.value,
+        comparison_text: this.form_comparison_text?.nativeElement?.value,
+        comparison_method: this.form_comparison_method?.nativeElement?.value,
+        rule_id: this.currentRule?.id,
+        condition: this.form_condition?.nativeElement?.value == 'AND' ? 1 : 0
+      };
+      this.rulesService.addComparisonRule(ruleCondition).subscribe({
+        next: data => {
+          this.currentRule!.rule_conditions = data;
+          console.log(data);
+        },
+        error: err => {
+          this.errorMessage = err?.error?.message || err?.message;
+        }
+      });
+    }
+  }
+
+  addActionRule() {
+    if (this.form_action?.nativeElement?.value) {
+      let ruleAction: IRuleAction = {
+        rule_id: this.currentRule?.id,
+        action: this.form_action?.nativeElement?.value,
+        action_target: this.form_action_target?.nativeElement?.value
+      };
+      this.rulesService.addAction(ruleAction).subscribe({
+        next: data => {
+          this.currentRule!.rule_actions = data;
+          console.log(data);
+        },
+        error: err => {
+          this.errorMessage = err?.error?.message || err?.message;
+        }
+      });
+    }
+    return false;
+  }
+
+  geDisplayByName(arr: IEnum[], name: string) {
+    return getEnumDisplayByName(arr, name);
+  }
+
+  delRuleAction(id: number | undefined) {
+    if (!id) {
+      return;
+    }
+    this.translate.get('rules.edit.confirm-delete-rule').subscribe({
+      next: data => {
+        let modal = this.dialogComponent?.open(data);
+        (modal as NgbModalRef).result.then(() => {
+          this.rulesService.deleteAction(id).subscribe({
+            next: data => {
+              this.currentRule!.rule_actions = data;
+              console.log(data);
+            },
+            error: err => {
+              this.errorMessage = err?.error?.message || err?.message;
+            }
+          });
+        });
+      }
+    });
+    
+  }
+
+  delRuleCondition(id: number | undefined) {
+    if (!id) {
+      return;
+    }
+    this.translate.get('rules.edit.confirm-delete-rule').subscribe({
+      next: data => {
+        let modal = this.dialogComponent?.open(data);
+        (modal as NgbModalRef).result.then(() => {
+          this.rulesService.deleteCondition(id).subscribe({
+            next: data => {
+              this.currentRule!.rule_conditions = data;
+              console.log(data);
+            },
+            error: err => {
+              this.errorMessage = err?.error?.message || err?.message;
+            }
+          });
+        });
+      }
+    });
+
+  }
 }
