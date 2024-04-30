@@ -100,11 +100,11 @@
                 <i class="bi bi-plus-lg"></i> {{ 'rules.edit.add-comparison-rule' | translate  }}
               </button>&nbsp;
             </div>
-            <div class="mb-1" *ngIf="currentRule?.rule_conditions!.length > 0">
+            <div class="mb-1" *ngIf="currentRule?.rule_conditions?.length! > 0">
               <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of currentRule?.rule_conditions">
-                    <button type="button" class="btn btn-outline-danger" (click)="delRuleCondition(item.id)"><i class="bi bi-trash"></i></button>
-                    {{ 'lists.conditions.' + (item.condition == 1 ? 'AND' : 'OR')  | translate }}
+                <li class="list-group-item" *ngFor="let item of currentRule?.rule_conditions; let i = index">
+                    <button type="button" class="btn btn-xsm btn-outline-danger" (click)="delRuleCondition(item.id)"><i class="bi bi-trash"></i></button>
+                    <ng-container *ngIf="i > 0">{{ 'lists.conditions.' + (item.cond == 1 ? 'AND' : 'OR')  | translate }}</ng-container>
                     {{ 'lists.types.' + geDisplayByName(types_list, item.type) | translate }}
                     {{ 'lists.comparison.' + item.comparison_method | translate }}
                     {{ item.comparison_text }}
@@ -131,14 +131,24 @@
                         id="action_target"
                         #action_target
                 />
+              <button
+                type="button"
+                class="btn btn-xsm me-2"
+                placement="top"
+                ngbPopover="{{ 'rules.edit.action-target-subject-hint-text' | translate }}"
+                triggers="mouseenter"
+                popoverTitle="{{ 'rules.edit.action-target-subject-hint-header' | translate }}"
+              >
+                <i class="bi bi-question-circle"></i>
+              </button>
               <button class="btn btn-success" (click)="addActionRule()">
                 <i class="bi bi-plus-lg"></i> {{ 'rules.edit.add-action-rule' | translate  }}
               </button>&nbsp;
             </div>
-            <div class="mb-1" *ngIf="currentRule?.rule_actions!.length > 0">
+            <div class="mb-1" *ngIf="currentRule?.rule_actions?.length! > 0">
               <ul class="list-group">
                 <li class="list-group-item" *ngFor="let item of currentRule?.rule_actions">
-                  <button type="button" class="btn btn-outline-danger" (click)="delRuleAction(item.id)"><i class="bi bi-trash"></i></button>
+                  <button type="button" class="btn btn-xsm btn-outline-danger" (click)="delRuleAction(item.id)"><i class="bi bi-trash"></i></button>
                   {{ 'lists.final_action.' + item.action | translate }}
                   {{ item.action_target }}
                 </li>
@@ -201,3 +211,4 @@
     </div>
 </div>
 <app-dialog #dialog></app-dialog>
+<app-toast #toast></app-toast>

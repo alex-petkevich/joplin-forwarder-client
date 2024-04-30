@@ -166,7 +166,10 @@
       "rules-saved": "Правило сохранено успешно",
       "add-comparison-rule": "Правило",
       "add-action-rule": "Действие",
-      "confirm-delete-rule": "Вы действительно хотите удалить правило?"
+      "server-error": "Ошибка сохранения данных. Попробуйте позже",
+      "confirm-delete-rule": "Вы действительно хотите удалить правило?",
+      "action-target-subject-hint-header": "Подсказка",
+      "action-target-subject-hint-text": "Поддерживаемые шаблоны: \n [#SUBJECT#] - тема письма \n [#REMOVE_KEYWORD#] - удалить ключевое слово \n [#DATE_DAY#] - день \n [#DATE_MONTH#] - месяц \n [#DATE_YEAR#] - год"
     }
   },
   "lists" : {
@@ -186,7 +189,8 @@
     "final_action" : {
       "MARK_READ": "Отметить прочитанным",
       "DELETE": "Удалить",
-      "MOVE_TO_FOLDER": "Переместить в другую папку:"
+      "MOVE_TO_FOLDER": "Переместить в другую папку:",
+      "RENAME": "Изменить тему письма:"
     },
     "conditions" : {
       "AND": "И",

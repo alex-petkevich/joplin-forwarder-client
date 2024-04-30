@@ -175,6 +175,7 @@
       "MARK_READ": "Mark as read",
       "DELETE": "Delete",
       "MOVE_TO_FOLDER": "Move to another folder:"
+      "RENAME": "Change mail subject:"
     },
     "joplinserver" : {
       "WEBDAV": "WebDAV",

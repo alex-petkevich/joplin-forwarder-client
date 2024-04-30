@@ -60,6 +60,10 @@ export const FINAL_ACTION_LIST: IEnum[] = [{
 {
     enum: 'MOVE_TO_FOLDER',
     display: 'Move to another folder:'
+},
+{
+    enum: 'RENAME',
+    display: 'Change mail subject:'
 }];
 
 export const JOPLIN_SERVER_TYPES_LIST: IEnum[] = [{

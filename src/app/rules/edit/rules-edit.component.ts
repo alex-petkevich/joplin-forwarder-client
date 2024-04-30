@@ -18,6 +18,7 @@ import { buildTree } from "../../shared-components/utils";
 import { DialogComponent } from '../../shared-components/dialog/dialog.component';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastComponent } from '../../shared-components/toast/toast.component';
 
 @Component({
   selector: 'app-rules-edit',
@@ -35,7 +36,9 @@ export class RulesEditComponent implements OnInit {
   @ViewChild('comparison_text') form_comparison_text: ElementRef | undefined;
   @ViewChild('action') form_action: ElementRef | undefined;
   @ViewChild('action_target') form_action_target: ElementRef | undefined;
-  
+
+  @ViewChild("toast") toastComponent: ToastComponent | undefined;
+
   form: IRule = {
     last_processed_at: undefined,
     processed: 0,
@@ -122,18 +125,23 @@ export class RulesEditComponent implements OnInit {
         comparison_text: this.form_comparison_text?.nativeElement?.value,
         comparison_method: this.form_comparison_method?.nativeElement?.value,
         rule_id: this.currentRule?.id,
-        condition: this.form_condition?.nativeElement?.value == 'AND' ? 1 : 0
+        cond: this.form_condition?.nativeElement?.value == 'AND' ? 1 : 0
       };
       this.rulesService.addComparisonRule(ruleCondition).subscribe({
         next: data => {
           this.currentRule!.rule_conditions = data;
-          console.log(data);
+          this.form_type!.nativeElement.value = "";
+          this.form_comparison_text!.nativeElement.value = "";
+          this.form_comparison_method!.nativeElement.value = "";
+          this.form_condition!.nativeElement.value = "";
         },
         error: err => {
-          this.errorMessage = err?.error?.message || err?.message;
+          console.log(err?.error?.message || err?.message);
+          this.showInternalError();
         }
       });
     }
+    return false;
   }
 
   addActionRule() {
@@ -147,9 +155,12 @@ export class RulesEditComponent implements OnInit {
         next: data => {
           this.currentRule!.rule_actions = data;
           console.log(data);
+          this.form_action!.nativeElement.value = '';
+          this.form_action_target!.nativeElement.value = '';
         },
         error: err => {
-          this.errorMessage = err?.error?.message || err?.message;
+          console.log(err?.error?.message || err?.message);
+          this.showInternalError();
         }
       });
     }
@@ -174,13 +185,14 @@ export class RulesEditComponent implements OnInit {
               console.log(data);
             },
             error: err => {
-              this.errorMessage = err?.error?.message || err?.message;
+              console.log(err?.error?.message || err?.message);
+              this.showInternalError();
             }
           });
         });
       }
     });
-    
+    return false;
   }
 
   delRuleCondition(id: number | undefined) {
@@ -197,12 +209,21 @@ export class RulesEditComponent implements OnInit {
               console.log(data);
             },
             error: err => {
-              this.errorMessage = err?.error?.message || err?.message;
+              console.log(err?.error?.message || err?.message);
+              this.showInternalError();
             }
           });
         });
       }
     });
+    return false;
+  }
 
+  private showInternalError() {
+    this.translate.get('rules.edit.server-error').subscribe({
+      next: data => {
+        this.toastComponent?.error(data);
+      }
+    });
   }
 }

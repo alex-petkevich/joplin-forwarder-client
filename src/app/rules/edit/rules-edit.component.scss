@@ -3,3 +3,9 @@
   display: inline;
   margin-right: 10px;
 }
+
+.btn-xsm {
+  --bs-btn-padding-y: .5rem; 
+  --bs-btn-padding-x: .5rem; 
+  border: 0;
+}

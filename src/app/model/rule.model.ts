@@ -19,7 +19,7 @@ export interface IRuleCondition {
   id?: number,
   rule_id?: number,
   type: string,
-  condition: number,
+  cond: number,
   comparison_method: string,
   comparison_text?: string,
   created_at?: Date,
