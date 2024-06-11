@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {SettingsService} from "../../_services/settings.service";
 import {AuthService} from "../../_services/auth.service";
 import { ISettingsResponse } from "../../model/setting_response.model";
 import { ISettingsInfo } from "../../model/setting.model";
+import { DialogComponent } from '../../shared-components/dialog/dialog.component';
 
 @Component({
   selector: 'app-settings',
@@ -11,9 +12,12 @@ import { ISettingsInfo } from "../../model/setting.model";
 })
 export class SettingsComponent implements OnInit {
 
+  @ViewChild("mailssl") mailssl!:  ElementRef;
+  
   form: any = {
     mailserver: null,
     mailport: null,
+    mailssl: null,
     username: null,
     password: null,
     id: null,
@@ -44,6 +48,7 @@ export class SettingsComponent implements OnInit {
     const settings: ISettingsInfo = {
       'mailserver': mailserver,
       'mailport': mailport,
+      'mailssl': this.mailssl.nativeElement.checked ? "true" : "false",
       'username': username,
       'password': password,
       'period': period

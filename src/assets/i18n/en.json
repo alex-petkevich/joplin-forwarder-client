@@ -91,6 +91,7 @@
       "mailserver": "Host address",
       "mailserver-required": "Host address is required",
       "mailport": "Port",
+      "mailssl": "Connect via SSL",
       "username": "Username",
       "password": "Password",
       "period": "Period to check new mail, min",

@@ -40,6 +40,17 @@
       />
     </div>
     <div class="mb-3">
+      <input
+        type="checkbox"
+        class="form-check-input me-1"
+        name="mailssl"
+        id="mailssl"
+        [checked]="form.mailssl === 'true'"
+        #mailssl
+      />
+      <label for="mailssl">{{ 'account.settings.mailssl' | translate  }}</label>
+    </div>
+    <div class="mb-3">
       <label for="username">{{ 'account.settings.username' | translate  }}</label>
       <input
         type="text"

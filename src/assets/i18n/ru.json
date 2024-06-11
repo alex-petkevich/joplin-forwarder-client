@@ -94,6 +94,7 @@
       "mailserver": "Адрес сервера",
       "mailserver-required": "Адрес сервера обязателен",
       "mailport": "Порт",
+      "mailssl": "Соединяться через SSL",
       "username": "Имя пользователя",
       "password": "Пароль",
       "period": "Период проверки почты, мин",
