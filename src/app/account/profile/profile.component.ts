@@ -37,7 +37,11 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  onSubmit(): void {
+  onSubmit(valid: any): void {
+    if (!valid) {
+      return ;
+    }
+
     let { email, lastname, firstname } = this.form;
     this.userService.saveUser(this.currentUser.username, email, lastname, firstname).subscribe({
       next: data => {

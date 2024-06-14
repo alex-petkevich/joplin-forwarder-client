@@ -13,7 +13,7 @@
   </header>
   <form
     name="form"
-    (ngSubmit)="f.form.valid && onSubmit()"
+    (ngSubmit)="f.form.valid && onSubmit(f.form.valid)"
     #f="ngForm"
     novalidate
   >
@@ -39,23 +39,29 @@
       <label for="firstname">{{ 'account.profile.firstname' | translate  }}</label>
       <input
         type="text"
-        class="form-control"
+        class="form-control" [ngClass]="{ 'is-invalid': firstname.errors && f.submitted}"
         name="firstname"
         [(ngModel)]="form.firstname"
         required
         #firstname="ngModel"
       />
+      <div class="invalid-feedback" *ngIf="firstname.errors && f.submitted">
+        <div *ngIf="firstname.errors['required']">{{ 'account.profile.firstname-required' | translate  }}</div>
+      </div>
     </div>
     <div class="mb-2">
       <label for="lastname">{{ 'account.profile.lastname' | translate  }}</label>
       <input
         type="text"
-        class="form-control"
+        class="form-control" [ngClass]="{ 'is-invalid': lastname.errors && f.submitted}"
         name="lastname"
         [(ngModel)]="form.lastname"
         required
         #lastname="ngModel"
       />
+      <div class="invalid-feedback" *ngIf="lastname.errors && f.submitted">
+        <div *ngIf="lastname.errors['required']">{{ 'account.profile.lastname-required' | translate  }}</div>
+-      </div>
     </div>
     <div class="mb-2">
       <a href="/account/forgot-password">{{ 'account.profile.change-password' | translate  }}</a>
