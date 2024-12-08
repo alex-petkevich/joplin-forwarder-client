@@ -19,6 +19,7 @@ import { DialogComponent } from '../../shared-components/dialog/dialog.component
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastComponent } from '../../shared-components/toast/toast.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-rules-edit',
@@ -29,6 +30,9 @@ export class RulesEditComponent implements OnInit {
   rules: boolean = true;
   currentRule: IRule | undefined = undefined;
   isSuccessful: boolean = false;
+  isSuccessfulNew: boolean = false;
+  save_in_parent_id: any | undefined;
+  @ViewChild("f") mainForm: NgForm | undefined;
   @ViewChild("dialog") dialogComponent: DialogComponent | undefined;
   @ViewChild('type') form_type: ElementRef | undefined;
   @ViewChild('condition') form_condition: ElementRef | undefined;
@@ -60,7 +64,7 @@ export class RulesEditComponent implements OnInit {
   comparison_condition: IEnum[] = COMPARISON_CONDITION;
   errorMessage: String = "";
   joplinCachedNodesList:  ICachedNode[] = [];
-
+  
   constructor(private auth: AuthService,
               private rulesService: RulesService,
               private route: ActivatedRoute,
@@ -97,6 +101,7 @@ export class RulesEditComponent implements OnInit {
 
   onSubmit(valid: any) {
     this.isSuccessful = false;
+    this.isSuccessfulNew = false;
     if (!valid) {
       return false;
     }
@@ -104,12 +109,12 @@ export class RulesEditComponent implements OnInit {
     letForm.id = this.currentRule?.id;
     letForm.rule_actions = undefined;
     letForm.rule_conditions = undefined;
+    letForm.save_in_parent_id = letForm.save_in_parent_id != null && letForm.save_in_parent_id.label != null ? letForm.save_in_parent_id.label : "";
     this.rulesService.save(letForm).subscribe({
       next: data => {
         console.log(data);
-        this.router.navigate(['/rules']).then(() => {
-          window.location.reload();
-        });
+        this.currentRule?.id ? this.isSuccessful = true : this.isSuccessfulNew = true;
+        this.currentRule = data;
       },
       error: err => {
         this.errorMessage = err?.error?.message || err?.message;
@@ -134,6 +139,8 @@ export class RulesEditComponent implements OnInit {
           this.form_comparison_text!.nativeElement.value = "";
           this.form_comparison_method!.nativeElement.value = "";
           this.form_condition!.nativeElement.value = "";
+          this.isSuccessful = false;
+          this.isSuccessfulNew = false;
         },
         error: err => {
           console.log(err?.error?.message || err?.message);
@@ -157,6 +164,8 @@ export class RulesEditComponent implements OnInit {
           console.log(data);
           this.form_action!.nativeElement.value = '';
           this.form_action_target!.nativeElement.value = '';
+          this.isSuccessful = false;
+          this.isSuccessfulNew = false;
         },
         error: err => {
           console.log(err?.error?.message || err?.message);

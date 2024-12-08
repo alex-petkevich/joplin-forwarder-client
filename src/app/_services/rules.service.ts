@@ -26,6 +26,10 @@ export class RulesService {
   deleteRule(id: Number) : Observable<any> {
     return this.http.delete(API_URL + id, { responseType: 'json' });
   }
+  
+  copyRule(id: Number) : Observable<any> {
+    return this.http.post(API_URL + 'copy/' + id, { responseType: 'json' });
+  }
 
   save(rules: IRule): Observable<any> {
     return this.http.post(API_URL, rules, httpOptions);

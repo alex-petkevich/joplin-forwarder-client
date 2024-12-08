@@ -137,10 +137,12 @@
     "actions": "Actions",
     "change": "Change",
     "delete": "Delete",
+    "copy": "Create Rule Copy",
     "error_mail_not_configured": "Mail server was not set up. Please <a href=\"/settings\">complete the configuration</a>",
     "error_no_rules_found": "No Rules found",
     "create_rule": "Create Rule",
-    "delete-confirm": "Are you really want to delelete this rule?",
+    "copy-confirm": "Are you really want to copy this rule?",
+    "delete-confirm": "Are you really want to delete this rule?",
     "edit": {
       "save-data": "Save Rule",
       "cancel": "Cancel",
@@ -157,7 +159,8 @@
       "name-valid": "Incorrect value",
       "comparison_text-required": "Rule required",
       "comparison_text-valid": "Incorrect value",
-      "rules-saved": "Rule saved successfully"
+      "rules-saved": "Rule saved successfully",
+      "rules-saved-new": "Rule saved successfully. Now please add rule conditions and actions below"
     }
   },
   "lists" : {
@@ -224,7 +227,7 @@
     "error_mail_not_configured": "Mail server was not set up. Please <a href=\"/settings\">complete the configuration</a>",
     "error_no_rules_found": "No Rules found",
     "create_rule": "Create Rule",
-    "delete-confirm": "Are you really want to delelete this rule?",
+    "delete-confirm": "Are you really want to delete this user?",
     "edit": {
       "save-data": "Save Rule",
       "cancel": "Cancel",
@@ -240,7 +243,7 @@
       "name-valid": "Incorrect value",
       "comparison_text-required": "Rule required",
       "comparison_text-valid": "Incorrect value",
-      "rules-saved": "Rule saved successfully",
+      "rules-saved": "User saved successfully",
       "reset-link-sent": "Password reset link was sent user successfully"
     }
   },

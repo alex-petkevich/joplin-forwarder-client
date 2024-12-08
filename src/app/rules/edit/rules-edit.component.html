@@ -57,105 +57,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="mb-1">
-                <label for="type"><b>{{ 'rules.edit.type' | translate  }}</b></label>
-            </div>
-            <div class="mb-1">
-                <select
-                  class="form-control inner-fld"
-                  name="condition"
-                  id="condition"
-                  #condition
-                  required
-                >
-                  <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
-                  <option *ngFor="let cond of comparison_condition" value="{{ cond.enum }}">{{ 'lists.conditions.' + cond.enum | translate }}</option>
-                </select>
-                <select
-                        class="form-control inner-fld"
-                        name="type"
-                        id="type"
-                        #type
-                >
-                    <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
-                    <option *ngFor="let type of types_list" value="{{ type.enum }}">{{ 'lists.types.' + type.display | translate }}</option>
-                </select>
-                <select
-                        class="form-control inner-fld"
-                        name="comparison_method"
-                        id="comparison_method"
-                        #comparison_method
-                >
-                    <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
-                    <option *ngFor="let list of comparison_list" value="{{ list.enum }}">{{ 'lists.comparison.' + list.enum | translate }}</option>
-                </select>
-                <input
-                        type="text"
-                        class="form-control inner-fld"
-                        name="comparison_text"
-                        #comparison_text
-                />
-              <button class="btn btn-success" (click)="addComparisonRule()">
-                <i class="bi bi-plus-lg"></i> {{ 'rules.edit.add-comparison-rule' | translate  }}
-              </button>&nbsp;
-            </div>
-            <div class="mb-1" *ngIf="currentRule?.rule_conditions?.length! > 0">
-              <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of currentRule?.rule_conditions; let i = index">
-                    <button type="button" class="btn btn-xsm btn-outline-danger" (click)="delRuleCondition(item.id)"><i class="bi bi-trash"></i></button>
-                    <ng-container *ngIf="i > 0">{{ 'lists.conditions.' + (item.cond == 1 ? 'AND' : 'OR')  | translate }}</ng-container>
-                    {{ 'lists.types.' + geDisplayByName(types_list, item.type) | translate }}
-                    {{ 'lists.comparison.' + item.comparison_method | translate }}
-                    {{ item.comparison_text }}
-                </li>
-              </ul>
-            </div>
           
-            <div class="mb-1">
-              <label for="action"><b>{{ 'rules.edit.final_action' | translate  }}</b></label>
-            </div>
-            <div class="mb-1">
-                <select
-                        class="form-control inner-fld"
-                        name="action"
-                        id="action"
-                        #action
-                >
-                    <option *ngFor="let type of final_action_list" value="{{ type.enum }}">{{ 'lists.final_action.' + type.enum | translate }}</option>
-                </select>
-                <input
-                        type="text"
-                        class="form-control inner-fld"
-                        name="action_target"
-                        id="action_target"
-                        #action_target
-                />
-              <button
-                type="button"
-                class="btn btn-xsm me-2"
-                placement="top"
-                ngbPopover="{{ 'rules.edit.action-target-subject-hint-text' | translate }}"
-                triggers="mouseenter"
-                popoverTitle="{{ 'rules.edit.action-target-subject-hint-header' | translate }}"
-              >
-                <i class="bi bi-question-circle"></i>
-              </button>
-              <button class="btn btn-success" (click)="addActionRule()">
-                <i class="bi bi-plus-lg"></i> {{ 'rules.edit.add-action-rule' | translate  }}
-              </button>&nbsp;
-            </div>
-            <div class="mb-1" *ngIf="currentRule?.rule_actions?.length! > 0">
-              <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of currentRule?.rule_actions">
-                  <button type="button" class="btn btn-xsm btn-outline-danger" (click)="delRuleAction(item.id)"><i class="bi bi-trash"></i></button>
-                  {{ 'lists.final_action.' + item.action | translate }}
-                  {{ item.action_target }}
-                </li>
-              </ul>
-            </div>
-            <div class="mb-1">
-            </div>
             <div class="mb-1">
                 <label for="save_in_parent_id">{{ 'rules.edit.save_in_parent_id' | translate  }}</label>
                 <ng-select [multiple]="false"
@@ -183,7 +85,7 @@
                 />
                 <label for="save_in" class="form-check-label">{{ 'rules.edit.save_in' | translate  }}</label>
             </div>
-            <div class="mb-1 form-check form-switch" *ngIf="currentRule != undefined">
+            <div class="mb-1 form-check form-switch">
                 <label  class="form-check-label" for="stop_process_rules">{{ 'rules.edit.stop_process_rules' | translate  }}</label>
                 <input
                         type="checkbox"
@@ -195,15 +97,118 @@
                         #name="ngModel"
                 />
             </div>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            {{ 'rules.edit.rules-saved' | translate  }}
+          </div>
+          <div class="alert alert-success" *ngIf="isSuccessfulNew">
+            {{ 'rules.edit.rules-saved-new' | translate  }}
+          </div>
+          <ng-container  *ngIf="currentRule != undefined">
+            <div class="mb-1">
+              <label for="type"><b>{{ 'rules.edit.type' | translate  }}</b></label>
+            </div>
+            <div class="mb-1">
+              <select
+                class="form-control inner-fld"
+                name="condition"
+                id="condition"
+                #condition
+                required
+              >
+                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
+                <option *ngFor="let cond of comparison_condition" value="{{ cond.enum }}">{{ 'lists.conditions.' + cond.enum | translate }}</option>
+              </select>
+              <select
+                class="form-control inner-fld"
+                name="type"
+                id="type"
+                #type
+              >
+                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
+                <option *ngFor="let type of types_list" value="{{ type.enum }}">{{ 'lists.types.' + type.display | translate }}</option>
+              </select>
+              <select
+                class="form-control inner-fld"
+                name="comparison_method"
+                id="comparison_method"
+                #comparison_method
+              >
+                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
+                <option *ngFor="let list of comparison_list" value="{{ list.enum }}">{{ 'lists.comparison.' + list.enum | translate }}</option>
+              </select>
+              <input
+                type="text"
+                class="form-control inner-fld"
+                name="comparison_text"
+                #comparison_text
+              />
+              <button class="btn btn-success" (click)="addComparisonRule()">
+                <i class="bi bi-plus-lg"></i> {{ 'rules.edit.add-comparison-rule' | translate  }}
+              </button>&nbsp;
+            </div>
+            <div class="mb-1" *ngIf="currentRule?.rule_conditions?.length! > 0">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of currentRule?.rule_conditions; let i = index">
+                  <button type="button" class="btn btn-xsm btn-outline-danger" (click)="delRuleCondition(item.id)"><i class="bi bi-trash"></i></button>
+                  <ng-container *ngIf="i > 0">{{ 'lists.conditions.' + (item.cond == 1 ? 'AND' : 'OR')  | translate }}</ng-container>
+                  {{ 'lists.types.' + geDisplayByName(types_list, item.type) | translate }}
+                  {{ 'lists.comparison.' + item.comparison_method | translate }}
+                  {{ item.comparison_text }}
+                </li>
+              </ul>
+            </div>
 
+            <div class="mb-1">
+              <label for="action"><b>{{ 'rules.edit.final_action' | translate  }}</b></label>
+            </div>
+            <div class="mb-1">
+              <select
+                class="form-control inner-fld"
+                name="action"
+                id="action"
+                #action
+              >
+                <option *ngFor="let type of final_action_list" value="{{ type.enum }}">{{ 'lists.final_action.' + type.enum | translate }}</option>
+              </select>
+              <input
+                type="text"
+                class="form-control inner-fld"
+                name="action_target"
+                id="action_target"
+                #action_target
+              />
+              <button
+                type="button"
+                class="btn btn-xsm me-2"
+                placement="top"
+                ngbPopover="{{ 'rules.edit.action-target-subject-hint-text' | translate }}"
+                triggers="mouseenter"
+                popoverTitle="{{ 'rules.edit.action-target-subject-hint-header' | translate }}"
+              >
+                <i class="bi bi-question-circle"></i>
+              </button>
+              <button class="btn btn-success" (click)="addActionRule()">
+                <i class="bi bi-plus-lg"></i> {{ 'rules.edit.add-action-rule' | translate  }}
+              </button>&nbsp;
+            </div>
+            <div class="mb-1" *ngIf="currentRule?.rule_actions?.length! > 0">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of currentRule?.rule_actions">
+                  <button type="button" class="btn btn-xsm btn-outline-danger" (click)="delRuleAction(item.id)"><i class="bi bi-trash"></i></button>
+                  {{ 'lists.final_action.' + item.action | translate }}
+                  {{ item.action_target }}
+                </li>
+              </ul>
+            </div>
+            <div class="mb-1">
+            </div>
+          </ng-container>
+          
             <div class="mb-1">
                 <button class="btn btn-primary">{{ 'rules.edit.save-data' | translate  }}</button>&nbsp;
                 <button class="btn btn-secondary" [routerLink]="['/rules']">{{ 'rules.edit.cancel' | translate }}</button>
             </div>
         </form>
-        <div class="alert alert-success" *ngIf="isSuccessful">
-            {{ 'rules.edit.rules-saved' | translate  }}
-        </div>
         <div class="alert alert-danger" *ngIf="errorMessage != ''">
             {{ errorMessage  }}
         </div>

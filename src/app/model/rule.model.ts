@@ -6,7 +6,7 @@ export interface IRule {
     stop_process_rules?: Boolean,
     save_in?: Boolean,
     priority?: number,
-    save_in_parent_id?: string,
+    save_in_parent_id?: any,
     processed?: number,
     created_at?: Date,
     last_modified_at?: Date,

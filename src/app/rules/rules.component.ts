@@ -79,6 +79,21 @@ export class RulesComponent implements OnInit {
         });
     }
 
+    confirmCopy(id: any) {
+        this.translate.get('rules.copy-confirm').subscribe({
+            next: data => {
+                var modal = this.dialogComponent?.open(data);
+                (modal as NgbModalRef).result.then((result) => {
+                    this.rulesService.copyRule(id).subscribe({
+                        next: data => {
+                            this.loadRules();
+                        }
+                    });
+                });
+            }
+        });
+    }
+
     moveUp(rule: IRule) {
         const index = this.rules?.indexOf(rule) as number;
         const rlprev = index > 0 ? index - 1 : 0;
