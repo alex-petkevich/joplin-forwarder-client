@@ -26,5 +26,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - run: npm install --no-package-lock
     - run: npm run build --prod --aot --build-optimizer --common-chunk --vendor-chunk --optimization --progress --configuration=production --omit=dev
