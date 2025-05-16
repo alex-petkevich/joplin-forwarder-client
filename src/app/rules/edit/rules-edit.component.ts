@@ -109,7 +109,7 @@ export class RulesEditComponent implements OnInit {
     letForm.id = this.currentRule?.id;
     letForm.rule_actions = undefined;
     letForm.rule_conditions = undefined;
-    letForm.save_in_parent_id = letForm.save_in_parent_id != null && letForm.save_in_parent_id.label != null ? letForm.save_in_parent_id.label : "";
+    letForm.save_in_parent_id = letForm.save_in_parent_id != null && letForm.save_in_parent_id.label != null ? letForm.save_in_parent_id.label : letForm.save_in_parent_id;
     this.rulesService.save(letForm).subscribe({
       next: data => {
         console.log(data);
